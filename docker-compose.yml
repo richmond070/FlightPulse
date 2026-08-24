@@ -1,0 +1,41 @@
+version: "3.9"
+
+# Phase 1 — Foundation
+# Only the data-layer services are wired up at this stage: PostgreSQL and Redis.
+# FastAPI, the load balancer, and worker containers are added in later phases
+# (see FlightPulse_Complete_Project_Workflow_Guide.pdf, section 10).
+
+services:
+  postgres:
+    image: postgres:16
+    container_name: flightpulse-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-flightpulse}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-flightpulse}
+      POSTGRES_DB: ${POSTGRES_DB:-flightpulse}
+    ports:
+      - "${POSTGRES_PORT:-5432}:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./sql:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-flightpulse}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:7
+    container_name: flightpulse-redis
+    restart: unless-stopped
+    ports:
+      - "${REDIS_PORT:-6379}:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  postgres_data:
