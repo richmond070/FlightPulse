@@ -1,9 +1,9 @@
 version: "3.9"
 
-# Phase 1 — Foundation
-# Only the data-layer services are wired up at this stage: PostgreSQL and Redis.
-# FastAPI, the load balancer, and worker containers are added in later phases
-# (see FlightPulse_Complete_Project_Workflow_Guide.pdf, section 10).
+# Phase 1 — Foundation: postgres, redis.
+# Phase 4 — Queue: worker (added below). Per section 8's Python-native
+# substitution, there is no separate queue-service container -- the
+# worker connects to `redis` directly via arq.
 
 services:
   postgres:
@@ -36,6 +36,26 @@ services:
       interval: 5s
       timeout: 5s
       retries: 5
+
+  worker:
+    build:
+      context: .
+      dockerfile: worker/Dockerfile
+    command: ["arq", "worker.consumer.WorkerSettings"]
+    restart: unless-stopped
+    depends_on:
+      redis:
+        condition: service_healthy
+    environment:
+      REDIS_URL: ${REDIS_URL:-redis://redis:6379/0}
+      ARQ_MAX_JOB_ATTEMPTS: ${ARQ_MAX_JOB_ATTEMPTS:-5}
+      ARQ_RETRY_BACKOFF_BASE_SECONDS: ${ARQ_RETRY_BACKOFF_BASE_SECONDS:-2}
+      ARQ_RETRY_BACKOFF_MAX_SECONDS: ${ARQ_RETRY_BACKOFF_MAX_SECONDS:-60}
+      ARQ_JOB_TIMEOUT_SECONDS: ${ARQ_JOB_TIMEOUT_SECONDS:-30}
+    # Section 9, Phase 4: "Run multiple workers and verify concurrent
+    # processing." Scale with: docker compose up --scale worker=3
+    deploy:
+      replicas: 2
 
 volumes:
   postgres_data:

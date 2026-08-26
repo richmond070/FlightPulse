@@ -5,3 +5,9 @@ python-dotenv>=1.0
 psycopg[binary]>=3.1
 redis>=5.0
 requests>=2.31
+
+# --- Phase 4: async job queue ---
+# arq is asyncio-native and Redis-backed, avoiding a second (Node/BullMQ)
+# runtime. See FlightPulse_Complete_Project_Workflow_Guide.pdf, section 8,
+# which explicitly permits substituting a Python-native queue for BullMQ.
+arq>=0.26
