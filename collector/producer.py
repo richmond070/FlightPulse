@@ -22,6 +22,7 @@ from __future__ import annotations
 import logging
 import os
 import time
+import uuid
 
 import requests
 from dotenv import load_dotenv
@@ -56,14 +57,18 @@ def send_batch(events: list[dict]) -> bool:
     if not events:
         logger.info("No events to send this cycle")
         return True
+    idempotency_key = str(uuid.uuid4())
     try:
         resp = requests.post(
-            TELEMETRY_TARGET_URL, json={"events": events}, timeout=15
+            TELEMETRY_TARGET_URL,
+            json={"events": events},
+            headers={"Idempotency-Key": idempotency_key},
+            timeout=15,
         )
         resp.raise_for_status()
         logger.info(
-            "Sent batch of %d events -> %s (%s)",
-            len(events), TELEMETRY_TARGET_URL, resp.status_code,
+            "Sent batch of %d events -> %s (%s) [idempotency-key=%s]",
+            len(events), TELEMETRY_TARGET_URL, resp.status_code, idempotency_key,
         )
         return True
     except requests.RequestException as exc:
