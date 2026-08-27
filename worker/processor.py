@@ -18,7 +18,7 @@ import logging
 from arq import Retry
 from pydantic import ValidationError
 
-from ingestion.schemas import TelemetryBatch, TelemetryEvent
+from ingestion.schemas import ExtractionLogEntry, TelemetryBatch, TelemetryEvent
 from worker import persistence
 from worker.settings import DEAD_LETTER_KEY, RETRY_BACKOFF_BASE_SECONDS, RETRY_BACKOFF_MAX_SECONDS
 
@@ -132,3 +132,44 @@ async def process_telemetry_batch(ctx: dict, batch_payload: dict) -> dict:
         raise Retry(defer=delay) from exc
 
     return {"status": "completed", "accepted": len(deduped)}
+
+
+async def process_extraction_log(ctx: dict, entry_payload: dict) -> dict:
+    """arq job function for extraction-cycle metadata.
+
+    Ref: FlightPulse_Phase5_Continuation_ETL_Business_Objectives.pdf,
+    section 3, Extract stage. Registered in worker/consumer.py and
+    enqueued from ingestion/routes.py's POST /extraction-log.
+
+    Deliberately simpler than process_telemetry_batch: there's no
+    dedup/normalization step here since each extraction cycle produces
+    exactly one log row, keyed on request_id (unique in
+    sql/003_extraction_log.sql). Validation failures still dead-letter
+    rather than retry, for the same reason as telemetry: a malformed
+    payload will never pass validation no matter how many times it's
+    retried.
+    """
+    attempt = ctx.get("job_try", 1)
+
+    try:
+        entry = ExtractionLogEntry.model_validate(entry_payload)
+    except ValidationError as exc:
+        logger.error("Extraction log schema validation failed, sending to dead letter: %s", exc)
+        await persistence.write_to_dead_letter(
+            ctx["redis"], DEAD_LETTER_KEY, entry_payload, reason=str(exc)
+        )
+        return {"status": "dead_lettered", "reason": "validation_error"}
+
+    try:
+        await persistence.persist_extraction_log(entry.model_dump())
+    except persistence.PersistenceUnavailable as exc:
+        delay = compute_backoff_seconds(attempt)
+        logger.warning(
+            "Persistence unavailable for extraction log on attempt=%d, retrying in %.1fs: %s",
+            attempt,
+            delay,
+            exc,
+        )
+        raise Retry(defer=delay) from exc
+
+    return {"status": "completed", "request_id": entry.request_id}

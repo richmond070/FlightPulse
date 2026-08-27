@@ -158,6 +158,36 @@ flightpulse/
         Phase 1 — no speculative geo/additional indexes added, per
         section 5.4 ("add ... only when query plans or benchmarks
         justify them")
+  - [x] **Extraction-stage metadata** — `sql/003_extraction_log.sql` adds
+        an `extraction_log` table (one row per collector poll cycle, not
+        per event), per continuation doc section 3 ("record extraction
+        failures" plus the named fields: `request_id`,
+        `extraction_started_at`/`extraction_completed_at`,
+        `source_observation_time`, `collector_version`, `record_count`,
+        `request_scope`). `collector/producer.py` builds and POSTs one
+        entry per cycle to a new `POST /extraction-log` endpoint
+        (`ingestion/routes.py`), which enqueues a `process_extraction_log`
+        job (`worker/processor.py`) persisted by
+        `persistence.persist_extraction_log()` — same
+        enqueue/validate/retry/dead-letter pattern as telemetry, so a
+        burst of extraction-log writes never blocks the collector's
+        polling loop. Covers both success *and* failure cycles (e.g.
+        OpenSky unreachable), which is the part a stdout-only log would
+        otherwise lose. Verified live end-to-end: `curl` → FastAPI →
+        arq queue → worker → Postgres, plus direct success/failure job
+        tests.
+  - [x] **Schema/DB drift fix** — `sql/004_add_collector_id.sql` promotes
+        `collector_id` from `ingestion.schemas.TelemetryEvent` to a real
+        `raw_telemetry` column (with backfill from existing JSONB
+        payloads). Deliberately *not* promoting the other event fields
+        (`latitude`, `velocity_mps`, `baro_altitude_m`, etc.) the same
+        way: those are flight measurements, not record-provenance
+        metadata, and typing/promoting them is `stg_opensky_states`'s job
+        in Phase 6 (dbt) per the continuation doc's "keep source-oriented
+        storage separate from analytics models" (section 3, Load). They
+        remain fully present in `raw_telemetry.payload` (JSONB) in the
+        meantime — nothing is lost, just not yet indexed/typed at the
+        raw layer.
 - [ ] Phase 6 — dbt
 - [ ] Phase 7 — Load testing
 - [ ] Phase 8 — Analytics layer

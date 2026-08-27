@@ -28,7 +28,7 @@ from arq import create_pool
 from fastapi import APIRouter, Header
 from typing import Optional
 
-from ingestion.schemas import TelemetryBatch, IngestResponse
+from ingestion.schemas import ExtractionLogEntry, TelemetryBatch, IngestResponse
 from worker.settings import QUEUE_NAME, get_redis_settings
 
 router = APIRouter()
@@ -106,3 +106,36 @@ async def post_telemetry(
             _idempotency_cache[idempotency_key] = response
 
     return response
+
+
+@router.post("/extraction-log")
+async def post_extraction_log(entry: ExtractionLogEntry):
+    """Record one collector extraction cycle's metadata.
+
+    Ref: FlightPulse_Phase5_Continuation_ETL_Business_Objectives.pdf,
+    section 3, Extract stage -- "record extraction failures" and the
+    named metadata fields (request_id, extraction_started_at/completed_at,
+    source_observation_time, collector_version, record_count,
+    request_scope).
+
+    Deliberately its own endpoint/job type rather than piggybacking on
+    /telemetry: this is metadata about the extraction request itself
+    (one row per poll cycle), not a telemetry event, and it's the one
+    place a *failed* extraction (zero events, an exception) still has
+    something to report -- /telemetry has nothing to POST when
+    extraction fails, so extraction failures would otherwise vanish into
+    collector-local logs only, which is exactly what section 3 says not
+    to do.
+
+    Enqueued the same way as telemetry batches (arq, section 8) so a
+    burst of extraction-log writes never blocks the collector's polling
+    loop and follows the same retry/backoff/dead-letter behavior as
+    everything else in the pipeline.
+    """
+    pool = await _get_arq_pool()
+    await pool.enqueue_job(
+        "process_extraction_log",
+        entry.model_dump(),
+        _queue_name=QUEUE_NAME,
+    )
+    return {"status": "accepted", "request_id": entry.request_id}

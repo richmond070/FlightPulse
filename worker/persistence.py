@@ -57,9 +57,9 @@ async def _get_pool() -> AsyncConnectionPool:
 
 _INSERT_SQL = """
     INSERT INTO raw_telemetry
-        (ingestion_id, source, icao24, payload, ingested_at, processed_at)
+        (ingestion_id, source, icao24, collector_id, payload, ingested_at, processed_at)
     VALUES
-        (%(ingestion_id)s, %(source)s, %(icao24)s, %(payload)s, %(ingested_at)s, now())
+        (%(ingestion_id)s, %(source)s, %(icao24)s, %(collector_id)s, %(payload)s, %(ingested_at)s, now())
     ON CONFLICT (ingestion_id) DO NOTHING
     RETURNING ingestion_id
 """
@@ -71,11 +71,20 @@ def _event_to_row(event: TelemetryEvent) -> dict:
     payload retains the full normalized event as JSONB (section 5:
     raw_telemetry's purpose is "payload, source, received_at" -- the full
     record, not just the columns we've chosen to index on).
+
+    collector_id is promoted to its own column (sql/004_add_collector_id.sql)
+    since it's record-provenance metadata, the same category as source and
+    icao24 -- not a flight measurement. Flight-measurement fields
+    (latitude, velocity, altitude, etc.) deliberately stay JSONB-only here;
+    typing/promoting those is dbt's stg_opensky_states job in Phase 6, per
+    the continuation doc's own "keep source-oriented storage separate from
+    analytics models" instruction (section 3, Load).
     """
     return {
         "ingestion_id": event.ingestion_id,
         "source": event.source,
         "icao24": event.icao24,
+        "collector_id": event.collector_id,
         "payload": json.dumps(event.model_dump()),
         "ingested_at": event.ingested_at,
     }
@@ -151,6 +160,49 @@ async def persist_batch(events: list[TelemetryEvent]) -> int:
     except (psycopg.OperationalError, PoolTimeout, OSError) as exc:
         elapsed = time.monotonic() - start
         logger.warning("Persistence failed after %.2fs for %d event(s): %s", elapsed, len(rows), exc)
+        raise PersistenceUnavailable(str(exc)) from exc
+
+
+_EXTRACTION_LOG_INSERT_SQL = """
+    INSERT INTO extraction_log
+        (request_id, source, collector_id, collector_version, request_scope,
+         extraction_started_at, extraction_completed_at,
+         source_observation_time, record_count, success, error_message)
+    VALUES
+        (%(request_id)s, %(source)s, %(collector_id)s, %(collector_version)s,
+         %(request_scope)s, %(extraction_started_at)s, %(extraction_completed_at)s,
+         to_timestamp(%(source_observation_time)s), %(record_count)s,
+         %(success)s, %(error_message)s)
+    ON CONFLICT (request_id) DO NOTHING
+"""
+
+
+async def persist_extraction_log(entry: dict) -> None:
+    """Write one extraction-cycle record to extraction_log.
+
+    Ref: FlightPulse_Phase5_Continuation_ETL_Business_Objectives.pdf,
+    section 3 (Extract-stage metadata) -- see sql/003_extraction_log.sql
+    for the table this writes to and worker/processor.py's
+    process_extraction_log for how this gets called.
+
+    ON CONFLICT (request_id) DO NOTHING gives this the same redelivery
+    safety as persist_batch(), for the same reason: arq's at-least-once
+    delivery could run this job twice.
+
+    Raises PersistenceUnavailable on connection failure, same contract
+    as persist_batch(), so the caller's retry/backoff is unchanged.
+    """
+    try:
+        pool = await _get_pool()
+        async with pool.connection() as conn:
+            async with conn.cursor() as cur:
+                await cur.execute(_EXTRACTION_LOG_INSERT_SQL, entry)
+            await conn.commit()
+        logger.info(
+            "Logged extraction cycle request_id=%s success=%s record_count=%s",
+            entry.get("request_id"), entry.get("success"), entry.get("record_count"),
+        )
+    except (psycopg.OperationalError, PoolTimeout, OSError) as exc:
         raise PersistenceUnavailable(str(exc)) from exc
 
 

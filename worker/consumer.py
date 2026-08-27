@@ -20,7 +20,7 @@ import sys
 
 from arq.connections import RedisSettings
 
-from worker.processor import process_telemetry_batch
+from worker.processor import process_extraction_log, process_telemetry_batch
 from worker.settings import (
     JOB_TIMEOUT_SECONDS,
     MAX_JOB_ATTEMPTS,
@@ -55,7 +55,7 @@ class WorkerSettings:
     `arq worker.consumer.WorkerSettings`.
     """
 
-    functions = [process_telemetry_batch]
+    functions = [process_telemetry_batch, process_extraction_log]
     queue_name = QUEUE_NAME
     redis_settings: RedisSettings = get_redis_settings()
 
