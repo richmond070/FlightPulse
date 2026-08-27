@@ -9,10 +9,33 @@ controls, and analytics-ready outputs.
 async queue, PostgreSQL, dbt, Docker Compose. A dashboard is optional and
 will be added only once the pipeline is stable.
 
-Full design reference: `FlightPulse_Complete_Project_Workflow_Guide.pdf`
-(project docs). This README is kept in sync with that guide — if the two
-disagree, the guide is treated as the source of truth unless a change is
-explicitly agreed and recorded here.
+Full design references:
+- `FlightPulse_Complete_Project_Workflow_Guide.pdf` — Phases 1–4 technical spec.
+- `FlightPulse_Phase5_Continuation_ETL_Business_Objectives.pdf` — Phase 5
+  onward: ETL specification, business objectives, data-quality rules, KPIs.
+
+This README is kept in sync with both documents — if they disagree, the
+more specific/recent continuation doc governs for Phase 5+, and the
+original guide governs Phases 1–4, unless a change is explicitly agreed
+and recorded here (see "Deliberate deviations from the docs" below).
+
+## Business objective
+
+Per `FlightPulse_Phase5_Continuation_ETL_Business_Objectives.pdf`, section 1:
+
+> Transform aviation telemetry from OpenSky Network into reliable,
+> near-real-time operational intelligence that can be used to understand
+> aircraft activity, airspace utilization, flight movement patterns, and
+> changes in aviation traffic over time.
+
+The business questions this pipeline is ultimately built to answer
+(section 2 of the continuation doc) — aircraft counts by period, regional
+density, activity trends by hour/day, most frequent aircraft/callsigns,
+altitude/velocity patterns, climb/descend/stable activity, telemetry
+freshness, and system behavior under load — are answered by the dbt marts
+in Phase 6, not by the raw ingestion path alone. Phases 1–5 exist to get
+clean, deduplicated, traceable data into PostgreSQL reliably enough for
+those marts to be trustworthy.
 
 ## Target architecture
 
@@ -94,12 +117,50 @@ flightpulse/
           avg latency, per-backend selection counts, health-check
           failures, active backend count
     - [x] `GET /lb-metrics` — internal endpoint
-  - [ ] Phase D — metrics endpoint
-- [ ] Phase 4 — Queue
-- [ ] Phase 5 — Persistence
+- [x] Phase 4 — Async job queue
+  - [x] `worker/settings.py` — Redis/queue config, retry/backoff constants
+  - [x] `ingestion/routes.py` — enqueues one compact job per batch (arq pool)
+  - [x] `worker/processor.py` — validates, normalizes, in-batch-dedupes,
+        retries transient failures with exponential backoff
+        (`arq.Retry(defer=...)`), dead-letters unrecoverable payloads
+  - [x] `worker/consumer.py` — arq worker entrypoint
+        (`arq worker.consumer.WorkerSettings`)
+  - [x] Verified live: enqueue → process → complete; in-batch dedup;
+        dead-letter on schema-validation failure; two concurrent workers
+        splitting jobs from the same queue with no double-processing
+- [x] Phase 5 — Persistence
+  - [x] `worker/persistence.py` — real batched inserts into
+        `raw_telemetry` (one `INSERT ... ON CONFLICT (ingestion_id) DO
+        NOTHING RETURNING` per row; batches kept compact, per section 8)
+  - [x] `sql/002_add_processed_at.sql` — adds `processed_at`, so
+        queue-to-persisted latency is measurable in Phase 7
+  - [x] `PersistenceUnavailable` on connection failure → arq retry/backoff
+        (Postgres-down tested live; a 5s connect timeout keeps this
+        under `JOB_TIMEOUT_SECONDS` so our own retry logic wins the race,
+        not arq's job timeout)
+  - [x] Batch-insert timing instrumentation — logs elapsed time and
+        records/sec per batch (continuation doc, section 5.3: "measure
+        insert latency and records/second before optimizing further";
+        feeds the "Records processed per second" KPI in section 11)
+  - [x] **Deterministic idempotency key** — `collector/normalizer.py`
+        derives `ingestion_id` via `uuid5(icao24 + source observation
+        timestamp)` instead of a random UUID, per continuation doc
+        section 5.2 ("the key must match the semantics of the source
+        rather than assuming every polling response is unique"). This is
+        what makes `ON CONFLICT DO NOTHING` catch a genuine duplicate
+        *observation* (same aircraft, same `last_contact`, polled twice),
+        not just a duplicate job *delivery*.
+  - [x] Verified live against real Postgres: fresh insert, exact
+        redelivery (0 new rows), in-batch duplicate (1 row, not 2),
+        Postgres-down → retry, full pipeline against real OpenSky data
+        (10k+ event batches from a live poll)
+  - [x] Indexes: kept to the existing `(icao24, ingested_at)` index from
+        Phase 1 — no speculative geo/additional indexes added, per
+        section 5.4 ("add ... only when query plans or benchmarks
+        justify them")
 - [ ] Phase 6 — dbt
 - [ ] Phase 7 — Load testing
-- [ ] Phase 8 — Documentation
+- [ ] Phase 8 — Analytics layer
 
 ## Local setup
 
@@ -160,9 +221,66 @@ so traffic is distributed across all backends.
   handles OAuth2 token fetch/refresh automatically (tokens expire after
   ~30 minutes; refreshed transparently, with 401 retry-once handling).
 
-## Note on the async queue
+### Running the worker and testing the queue + persistence
 
-The original design reference names BullMQ (a Node.js library) for the
-async job queue. This project is kept pure Python, so a Python-native
-queue is used instead (see `worker/` and `ingestion/routes.py`), per the
-guide's own guidance not to force a mismatched tool into the architecture.
+Requires Redis and PostgreSQL running (`docker compose up -d postgres redis`,
+or run both natively — see each phase's testing notes below), plus
+`DATABASE_URL` and `REDIS_URL` set in `.env`.
+
+```bash
+# terminal 5 — the async worker (run this and the next in addition to the
+# ingestion instances + load balancer above)
+export PYTHONPATH=$(pwd)
+arq worker.consumer.WorkerSettings
+```
+
+Run multiple instances of the same command in separate terminals to
+verify concurrent processing (Phase 4's own checklist item) — arq
+workers share the queue via Redis and won't double-process a job.
+
+**Windows note:** if you see
+`Psycopg cannot use the 'ProactorEventLoop' to run in async mode`,
+that's a known Windows asyncio/psycopg incompatibility, already handled
+in `worker/consumer.py` via `asyncio.set_event_loop_policy(
+asyncio.WindowsSelectorEventLoopPolicy())`. If you still hit it, confirm
+you're running the current `worker/consumer.py`.
+
+Once a batch is enqueued (either via `POST /telemetry` directly, or by
+running the collector against real OpenSky data — see above), the worker
+log shows validation, in-batch dedup, and persistence timing, e.g.:
+
+```
+Processing batch attempt=1 received=10423 after_dedupe=10423
+Persisted batch: 10423 event(s) submitted, 10423 newly inserted, 0 skipped as duplicate (14.8s elapsed, 704 records/sec)
+```
+
+Confirm data landed:
+```bash
+psql -U flightpulse -h localhost -d flightpulse -c "SELECT count(*) FROM raw_telemetry;"
+```
+
+## Deliberate deviations from the docs
+
+Documented here so the two source PDFs and the actual codebase don't
+silently drift apart.
+
+**Async queue: `arq` instead of BullMQ.** Both source docs name
+BullMQ + Redis. BullMQ is a Node.js library; this project is kept pure
+Python. The original guide's section 8 explicitly permits this
+substitution ("if keeping the project entirely Python is more important,
+replace BullMQ with a Python-native queue"). `arq` was chosen over
+Celery/RQ/Dramatiq for being asyncio-native (matches FastAPI's async
+handlers) and Redis-backed (no extra broker). Every behavioral
+requirement either doc actually specifies — retries, exponential
+backoff, bounded attempts, dead-lettering, concurrent worker processing,
+idempotent writes — is implemented and verified live regardless of which
+library provides the mechanism.
+
+**Idempotency key: deterministic hash, not the collector's original
+random UUID.** Phase 4 initially generated `ingestion_id` via
+`uuid.uuid4()` per event. The Phase 5 continuation doc's section 5.2
+explicitly warns against this ("the key must match the semantics of the
+source rather than assuming every polling response is unique"). Fixed in
+`collector/normalizer.py`: `ingestion_id` is now `uuid5(source + icao24 +
+last_contact)`, so the same real-world observation always produces the
+same id, no matter how many times it's polled or a job is redelivered.

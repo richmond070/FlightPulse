@@ -14,7 +14,9 @@ containers -- arq workers pull from the same Redis queue and don't
 double-process a job because arq acquires a per-job lock in Redis.
 """
 
+import asyncio
 import logging
+import sys
 
 from arq.connections import RedisSettings
 
@@ -25,6 +27,16 @@ from worker.settings import (
     QUEUE_NAME,
     get_redis_settings,
 )
+
+# On Windows, asyncio's default event loop is ProactorEventLoop, which
+# psycopg's async driver cannot use (it requires selector-based I/O).
+# Without this, every DB connection attempt fails with:
+#   "Psycopg cannot use the 'ProactorEventLoop' to run in async mode"
+# regardless of retries/backoff, since it's a loop incompatibility, not a
+# transient failure. This must be set before arq creates its event loop,
+# so it's applied at import time here rather than inside a function.
+if sys.platform == "win32":
+    asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("flightpulse.worker.consumer")

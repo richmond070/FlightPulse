@@ -5,6 +5,21 @@ Ref: FlightPulse_Complete_Project_Workflow_Guide.pdf, section 3
 (Step 2 — Normalize, Step 3 — Add ingestion metadata) and section 4
 (Canonical Telemetry Event).
 
+Ref (idempotency): FlightPulse_Phase5_Continuation_ETL_Business_Objectives.pdf,
+section 5.2 ("Define event identity before implementing database writes.
+A practical strategy can use aircraft identifier plus source observation
+timestamp... The key must match the semantics of the source rather than
+assuming every polling response is unique.")
+
+ingestion_id is therefore derived deterministically from
+(source, icao24, last_contact) rather than a random UUID. last_contact is
+OpenSky's own observation timestamp -- the "source observation timestamp"
+the spec refers to -- so the same real-world observation produces the same
+ingestion_id no matter how many times it's polled, retried, or redelivered.
+This is what makes `ON CONFLICT (ingestion_id) DO NOTHING` in
+worker/persistence.py catch genuine duplicate *observations*, not just
+duplicate *job deliveries* of the same batch.
+
 OpenSky's /states/all response is an array of positional fields per
 aircraft, documented at:
 https://openskynetwork.github.io/opensky-api/rest.html#response
@@ -42,9 +57,30 @@ STATE_VECTOR_FIELDS = [
     "spi", "position_source",
 ]
 
+# Fixed namespace UUID for deriving deterministic ingestion_ids via
+# uuid5. Must never change once data has been persisted -- changing it
+# would silently give every existing observation a new identity and
+# defeat cross-run deduplication.
+_INGESTION_ID_NAMESPACE = uuid.uuid5(uuid.NAMESPACE_URL, "flightpulse.opensky.ingestion_id")
+
 
 def _clean_callsign(raw: Optional[str]) -> Optional[str]:
     return raw.strip() if raw else None
+
+
+def _compute_ingestion_id(source: str, icao24: str, last_contact) -> str:
+    """Deterministic event identity: same (source, icao24, last_contact)
+    always yields the same ingestion_id.
+
+    Falls back to a random UUID only when last_contact is missing (should
+    be rare/never for real OpenSky data) -- an event with no source
+    observation timestamp can't be deduplicated on that basis anyway, so
+    there's nothing meaningful to hash against.
+    """
+    if last_contact is None:
+        return str(uuid.uuid4())
+    identity = f"{source}:{icao24}:{last_contact}"
+    return str(uuid.uuid5(_INGESTION_ID_NAMESPACE, identity))
 
 
 def normalize_state_vector(state: list, collector_id: str = "collector-1") -> dict:
@@ -55,14 +91,17 @@ def normalize_state_vector(state: list, collector_id: str = "collector-1") -> di
     fields = dict(zip(STATE_VECTOR_FIELDS, state))
 
     now = datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
+    source = "opensky"
+    icao24 = fields.get("icao24")
+    last_contact = fields.get("last_contact")
 
     return {
-        "source": "opensky",
-        "icao24": fields.get("icao24"),
+        "source": source,
+        "icao24": icao24,
         "callsign": _clean_callsign(fields.get("callsign")),
         "origin_country": fields.get("origin_country"),
         "time_position": fields.get("time_position"),
-        "last_contact": fields.get("last_contact"),
+        "last_contact": last_contact,
         "longitude": fields.get("longitude"),
         "latitude": fields.get("latitude"),
         "baro_altitude_m": fields.get("baro_altitude"),
@@ -72,7 +111,7 @@ def normalize_state_vector(state: list, collector_id: str = "collector-1") -> di
         "vertical_rate_mps": fields.get("vertical_rate"),
         "on_ground": fields.get("on_ground"),
         "ingested_at": now,
-        "ingestion_id": str(uuid.uuid4()),
+        "ingestion_id": _compute_ingestion_id(source, icao24, last_contact),
         "collector_id": collector_id,
     }
 

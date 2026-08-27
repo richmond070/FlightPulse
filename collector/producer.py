@@ -45,6 +45,20 @@ TELEMETRY_TARGET_URL = os.getenv(
 )
 COLLECTOR_ID = os.getenv("COLLECTOR_ID", "collector-1")
 
+# Optional bounding box (lamin, lomin, lamax, lomax) to limit /states/all
+# to a region instead of the whole globe -- conserves OpenSky API credits
+# during local testing. All four must be set together or none are used.
+# Nigeria/West Africa default given as an example; override via env.
+_bbox_env = (
+    os.getenv("OPENSKY_BBOX_LAMIN"),
+    os.getenv("OPENSKY_BBOX_LOMIN"),
+    os.getenv("OPENSKY_BBOX_LAMAX"),
+    os.getenv("OPENSKY_BBOX_LOMAX"),
+)
+BBOX: tuple[float, float, float, float] | None = (
+    tuple(float(v) for v in _bbox_env) if all(_bbox_env) else None
+)
+
 
 def build_client() -> OpenSkyClient:
     return OpenSkyClient(
@@ -79,7 +93,7 @@ def send_batch(events: list[dict]) -> bool:
 def run_once(client: OpenSkyClient) -> int:
     """Fetch one batch of state vectors, normalize, and send. Returns
     the number of events sent (0 on failure or empty response)."""
-    raw = client.get_states()
+    raw = client.get_states(bbox=BBOX)
     if raw is None:
         logger.warning("No data returned from OpenSky this cycle")
         return 0
@@ -96,8 +110,8 @@ def run_forever():
     client = build_client()
     mode = "authenticated" if client.token_manager.is_authenticated else "anonymous"
     logger.info(
-        "Starting FlightPulse collector (%s mode, poll interval=%ss, target=%s)",
-        mode, POLL_INTERVAL_SECONDS, TELEMETRY_TARGET_URL,
+        "Starting FlightPulse collector (%s mode, poll interval=%ss, target=%s, bbox=%s)",
+        mode, POLL_INTERVAL_SECONDS, TELEMETRY_TARGET_URL, BBOX or "none (global)",
     )
     while True:
         try:

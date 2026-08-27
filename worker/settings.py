@@ -21,6 +21,31 @@ from arq.connections import RedisSettings
 
 REDIS_URL = os.getenv("REDIS_URL", "redis://localhost:6379/0")
 
+# --- Phase 5: PostgreSQL persistence ---
+# Built from the same POSTGRES_* vars docker-compose.yml already uses
+# (Phase 1), so compose and Python share one source of truth instead of
+# maintaining two separate connection configs.
+POSTGRES_USER = os.getenv("POSTGRES_USER", "flightpulse")
+POSTGRES_PASSWORD = os.getenv("POSTGRES_PASSWORD", "flightpulse")
+POSTGRES_DB = os.getenv("POSTGRES_DB", "flightpulse")
+POSTGRES_HOST = os.getenv("POSTGRES_HOST", "localhost")
+POSTGRES_PORT = os.getenv("POSTGRES_PORT", "5432")
+
+DATABASE_URL = os.getenv(
+    "DATABASE_URL",
+    f"postgresql://{POSTGRES_USER}:{POSTGRES_PASSWORD}@{POSTGRES_HOST}:{POSTGRES_PORT}/{POSTGRES_DB}",
+)
+
+# Connection pool sizing for worker/persistence.py's AsyncConnectionPool.
+DB_POOL_MIN_SIZE = int(os.getenv("DB_POOL_MIN_SIZE", "1"))
+DB_POOL_MAX_SIZE = int(os.getenv("DB_POOL_MAX_SIZE", "5"))
+
+# How long to wait for a connection before giving up and raising
+# PersistenceUnavailable. Kept well under JOB_TIMEOUT_SECONDS so a
+# down database surfaces as our own retry/backoff (worker/processor.py)
+# rather than arq's job timeout killing the job first.
+DB_POOL_CONNECT_TIMEOUT_SECONDS = float(os.getenv("DB_POOL_CONNECT_TIMEOUT_SECONDS", "5"))
+
 # Name of the arq queue. Kept explicit (rather than arq's default) so
 # multiple logical queues could be introduced later without collision.
 QUEUE_NAME = os.getenv("QUEUE_NAME", "flightpulse:telemetry")
