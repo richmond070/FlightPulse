@@ -1,0 +1,31 @@
+version: 2
+
+models:
+  - name: dim_aircraft
+    description: >
+      One row per icao24 ever observed. Built as an aggregate over
+      int_aircraft_activity (first/last seen, most recently observed
+      callsign/origin_country) since no external aircraft registry feeds
+      this pipeline -- see model-level comment for detail.
+    columns:
+      - name: icao24
+        data_tests:
+          - unique
+          - not_null
+
+  - name: fact_aircraft_state
+    description: >
+      One row per telemetry observation. Same grain as
+      int_aircraft_activity -- no aggregation. icao24 is a foreign key
+      into dim_aircraft.
+    columns:
+      - name: ingestion_id
+        data_tests:
+          - unique
+          - not_null
+      - name: icao24
+        data_tests:
+          - not_null
+          - relationships:
+              to: ref('dim_aircraft')
+              field: icao24

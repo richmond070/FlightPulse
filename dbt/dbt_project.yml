@@ -1,0 +1,31 @@
+# FlightPulse dbt project
+# Ref: FlightPulse_Complete_Project_Workflow_Guide.pdf, section 9 (dbt Workflow)
+# Ref: FlightPulse_Phase5_Continuation_ETL_Business_Objectives.pdf, section 6-7
+#      (Phase 6 model chain: staging -> intermediate -> dim/fact -> marts)
+
+name: 'flightpulse'
+version: '1.0.0'
+config-version: 2
+
+profile: 'flightpulse'
+
+model-paths: ["models"]
+test-paths: ["tests"]
+macro-paths: ["macros"]
+
+target-path: "target"
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+models:
+  flightpulse:
+    staging:
+      +materialized: view
+      +schema: staging
+    intermediate:
+      +materialized: view
+      +schema: intermediate
+    marts:
+      +materialized: table
+      +schema: marts

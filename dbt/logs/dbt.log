@@ -1,0 +1,1885 @@
+[0m23:54:29.415805 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001A64B51A790>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001A64B519350>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001A64B4E20D0>]}
+
+
+============================== 23:54:29.556487 | 10ef40d0-76d2-4d45-8933-6224257d0613 ==============================
+[0m23:54:29.556487 [info ] [MainThread]: Running with dbt=1.8.7
+[0m23:54:29.556487 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'write_json': 'True', 'log_cache_events': 'False', 'partial_parse': 'True', 'cache_selected_only': 'False', 'warn_error': 'None', 'fail_fast': 'False', 'profiles_dir': 'dbt', 'log_path': 'logs', 'version_check': 'True', 'debug': 'False', 'use_colors': 'True', 'use_experimental_parser': 'False', 'empty': 'None', 'quiet': 'False', 'no_print': 'None', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'static_parser': 'True', 'introspect': 'True', 'invocation_command': 'dbt debug --project-dir .', 'target_path': 'None', 'log_format': 'default', 'send_anonymous_usage_stats': 'True'}
+[0m23:54:30.655240 [info ] [MainThread]: dbt version: 1.8.7
+[0m23:54:30.655240 [info ] [MainThread]: python version: 3.11.9
+[0m23:54:30.655240 [info ] [MainThread]: python path: C:\Users\USER\AppData\Local\Programs\Python\Python311\python.exe
+[0m23:54:30.686396 [info ] [MainThread]: os info: Windows-10-10.0.19045-SP0
+[0m23:54:30.686396 [info ] [MainThread]: Using profiles dir at dbt
+[0m23:54:30.702006 [info ] [MainThread]: Using profiles.yml file at dbt\profiles.yml
+[0m23:54:30.705532 [info ] [MainThread]: Using dbt_project.yml file at .\dbt_project.yml
+[0m23:54:30.900711 [info ] [MainThread]: Configuration:
+[0m23:54:30.901714 [info ] [MainThread]:   profiles.yml file [[31mERROR not found[0m]
+[0m23:54:30.903709 [info ] [MainThread]:   dbt_project.yml file [[32mOK found and valid[0m]
+[0m23:54:30.904707 [info ] [MainThread]: Required dependencies:
+[0m23:54:30.906709 [debug] [MainThread]: Executing "git --help"
+[0m23:54:31.367508 [debug] [MainThread]: STDOUT: "b"usage: git [--version] [--help] [-C <path>] [-c <name>=<value>]\n           [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]\n           [-p | --paginate | -P | --no-pager] [--no-replace-objects] [--bare]\n           [--git-dir=<path>] [--work-tree=<path>] [--namespace=<name>]\n           [--super-prefix=<path>] [--config-env=<name>=<envvar>]\n           <command> [<args>]\n\nThese are common Git commands used in various situations:\n\nstart a working area (see also: git help tutorial)\n   clone     Clone a repository into a new directory\n   init      Create an empty Git repository or reinitialize an existing one\n\nwork on the current change (see also: git help everyday)\n   add       Add file contents to the index\n   mv        Move or rename a file, a directory, or a symlink\n   restore   Restore working tree files\n   rm        Remove files from the working tree and from the index\n\nexamine the history and state (see also: git help revisions)\n   bisect    Use binary search to find the commit that introduced a bug\n   diff      Show changes between commits, commit and working tree, etc\n   grep      Print lines matching a pattern\n   log       Show commit logs\n   show      Show various types of objects\n   status    Show the working tree status\n\ngrow, mark and tweak your common history\n   branch    List, create, or delete branches\n   commit    Record changes to the repository\n   merge     Join two or more development histories together\n   rebase    Reapply commits on top of another base tip\n   reset     Reset current HEAD to the specified state\n   switch    Switch branches\n   tag       Create, list, delete or verify a tag object signed with GPG\n\ncollaborate (see also: git help workflows)\n   fetch     Download objects and refs from another repository\n   pull      Fetch from and integrate with another repository or a local branch\n   push      Update remote refs along with associated objects\n\n'git help -a' and 'git help -g' list available subcommands and some\nconcept guides. See 'git help <command>' or 'git help <concept>'\nto read about a specific subcommand or concept.\nSee 'git help git' for an overview of the system.\n""
+[0m23:54:31.368531 [debug] [MainThread]: STDERR: "b''"
+[0m23:54:31.370532 [info ] [MainThread]:  - git [[32mOK found[0m]
+
+[0m23:54:31.371510 [info ] [MainThread]: Connection test skipped since no profile was found
+[0m23:54:31.373533 [info ] [MainThread]: [31m1 check failed:[0m
+[0m23:54:31.374515 [info ] [MainThread]: dbt looked for a profiles.yml file in dbt\profiles.yml, but did
+not find one. For more information on configuring your profile, consult the
+documentation:
+
+https://docs.getdbt.com/docs/configure-your-profile
+
+
+[0m23:54:31.377845 [debug] [MainThread]: Command `dbt debug` failed at 23:54:31.377643 after 4.75 seconds
+[0m23:54:31.379843 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001A64B557FD0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001A64B5563D0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001A64B3C5E50>]}
+[0m23:54:31.380867 [debug] [MainThread]: Flushing usage events
+[0m23:54:31.538258 [debug] [MainThread]: Error sending anonymous usage statistics. Disabling tracking for this execution. If you wish to permanently disable tracking, see: https://docs.getdbt.com/reference/global-configs#send-anonymous-usage-stats.
+[0m00:01:23.454075 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000217920CEED0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000217920FAC50>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000217920F9E50>]}
+
+
+============================== 00:01:23.469747 | f546f9a1-f217-465d-b0e2-107a1d5966e3 ==============================
+[0m00:01:23.469747 [info ] [MainThread]: Running with dbt=1.8.7
+[0m00:01:23.469747 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'log_cache_events': 'False', 'write_json': 'True', 'partial_parse': 'True', 'cache_selected_only': 'False', 'profiles_dir': '.', 'version_check': 'True', 'debug': 'False', 'log_path': 'logs', 'fail_fast': 'False', 'warn_error': 'None', 'use_colors': 'True', 'use_experimental_parser': 'False', 'empty': 'None', 'quiet': 'False', 'no_print': 'None', 'log_format': 'default', 'introspect': 'True', 'static_parser': 'True', 'invocation_command': 'dbt debug --project-dir .', 'target_path': 'None', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'send_anonymous_usage_stats': 'True'}
+[0m00:01:23.532199 [info ] [MainThread]: dbt version: 1.8.7
+[0m00:01:23.532199 [info ] [MainThread]: python version: 3.11.9
+[0m00:01:23.532199 [info ] [MainThread]: python path: C:\Users\USER\AppData\Local\Programs\Python\Python311\python.exe
+[0m00:01:23.532199 [info ] [MainThread]: os info: Windows-10-10.0.19045-SP0
+[0m00:01:23.801461 [info ] [MainThread]: Using profiles dir at .
+[0m00:01:23.801461 [info ] [MainThread]: Using profiles.yml file at .\profiles.yml
+[0m00:01:23.801461 [info ] [MainThread]: Using dbt_project.yml file at .\dbt_project.yml
+[0m00:01:23.801461 [info ] [MainThread]: adapter type: postgres
+[0m00:01:23.801461 [info ] [MainThread]: adapter version: 1.9.1
+[0m00:01:23.973304 [info ] [MainThread]: Configuration:
+[0m00:01:23.973304 [info ] [MainThread]:   profiles.yml file [[32mOK found and valid[0m]
+[0m00:01:23.988900 [info ] [MainThread]:   dbt_project.yml file [[32mOK found and valid[0m]
+[0m00:01:23.988900 [info ] [MainThread]: Required dependencies:
+[0m00:01:23.988900 [debug] [MainThread]: Executing "git --help"
+[0m00:01:24.406749 [debug] [MainThread]: STDOUT: "b"usage: git [--version] [--help] [-C <path>] [-c <name>=<value>]\n           [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]\n           [-p | --paginate | -P | --no-pager] [--no-replace-objects] [--bare]\n           [--git-dir=<path>] [--work-tree=<path>] [--namespace=<name>]\n           [--super-prefix=<path>] [--config-env=<name>=<envvar>]\n           <command> [<args>]\n\nThese are common Git commands used in various situations:\n\nstart a working area (see also: git help tutorial)\n   clone     Clone a repository into a new directory\n   init      Create an empty Git repository or reinitialize an existing one\n\nwork on the current change (see also: git help everyday)\n   add       Add file contents to the index\n   mv        Move or rename a file, a directory, or a symlink\n   restore   Restore working tree files\n   rm        Remove files from the working tree and from the index\n\nexamine the history and state (see also: git help revisions)\n   bisect    Use binary search to find the commit that introduced a bug\n   diff      Show changes between commits, commit and working tree, etc\n   grep      Print lines matching a pattern\n   log       Show commit logs\n   show      Show various types of objects\n   status    Show the working tree status\n\ngrow, mark and tweak your common history\n   branch    List, create, or delete branches\n   commit    Record changes to the repository\n   merge     Join two or more development histories together\n   rebase    Reapply commits on top of another base tip\n   reset     Reset current HEAD to the specified state\n   switch    Switch branches\n   tag       Create, list, delete or verify a tag object signed with GPG\n\ncollaborate (see also: git help workflows)\n   fetch     Download objects and refs from another repository\n   pull      Fetch from and integrate with another repository or a local branch\n   push      Update remote refs along with associated objects\n\n'git help -a' and 'git help -g' list available subcommands and some\nconcept guides. See 'git help <command>' or 'git help <concept>'\nto read about a specific subcommand or concept.\nSee 'git help git' for an overview of the system.\n""
+[0m00:01:24.406749 [debug] [MainThread]: STDERR: "b''"
+[0m00:01:24.406749 [info ] [MainThread]:  - git [[32mOK found[0m]
+
+[0m00:01:24.406749 [info ] [MainThread]: Connection:
+[0m00:01:24.406749 [info ] [MainThread]:   host: localhost
+[0m00:01:24.422402 [info ] [MainThread]:   port: 5432
+[0m00:01:24.422402 [info ] [MainThread]:   user: flightpulse
+[0m00:01:24.422402 [info ] [MainThread]:   database: flightpulse
+[0m00:01:24.422402 [info ] [MainThread]:   schema: public
+[0m00:01:24.438012 [info ] [MainThread]:   connect_timeout: 10
+[0m00:01:24.438012 [info ] [MainThread]:   role: None
+[0m00:01:24.438012 [info ] [MainThread]:   search_path: None
+[0m00:01:24.438012 [info ] [MainThread]:   keepalives_idle: 0
+[0m00:01:24.453630 [info ] [MainThread]:   sslmode: None
+[0m00:01:24.458886 [info ] [MainThread]:   sslcert: None
+[0m00:01:24.458886 [info ] [MainThread]:   sslkey: None
+[0m00:01:24.463448 [info ] [MainThread]:   sslrootcert: None
+[0m00:01:24.463448 [info ] [MainThread]:   application_name: dbt
+[0m00:01:24.463448 [info ] [MainThread]:   retries: 1
+[0m00:01:24.463448 [info ] [MainThread]: Registered adapter: postgres=1.9.1
+[0m00:01:25.056686 [debug] [MainThread]: Acquiring new postgres connection 'debug'
+[0m00:01:39.314052 [debug] [MainThread]: Using postgres connection "debug"
+[0m00:01:39.314052 [debug] [MainThread]: On debug: select 1 as id
+[0m00:01:39.329664 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m00:01:41.238885 [debug] [MainThread]: SQL status: SELECT 1 in 1.915 seconds
+[0m00:01:41.238885 [debug] [MainThread]: On debug: Close
+[0m00:01:41.238885 [info ] [MainThread]:   Connection test: [[32mOK connection ok[0m]
+
+[0m00:01:41.238885 [info ] [MainThread]: [32mAll checks passed![0m
+[0m00:01:41.254494 [debug] [MainThread]: Command `dbt debug` succeeded at 00:01:41.254494 after 19.51 seconds
+[0m00:01:41.254494 [debug] [MainThread]: Connection 'debug' was properly closed.
+[0m00:01:41.254494 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000021792137DD0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000021792137FD0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000021792135A10>]}
+[0m00:01:41.254494 [debug] [MainThread]: Flushing usage events
+[0m00:01:41.270123 [debug] [MainThread]: Error sending anonymous usage statistics. Disabling tracking for this execution. If you wish to permanently disable tracking, see: https://docs.getdbt.com/reference/global-configs#send-anonymous-usage-stats.
+[0m00:02:06.868036 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001A062DEE0D0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001A062E3A150>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001A062DE2E10>]}
+
+
+============================== 00:02:06.868036 | ca9b6720-d922-4ac5-824e-2c8796132067 ==============================
+[0m00:02:06.868036 [info ] [MainThread]: Running with dbt=1.8.7
+[0m00:02:06.883681 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'write_json': 'True', 'log_cache_events': 'False', 'partial_parse': 'True', 'cache_selected_only': 'False', 'profiles_dir': '.', 'version_check': 'True', 'fail_fast': 'False', 'log_path': 'logs', 'warn_error': 'None', 'debug': 'False', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'empty': 'False', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'invocation_command': 'dbt run --project-dir . --select stg_opensky_states', 'introspect': 'True', 'static_parser': 'True', 'target_path': 'None', 'log_format': 'default', 'send_anonymous_usage_stats': 'True'}
+[0m00:02:16.055738 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': 'ca9b6720-d922-4ac5-824e-2c8796132067', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001A062803B10>]}
+[0m00:02:16.203553 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': 'ca9b6720-d922-4ac5-824e-2c8796132067', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001A05FE33310>]}
+[0m00:02:16.203553 [info ] [MainThread]: Registered adapter: postgres=1.9.1
+[0m00:02:19.117939 [debug] [MainThread]: checksum: 4af21dafb485259c48497ac86b711ddb1982f3d0f1c0ca4e09356de488b753c0, vars: {}, profile: , target: , version: 1.8.7
+[0m00:02:19.117939 [info ] [MainThread]: Unable to do partial parsing because saved manifest not found. Starting full parse.
+[0m00:02:19.117939 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'partial_parser', 'label': 'ca9b6720-d922-4ac5-824e-2c8796132067', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001A06316F710>]}
+[0m00:02:40.766078 [warn ] [MainThread]: [[33mWARNING[0m]: Deprecated functionality
+The `tests` config has been renamed to `data_tests`. Please see
+https://docs.getdbt.com/docs/build/data-tests#new-data_tests-syntax for more
+information.
+[0m00:02:40.766078 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'deprecation', 'label': 'ca9b6720-d922-4ac5-824e-2c8796132067', 'property_': 'warn', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001A0644435D0>]}
+[0m00:02:41.234734 [warn ] [MainThread]: [[33mWARNING[0m]: Configuration paths exist in your dbt_project.yml file which do not apply to any resources.
+There are 2 unused configuration paths:
+- models.flightpulse.marts
+- models.flightpulse.intermediate
+[0m00:02:41.250354 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': 'ca9b6720-d922-4ac5-824e-2c8796132067', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001A062F0A8D0>]}
+[0m00:02:44.883902 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'resource_counts', 'label': 'ca9b6720-d922-4ac5-824e-2c8796132067', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001A06464CE10>]}
+[0m00:02:44.883902 [info ] [MainThread]: Found 1 model, 15 data tests, 2 sources, 429 macros
+[0m00:02:44.883902 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': 'ca9b6720-d922-4ac5-824e-2c8796132067', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001A05ED9B090>]}
+[0m00:02:44.883902 [info ] [MainThread]: 
+[0m00:02:44.883902 [debug] [MainThread]: Acquiring new postgres connection 'master'
+[0m00:02:44.914610 [debug] [ThreadPool]: Acquiring new postgres connection 'list_flightpulse'
+[0m00:02:45.335170 [debug] [ThreadPool]: Using postgres connection "list_flightpulse"
+[0m00:02:45.335170 [debug] [ThreadPool]: On list_flightpulse: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "flightpulse", "target_name": "dev", "connection_name": "list_flightpulse"} */
+
+    select distinct nspname from pg_namespace
+  
+[0m00:02:45.335170 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m00:02:51.049652 [debug] [ThreadPool]: SQL status: SELECT 4 in 5.710 seconds
+[0m00:02:51.049652 [debug] [ThreadPool]: On list_flightpulse: Close
+[0m00:02:51.065286 [debug] [ThreadPool]: Re-using an available connection from the pool (formerly list_flightpulse, now create_flightpulse_public_staging)
+[0m00:02:51.112250 [debug] [ThreadPool]: Creating schema "database: "flightpulse"
+schema: "public_staging"
+"
+[0m00:02:51.127796 [debug] [ThreadPool]: Using postgres connection "create_flightpulse_public_staging"
+[0m00:02:51.127796 [debug] [ThreadPool]: On create_flightpulse_public_staging: BEGIN
+[0m00:02:51.127796 [debug] [ThreadPool]: Opening a new connection, currently in state closed
+[0m00:02:51.809968 [debug] [ThreadPool]: SQL status: BEGIN in 0.684 seconds
+[0m00:02:51.825619 [debug] [ThreadPool]: Using postgres connection "create_flightpulse_public_staging"
+[0m00:02:51.825619 [debug] [ThreadPool]: On create_flightpulse_public_staging: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "flightpulse", "target_name": "dev", "connection_name": "create_flightpulse_public_staging"} */
+create schema if not exists "public_staging"
+[0m00:02:55.015138 [debug] [ThreadPool]: SQL status: CREATE SCHEMA in 3.186 seconds
+[0m00:02:55.024596 [debug] [ThreadPool]: On create_flightpulse_public_staging: COMMIT
+[0m00:02:55.024596 [debug] [ThreadPool]: Using postgres connection "create_flightpulse_public_staging"
+[0m00:02:55.024596 [debug] [ThreadPool]: On create_flightpulse_public_staging: COMMIT
+[0m00:02:55.064004 [debug] [ThreadPool]: SQL status: COMMIT in 0.035 seconds
+[0m00:02:55.064004 [debug] [ThreadPool]: On create_flightpulse_public_staging: Close
+[0m00:02:55.064004 [debug] [ThreadPool]: Acquiring new postgres connection 'list_flightpulse_public_staging'
+[0m00:02:55.079564 [debug] [ThreadPool]: Using postgres connection "list_flightpulse_public_staging"
+[0m00:02:55.079564 [debug] [ThreadPool]: On list_flightpulse_public_staging: BEGIN
+[0m00:02:55.079564 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m00:02:55.329506 [debug] [ThreadPool]: SQL status: BEGIN in 0.243 seconds
+[0m00:02:55.329506 [debug] [ThreadPool]: Using postgres connection "list_flightpulse_public_staging"
+[0m00:02:55.329506 [debug] [ThreadPool]: On list_flightpulse_public_staging: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "flightpulse", "target_name": "dev", "connection_name": "list_flightpulse_public_staging"} */
+select
+      'flightpulse' as database,
+      tablename as name,
+      schemaname as schema,
+      'table' as type
+    from pg_tables
+    where schemaname ilike 'public_staging'
+    union all
+    select
+      'flightpulse' as database,
+      viewname as name,
+      schemaname as schema,
+      'view' as type
+    from pg_views
+    where schemaname ilike 'public_staging'
+    union all
+    select
+      'flightpulse' as database,
+      matviewname as name,
+      schemaname as schema,
+      'materialized_view' as type
+    from pg_matviews
+    where schemaname ilike 'public_staging'
+  
+[0m00:02:57.082120 [debug] [ThreadPool]: SQL status: SELECT 0 in 1.753 seconds
+[0m00:02:57.082120 [debug] [ThreadPool]: On list_flightpulse_public_staging: ROLLBACK
+[0m00:02:57.097680 [debug] [ThreadPool]: On list_flightpulse_public_staging: Close
+[0m00:02:57.113262 [debug] [MainThread]: Using postgres connection "master"
+[0m00:02:57.113262 [debug] [MainThread]: On master: BEGIN
+[0m00:02:57.128888 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m00:02:57.206983 [debug] [MainThread]: SQL status: BEGIN in 0.083 seconds
+[0m00:02:57.206983 [debug] [MainThread]: Using postgres connection "master"
+[0m00:02:57.206983 [debug] [MainThread]: On master: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "flightpulse", "target_name": "dev", "connection_name": "master"} */
+select distinct
+        dependent_namespace.nspname as dependent_schema,
+        dependent_class.relname as dependent_name,
+        referenced_namespace.nspname as referenced_schema,
+        referenced_class.relname as referenced_name
+
+    -- Query for views: views are entries in pg_class with an entry in pg_rewrite, but we avoid
+    -- a seq scan on pg_rewrite by leveraging the fact there is an "internal" row in pg_depend for
+    -- the view...
+    from pg_class as dependent_class
+    join pg_namespace as dependent_namespace on dependent_namespace.oid = dependent_class.relnamespace
+    join pg_depend as dependent_depend on dependent_depend.refobjid = dependent_class.oid
+        and dependent_depend.classid = 'pg_rewrite'::regclass
+        and dependent_depend.refclassid = 'pg_class'::regclass
+        and dependent_depend.deptype = 'i'
+
+    -- ... and via pg_depend (that has a row per column, hence the need for "distinct" above, and
+    -- making sure to exclude the internal row to avoid a view appearing to depend on itself)...
+    join pg_depend as joining_depend on joining_depend.objid = dependent_depend.objid
+        and joining_depend.classid = 'pg_rewrite'::regclass
+        and joining_depend.refclassid = 'pg_class'::regclass
+        and joining_depend.refobjid != dependent_depend.refobjid
+
+    -- ... we can find the tables they query from in pg_class, but excluding system tables. Note we
+    -- don't need need to exclude _dependent_ system tables, because they only query from other
+    -- system tables, and so are automatically excluded by excluding _referenced_ system tables
+    join pg_class as referenced_class on referenced_class.oid = joining_depend.refobjid
+    join pg_namespace as referenced_namespace on referenced_namespace.oid = referenced_class.relnamespace
+        and referenced_namespace.nspname != 'information_schema'
+        and referenced_namespace.nspname not like 'pg\_%'
+
+    order by
+        dependent_schema, dependent_name, referenced_schema, referenced_name;
+[0m00:02:58.145898 [debug] [MainThread]: SQL status: SELECT 0 in 0.938 seconds
+[0m00:02:58.161441 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': 'ca9b6720-d922-4ac5-824e-2c8796132067', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001A063030E90>]}
+[0m00:02:58.161441 [debug] [MainThread]: On master: ROLLBACK
+[0m00:02:58.161441 [debug] [MainThread]: Using postgres connection "master"
+[0m00:02:58.161441 [debug] [MainThread]: On master: BEGIN
+[0m00:02:58.161441 [debug] [MainThread]: SQL status: BEGIN in 0.001 seconds
+[0m00:02:58.177046 [debug] [MainThread]: On master: COMMIT
+[0m00:02:58.177046 [debug] [MainThread]: Using postgres connection "master"
+[0m00:02:58.177046 [debug] [MainThread]: On master: COMMIT
+[0m00:02:58.177046 [debug] [MainThread]: SQL status: COMMIT in 0.001 seconds
+[0m00:02:58.177046 [debug] [MainThread]: On master: Close
+[0m00:02:58.192662 [info ] [MainThread]: Concurrency: 4 threads (target='dev')
+[0m00:02:58.192662 [info ] [MainThread]: 
+[0m00:02:59.160802 [debug] [Thread-1 (]: Began running node model.flightpulse.stg_opensky_states
+[0m00:02:59.160802 [info ] [Thread-1 (]: 1 of 1 START sql view model public_staging.stg_opensky_states .................. [RUN]
+[0m00:02:59.160802 [debug] [Thread-1 (]: Acquiring new postgres connection 'model.flightpulse.stg_opensky_states'
+[0m00:02:59.160802 [debug] [Thread-1 (]: Began compiling node model.flightpulse.stg_opensky_states
+[0m00:02:59.176451 [debug] [Thread-1 (]: Writing injected SQL for node "model.flightpulse.stg_opensky_states"
+[0m00:02:59.379635 [debug] [Thread-1 (]: Began executing node model.flightpulse.stg_opensky_states
+[0m00:02:59.473288 [debug] [Thread-1 (]: Writing runtime sql for node "model.flightpulse.stg_opensky_states"
+[0m00:02:59.488969 [debug] [Thread-1 (]: Using postgres connection "model.flightpulse.stg_opensky_states"
+[0m00:02:59.504516 [debug] [Thread-1 (]: On model.flightpulse.stg_opensky_states: BEGIN
+[0m00:02:59.504516 [debug] [Thread-1 (]: Opening a new connection, currently in state init
+[0m00:02:59.582644 [debug] [Thread-1 (]: SQL status: BEGIN in 0.084 seconds
+[0m00:02:59.582644 [debug] [Thread-1 (]: Using postgres connection "model.flightpulse.stg_opensky_states"
+[0m00:02:59.582644 [debug] [Thread-1 (]: On model.flightpulse.stg_opensky_states: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "flightpulse", "target_name": "dev", "node_id": "model.flightpulse.stg_opensky_states"} */
+
+  create view "flightpulse"."public_staging"."stg_opensky_states__dbt_tmp"
+    
+    
+  as (
+    
+
+-- FlightPulse: Phase 6 staging model
+-- Ref: FlightPulse_Phase5_Continuation_ETL_Business_Objectives.pdf,
+-- section 3 (Transform) and section 7 ("stg_opensky_states: Type casting,
+-- standardized names/timestamps, null handling and source metadata.")
+--
+-- raw_telemetry keeps flight measurements inside `payload` JSONB by design
+-- (see _sources.yml). This model is where they get typed out into real
+-- columns for the first time. One row in = one row out; no aggregation,
+-- no business logic here (that's int_aircraft_activity's job next).
+
+with source as (
+
+    select
+        ingestion_id,
+        source        as source_name,
+        icao24        as icao24_raw,
+        collector_id,
+        received_at,
+        ingested_at,
+        processed_at,
+        payload
+    from "flightpulse"."public"."raw_telemetry"
+
+),
+
+cleaned as (
+
+    select
+        ingestion_id,
+        source_name                                            as source,
+
+        -- standardize identifier casing/whitespace -- OpenSky icao24 is
+        -- normally already lowercase hex, but don't assume upstream never
+        -- changes.
+        lower(trim(icao24_raw))                                as icao24,
+
+        collector_id,
+        nullif(trim(payload ->> 'callsign'), '')               as callsign,
+        nullif(trim(payload ->> 'origin_country'), '')         as origin_country,
+
+        -- OpenSky epoch-second fields -> real timestamps. Null-safe: an
+        -- empty/invalid epoch casts to null rather than erroring the model.
+        to_timestamp(nullif(payload ->> 'time_position', '')::bigint)  as time_position_at,
+        to_timestamp(nullif(payload ->> 'last_contact', '')::bigint)   as last_contact_at,
+
+        (payload ->> 'longitude')::double precision            as longitude,
+        (payload ->> 'latitude')::double precision             as latitude,
+        (payload ->> 'baro_altitude_m')::double precision      as baro_altitude_m,
+        (payload ->> 'geo_altitude_m')::double precision       as geo_altitude_m,
+        (payload ->> 'velocity_mps')::double precision         as velocity_mps,
+        (payload ->> 'true_track_deg')::double precision       as true_track_deg,
+        (payload ->> 'vertical_rate_mps')::double precision    as vertical_rate_mps,
+        (payload ->> 'on_ground')::boolean                     as on_ground,
+
+        received_at,
+        ingested_at,
+        processed_at
+
+    from source
+
+)
+
+select * from cleaned
+  );
+[0m00:03:02.779152 [debug] [Thread-1 (]: SQL status: CREATE VIEW in 3.195 seconds
+[0m00:03:02.794702 [debug] [Thread-1 (]: Using postgres connection "model.flightpulse.stg_opensky_states"
+[0m00:03:02.794702 [debug] [Thread-1 (]: On model.flightpulse.stg_opensky_states: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "flightpulse", "target_name": "dev", "node_id": "model.flightpulse.stg_opensky_states"} */
+alter table "flightpulse"."public_staging"."stg_opensky_states__dbt_tmp" rename to "stg_opensky_states"
+[0m00:03:02.810323 [debug] [Thread-1 (]: SQL status: ALTER TABLE in 0.006 seconds
+[0m00:03:02.841573 [debug] [Thread-1 (]: On model.flightpulse.stg_opensky_states: COMMIT
+[0m00:03:02.841573 [debug] [Thread-1 (]: Using postgres connection "model.flightpulse.stg_opensky_states"
+[0m00:03:02.841573 [debug] [Thread-1 (]: On model.flightpulse.stg_opensky_states: COMMIT
+[0m00:03:02.841573 [debug] [Thread-1 (]: SQL status: COMMIT in 0.006 seconds
+[0m00:03:02.872804 [debug] [Thread-1 (]: Applying DROP to: "flightpulse"."public_staging"."stg_opensky_states__dbt_backup"
+[0m00:03:02.888435 [debug] [Thread-1 (]: Using postgres connection "model.flightpulse.stg_opensky_states"
+[0m00:03:02.888435 [debug] [Thread-1 (]: On model.flightpulse.stg_opensky_states: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "flightpulse", "target_name": "dev", "node_id": "model.flightpulse.stg_opensky_states"} */
+drop view if exists "flightpulse"."public_staging"."stg_opensky_states__dbt_backup" cascade
+[0m00:03:02.888435 [debug] [Thread-1 (]: SQL status: DROP VIEW in 0.001 seconds
+[0m00:03:02.904053 [debug] [Thread-1 (]: On model.flightpulse.stg_opensky_states: Close
+[0m00:03:02.904053 [debug] [Thread-1 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'ca9b6720-d922-4ac5-824e-2c8796132067', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001A064A6F490>]}
+[0m00:03:02.904053 [info ] [Thread-1 (]: 1 of 1 OK created sql view model public_staging.stg_opensky_states ............. [[32mCREATE VIEW[0m in 3.74s]
+[0m00:03:02.904053 [debug] [Thread-1 (]: Finished running node model.flightpulse.stg_opensky_states
+[0m00:03:02.950909 [debug] [MainThread]: Using postgres connection "master"
+[0m00:03:02.950909 [debug] [MainThread]: On master: BEGIN
+[0m00:03:02.950909 [debug] [MainThread]: Opening a new connection, currently in state closed
+[0m00:03:03.107256 [debug] [MainThread]: SQL status: BEGIN in 0.161 seconds
+[0m00:03:03.107256 [debug] [MainThread]: On master: COMMIT
+[0m00:03:03.107256 [debug] [MainThread]: Using postgres connection "master"
+[0m00:03:03.122777 [debug] [MainThread]: On master: COMMIT
+[0m00:03:03.122777 [debug] [MainThread]: SQL status: COMMIT in 0.001 seconds
+[0m00:03:03.122777 [debug] [MainThread]: On master: Close
+[0m00:03:03.122777 [debug] [MainThread]: Connection 'master' was properly closed.
+[0m00:03:03.138405 [debug] [MainThread]: Connection 'create_flightpulse_public_staging' was properly closed.
+[0m00:03:03.138405 [debug] [MainThread]: Connection 'list_flightpulse_public_staging' was properly closed.
+[0m00:03:03.138405 [debug] [MainThread]: Connection 'model.flightpulse.stg_opensky_states' was properly closed.
+[0m00:03:03.138405 [info ] [MainThread]: 
+[0m00:03:03.138405 [info ] [MainThread]: Finished running 1 view model in 0 hours 0 minutes and 18.25 seconds (18.25s).
+[0m00:03:03.138405 [debug] [MainThread]: Command end result
+[0m00:03:03.232128 [info ] [MainThread]: 
+[0m00:03:03.232128 [info ] [MainThread]: [32mCompleted successfully[0m
+[0m00:03:03.232128 [info ] [MainThread]: 
+[0m00:03:03.232128 [info ] [MainThread]: Done. PASS=1 WARN=0 ERROR=0 SKIP=0 TOTAL=1
+[0m00:03:03.247749 [debug] [MainThread]: Command `dbt run` succeeded at 00:03:03.247749 after 56.68 seconds
+[0m00:03:03.247749 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001A062DEF890>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001A063211090>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001A062DEFFD0>]}
+[0m00:03:03.247749 [debug] [MainThread]: Flushing usage events
+[0m00:03:03.263388 [debug] [MainThread]: Error sending anonymous usage statistics. Disabling tracking for this execution. If you wish to permanently disable tracking, see: https://docs.getdbt.com/reference/global-configs#send-anonymous-usage-stats.
+[0m00:03:26.791799 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001D831A3F550>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001D831470790>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001D831A3F1D0>]}
+
+
+============================== 00:03:26.804710 | 94ec1165-32cd-47ee-bcae-a1977be33886 ==============================
+[0m00:03:26.804710 [info ] [MainThread]: Running with dbt=1.8.7
+[0m00:03:26.807714 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'log_cache_events': 'False', 'write_json': 'True', 'partial_parse': 'True', 'cache_selected_only': 'False', 'profiles_dir': '.', 'version_check': 'True', 'warn_error': 'None', 'log_path': 'logs', 'fail_fast': 'False', 'debug': 'False', 'use_colors': 'True', 'use_experimental_parser': 'False', 'empty': 'None', 'quiet': 'False', 'no_print': 'None', 'log_format': 'default', 'invocation_command': 'dbt test --project-dir . --select stg_opensky_states', 'static_parser': 'True', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'target_path': 'None', 'introspect': 'True', 'send_anonymous_usage_stats': 'True'}
+[0m00:03:27.386552 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': '94ec1165-32cd-47ee-bcae-a1977be33886', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001D831BF4350>]}
+[0m00:03:27.501593 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': '94ec1165-32cd-47ee-bcae-a1977be33886', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001D82EAA0490>]}
+[0m00:03:27.505220 [info ] [MainThread]: Registered adapter: postgres=1.9.1
+[0m00:03:28.187043 [debug] [MainThread]: checksum: 4af21dafb485259c48497ac86b711ddb1982f3d0f1c0ca4e09356de488b753c0, vars: {}, profile: , target: , version: 1.8.7
+[0m00:03:29.813101 [debug] [MainThread]: Partial parsing enabled: 0 files deleted, 0 files added, 0 files changed.
+[0m00:03:29.813101 [debug] [MainThread]: Partial parsing enabled, no changes found, skipping parsing
+[0m00:03:29.828726 [warn ] [MainThread]: [[33mWARNING[0m]: Configuration paths exist in your dbt_project.yml file which do not apply to any resources.
+There are 2 unused configuration paths:
+- models.flightpulse.marts
+- models.flightpulse.intermediate
+[0m00:03:29.984951 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': '94ec1165-32cd-47ee-bcae-a1977be33886', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001D832EFAE10>]}
+[0m00:03:30.562999 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'resource_counts', 'label': '94ec1165-32cd-47ee-bcae-a1977be33886', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001D83315FF10>]}
+[0m00:03:30.562999 [info ] [MainThread]: Found 1 model, 15 data tests, 2 sources, 429 macros
+[0m00:03:30.562999 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': '94ec1165-32cd-47ee-bcae-a1977be33886', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001D831A3CED0>]}
+[0m00:03:30.562999 [info ] [MainThread]: 
+[0m00:03:30.562999 [debug] [MainThread]: Acquiring new postgres connection 'master'
+[0m00:03:30.578618 [debug] [ThreadPool]: Acquiring new postgres connection 'list_flightpulse_public_staging'
+[0m00:03:30.750475 [debug] [ThreadPool]: Using postgres connection "list_flightpulse_public_staging"
+[0m00:03:30.750475 [debug] [ThreadPool]: On list_flightpulse_public_staging: BEGIN
+[0m00:03:30.750475 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m00:03:30.844205 [debug] [ThreadPool]: SQL status: BEGIN in 0.086 seconds
+[0m00:03:30.844205 [debug] [ThreadPool]: Using postgres connection "list_flightpulse_public_staging"
+[0m00:03:30.844205 [debug] [ThreadPool]: On list_flightpulse_public_staging: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "flightpulse", "target_name": "dev", "connection_name": "list_flightpulse_public_staging"} */
+select
+      'flightpulse' as database,
+      tablename as name,
+      schemaname as schema,
+      'table' as type
+    from pg_tables
+    where schemaname ilike 'public_staging'
+    union all
+    select
+      'flightpulse' as database,
+      viewname as name,
+      schemaname as schema,
+      'view' as type
+    from pg_views
+    where schemaname ilike 'public_staging'
+    union all
+    select
+      'flightpulse' as database,
+      matviewname as name,
+      schemaname as schema,
+      'materialized_view' as type
+    from pg_matviews
+    where schemaname ilike 'public_staging'
+  
+[0m00:03:30.859853 [debug] [ThreadPool]: SQL status: SELECT 1 in 0.019 seconds
+[0m00:03:30.875477 [debug] [ThreadPool]: On list_flightpulse_public_staging: ROLLBACK
+[0m00:03:30.875477 [debug] [ThreadPool]: On list_flightpulse_public_staging: Close
+[0m00:03:30.875477 [debug] [MainThread]: Using postgres connection "master"
+[0m00:03:30.891076 [debug] [MainThread]: On master: BEGIN
+[0m00:03:30.891076 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m00:03:30.953585 [debug] [MainThread]: SQL status: BEGIN in 0.072 seconds
+[0m00:03:30.969249 [debug] [MainThread]: Using postgres connection "master"
+[0m00:03:30.969249 [debug] [MainThread]: On master: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "flightpulse", "target_name": "dev", "connection_name": "master"} */
+select distinct
+        dependent_namespace.nspname as dependent_schema,
+        dependent_class.relname as dependent_name,
+        referenced_namespace.nspname as referenced_schema,
+        referenced_class.relname as referenced_name
+
+    -- Query for views: views are entries in pg_class with an entry in pg_rewrite, but we avoid
+    -- a seq scan on pg_rewrite by leveraging the fact there is an "internal" row in pg_depend for
+    -- the view...
+    from pg_class as dependent_class
+    join pg_namespace as dependent_namespace on dependent_namespace.oid = dependent_class.relnamespace
+    join pg_depend as dependent_depend on dependent_depend.refobjid = dependent_class.oid
+        and dependent_depend.classid = 'pg_rewrite'::regclass
+        and dependent_depend.refclassid = 'pg_class'::regclass
+        and dependent_depend.deptype = 'i'
+
+    -- ... and via pg_depend (that has a row per column, hence the need for "distinct" above, and
+    -- making sure to exclude the internal row to avoid a view appearing to depend on itself)...
+    join pg_depend as joining_depend on joining_depend.objid = dependent_depend.objid
+        and joining_depend.classid = 'pg_rewrite'::regclass
+        and joining_depend.refclassid = 'pg_class'::regclass
+        and joining_depend.refobjid != dependent_depend.refobjid
+
+    -- ... we can find the tables they query from in pg_class, but excluding system tables. Note we
+    -- don't need need to exclude _dependent_ system tables, because they only query from other
+    -- system tables, and so are automatically excluded by excluding _referenced_ system tables
+    join pg_class as referenced_class on referenced_class.oid = joining_depend.refobjid
+    join pg_namespace as referenced_namespace on referenced_namespace.oid = referenced_class.relnamespace
+        and referenced_namespace.nspname != 'information_schema'
+        and referenced_namespace.nspname not like 'pg\_%'
+
+    order by
+        dependent_schema, dependent_name, referenced_schema, referenced_name;
+[0m00:03:31.016109 [debug] [MainThread]: SQL status: SELECT 1 in 0.041 seconds
+[0m00:03:31.016109 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': '94ec1165-32cd-47ee-bcae-a1977be33886', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001D831A3CED0>]}
+[0m00:03:31.016109 [debug] [MainThread]: On master: ROLLBACK
+[0m00:03:31.016109 [debug] [MainThread]: Using postgres connection "master"
+[0m00:03:31.031686 [debug] [MainThread]: On master: BEGIN
+[0m00:03:31.031686 [debug] [MainThread]: SQL status: BEGIN in 0.001 seconds
+[0m00:03:31.031686 [debug] [MainThread]: On master: COMMIT
+[0m00:03:31.031686 [debug] [MainThread]: Using postgres connection "master"
+[0m00:03:31.031686 [debug] [MainThread]: On master: COMMIT
+[0m00:03:31.031686 [debug] [MainThread]: SQL status: COMMIT in 0.000 seconds
+[0m00:03:31.031686 [debug] [MainThread]: On master: Close
+[0m00:03:31.031686 [info ] [MainThread]: Concurrency: 4 threads (target='dev')
+[0m00:03:31.031686 [info ] [MainThread]: 
+[0m00:03:31.047310 [debug] [Thread-1 (]: Began running node test.flightpulse.accepted_values_stg_opensky_states_on_ground__False__True__False.396357fc5e
+[0m00:03:31.047310 [debug] [Thread-2 (]: Began running node test.flightpulse.assert_valid_coordinates
+[0m00:03:31.047310 [debug] [Thread-3 (]: Began running node test.flightpulse.assert_valid_icao24
+[0m00:03:31.047310 [debug] [Thread-4 (]: Began running node test.flightpulse.not_null_stg_opensky_states_icao24.5ad2a0f7da
+[0m00:03:31.047310 [info ] [Thread-1 (]: 1 of 6 START test accepted_values_stg_opensky_states_on_ground__False__True__False  [RUN]
+[0m00:03:31.047310 [info ] [Thread-2 (]: 2 of 6 START test assert_valid_coordinates ..................................... [RUN]
+[0m00:03:31.062928 [info ] [Thread-3 (]: 3 of 6 START test assert_valid_icao24 .......................................... [RUN]
+[0m00:03:31.062928 [info ] [Thread-4 (]: 4 of 6 START test not_null_stg_opensky_states_icao24 ........................... [RUN]
+[0m00:03:31.062928 [debug] [Thread-1 (]: Acquiring new postgres connection 'test.flightpulse.accepted_values_stg_opensky_states_on_ground__False__True__False.396357fc5e'
+[0m00:03:31.062928 [debug] [Thread-2 (]: Acquiring new postgres connection 'test.flightpulse.assert_valid_coordinates'
+[0m00:03:31.062928 [debug] [Thread-3 (]: Acquiring new postgres connection 'test.flightpulse.assert_valid_icao24'
+[0m00:03:31.062928 [debug] [Thread-4 (]: Acquiring new postgres connection 'test.flightpulse.not_null_stg_opensky_states_icao24.5ad2a0f7da'
+[0m00:03:31.062928 [debug] [Thread-1 (]: Began compiling node test.flightpulse.accepted_values_stg_opensky_states_on_ground__False__True__False.396357fc5e
+[0m00:03:31.062928 [debug] [Thread-2 (]: Began compiling node test.flightpulse.assert_valid_coordinates
+[0m00:03:31.062928 [debug] [Thread-3 (]: Began compiling node test.flightpulse.assert_valid_icao24
+[0m00:03:31.078548 [debug] [Thread-4 (]: Began compiling node test.flightpulse.not_null_stg_opensky_states_icao24.5ad2a0f7da
+[0m00:03:31.109800 [debug] [Thread-1 (]: Writing injected SQL for node "test.flightpulse.accepted_values_stg_opensky_states_on_ground__False__True__False.396357fc5e"
+[0m00:03:31.109800 [debug] [Thread-2 (]: Writing injected SQL for node "test.flightpulse.assert_valid_coordinates"
+[0m00:03:31.125427 [debug] [Thread-3 (]: Writing injected SQL for node "test.flightpulse.assert_valid_icao24"
+[0m00:03:31.141046 [debug] [Thread-4 (]: Writing injected SQL for node "test.flightpulse.not_null_stg_opensky_states_icao24.5ad2a0f7da"
+[0m00:03:31.141046 [debug] [Thread-1 (]: Began executing node test.flightpulse.accepted_values_stg_opensky_states_on_ground__False__True__False.396357fc5e
+[0m00:03:31.172314 [debug] [Thread-1 (]: Writing runtime sql for node "test.flightpulse.accepted_values_stg_opensky_states_on_ground__False__True__False.396357fc5e"
+[0m00:03:31.219211 [debug] [Thread-4 (]: Began executing node test.flightpulse.not_null_stg_opensky_states_icao24.5ad2a0f7da
+[0m00:03:31.234785 [debug] [Thread-4 (]: Writing runtime sql for node "test.flightpulse.not_null_stg_opensky_states_icao24.5ad2a0f7da"
+[0m00:03:31.266027 [debug] [Thread-4 (]: Using postgres connection "test.flightpulse.not_null_stg_opensky_states_icao24.5ad2a0f7da"
+[0m00:03:31.266027 [debug] [Thread-3 (]: Began executing node test.flightpulse.assert_valid_icao24
+[0m00:03:31.266027 [debug] [Thread-1 (]: Using postgres connection "test.flightpulse.accepted_values_stg_opensky_states_on_ground__False__True__False.396357fc5e"
+[0m00:03:31.250424 [debug] [Thread-2 (]: Began executing node test.flightpulse.assert_valid_coordinates
+[0m00:03:31.266027 [debug] [Thread-4 (]: On test.flightpulse.not_null_stg_opensky_states_icao24.5ad2a0f7da: BEGIN
+[0m00:03:31.281651 [debug] [Thread-3 (]: Writing runtime sql for node "test.flightpulse.assert_valid_icao24"
+[0m00:03:31.281651 [debug] [Thread-1 (]: On test.flightpulse.accepted_values_stg_opensky_states_on_ground__False__True__False.396357fc5e: BEGIN
+[0m00:03:31.281651 [debug] [Thread-2 (]: Writing runtime sql for node "test.flightpulse.assert_valid_coordinates"
+[0m00:03:31.281651 [debug] [Thread-4 (]: Opening a new connection, currently in state init
+[0m00:03:31.281651 [debug] [Thread-1 (]: Opening a new connection, currently in state init
+[0m00:03:31.312893 [debug] [Thread-3 (]: Using postgres connection "test.flightpulse.assert_valid_icao24"
+[0m00:03:31.312893 [debug] [Thread-2 (]: Using postgres connection "test.flightpulse.assert_valid_coordinates"
+[0m00:03:31.312893 [debug] [Thread-3 (]: On test.flightpulse.assert_valid_icao24: BEGIN
+[0m00:03:31.312893 [debug] [Thread-3 (]: Opening a new connection, currently in state init
+[0m00:03:31.312893 [debug] [Thread-2 (]: On test.flightpulse.assert_valid_coordinates: BEGIN
+[0m00:03:31.328520 [debug] [Thread-2 (]: Opening a new connection, currently in state init
+[0m00:03:31.453503 [debug] [Thread-4 (]: SQL status: BEGIN in 0.171 seconds
+[0m00:03:31.453503 [debug] [Thread-4 (]: Using postgres connection "test.flightpulse.not_null_stg_opensky_states_icao24.5ad2a0f7da"
+[0m00:03:31.453503 [debug] [Thread-4 (]: On test.flightpulse.not_null_stg_opensky_states_icao24.5ad2a0f7da: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "flightpulse", "target_name": "dev", "node_id": "test.flightpulse.not_null_stg_opensky_states_icao24.5ad2a0f7da"} */
+select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+    
+
+
+
+select icao24
+from "flightpulse"."public_staging"."stg_opensky_states"
+where icao24 is null
+
+
+
+      
+    ) dbt_internal_test
+[0m00:03:31.515994 [debug] [Thread-1 (]: SQL status: BEGIN in 0.224 seconds
+[0m00:03:31.515994 [debug] [Thread-1 (]: Using postgres connection "test.flightpulse.accepted_values_stg_opensky_states_on_ground__False__True__False.396357fc5e"
+[0m00:03:31.515994 [debug] [Thread-1 (]: On test.flightpulse.accepted_values_stg_opensky_states_on_ground__False__True__False.396357fc5e: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "flightpulse", "target_name": "dev", "node_id": "test.flightpulse.accepted_values_stg_opensky_states_on_ground__False__True__False.396357fc5e"} */
+select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+    
+
+with all_values as (
+
+    select
+        on_ground as value_field,
+        count(*) as n_records
+
+    from (select * from "flightpulse"."public_staging"."stg_opensky_states" where on_ground is not null) dbt_subquery
+    group by on_ground
+
+)
+
+select *
+from all_values
+where value_field not in (
+    True,False
+)
+
+
+
+      
+    ) dbt_internal_test
+[0m00:03:31.562864 [debug] [Thread-3 (]: SQL status: BEGIN in 0.243 seconds
+[0m00:03:31.562864 [debug] [Thread-3 (]: Using postgres connection "test.flightpulse.assert_valid_icao24"
+[0m00:03:31.562864 [debug] [Thread-2 (]: SQL status: BEGIN in 0.233 seconds
+[0m00:03:31.562864 [debug] [Thread-3 (]: On test.flightpulse.assert_valid_icao24: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "flightpulse", "target_name": "dev", "node_id": "test.flightpulse.assert_valid_icao24"} */
+select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      -- FlightPulse data quality: ICAO24 format
+-- Ref: continuation doc section 8: "ICAO24 follows the expected identifier
+-- format where present." OpenSky icao24 is a 6-character lowercase hex
+-- string. stg_opensky_states already lower()/trim()s it, so a failure here
+-- means genuinely malformed source data, not a casing issue.
+
+select
+    ingestion_id,
+    icao24
+from "flightpulse"."public_staging"."stg_opensky_states"
+where icao24 is not null
+  and icao24 !~ '^[0-9a-f]{6}$'
+      
+    ) dbt_internal_test
+[0m00:03:31.562864 [debug] [Thread-2 (]: Using postgres connection "test.flightpulse.assert_valid_coordinates"
+[0m00:03:31.578488 [debug] [Thread-2 (]: On test.flightpulse.assert_valid_coordinates: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "flightpulse", "target_name": "dev", "node_id": "test.flightpulse.assert_valid_coordinates"} */
+select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      -- FlightPulse data quality: coordinate bounds
+-- Ref: continuation doc section 8: "Latitude and longitude remain within
+-- valid geographic bounds."
+-- A dbt test fails when this query returns any rows -- so we select the
+-- violations.
+
+select
+    ingestion_id,
+    icao24,
+    latitude,
+    longitude
+from "flightpulse"."public_staging"."stg_opensky_states"
+where
+    (latitude is not null and (latitude < -90 or latitude > 90))
+    or (longitude is not null and (longitude < -180 or longitude > 180))
+      
+    ) dbt_internal_test
+[0m00:04:24.762941 [debug] [Thread-4 (]: SQL status: SELECT 1 in 53.315 seconds
+[0m00:04:24.778560 [debug] [Thread-4 (]: On test.flightpulse.not_null_stg_opensky_states_icao24.5ad2a0f7da: ROLLBACK
+[0m00:04:24.778560 [debug] [Thread-3 (]: SQL status: SELECT 1 in 53.222 seconds
+[0m00:04:24.794188 [debug] [Thread-4 (]: On test.flightpulse.not_null_stg_opensky_states_icao24.5ad2a0f7da: Close
+[0m00:04:24.794188 [debug] [Thread-3 (]: On test.flightpulse.assert_valid_icao24: ROLLBACK
+[0m00:04:24.794188 [info ] [Thread-4 (]: 4 of 6 PASS not_null_stg_opensky_states_icao24 ................................. [[32mPASS[0m in 53.73s]
+[0m00:04:24.794188 [debug] [Thread-3 (]: On test.flightpulse.assert_valid_icao24: Close
+[0m00:04:24.809812 [debug] [Thread-4 (]: Finished running node test.flightpulse.not_null_stg_opensky_states_icao24.5ad2a0f7da
+[0m00:04:24.809812 [info ] [Thread-3 (]: 3 of 6 PASS assert_valid_icao24 ................................................ [[32mPASS[0m in 53.75s]
+[0m00:04:24.809812 [debug] [Thread-4 (]: Began running node test.flightpulse.not_null_stg_opensky_states_ingestion_id.6e876ceec3
+[0m00:04:24.809812 [debug] [Thread-3 (]: Finished running node test.flightpulse.assert_valid_icao24
+[0m00:04:24.825431 [info ] [Thread-4 (]: 5 of 6 START test not_null_stg_opensky_states_ingestion_id ..................... [RUN]
+[0m00:04:24.825431 [debug] [Thread-3 (]: Began running node test.flightpulse.unique_stg_opensky_states_ingestion_id.a4599fc31e
+[0m00:04:24.825431 [debug] [Thread-4 (]: Re-using an available connection from the pool (formerly test.flightpulse.not_null_stg_opensky_states_icao24.5ad2a0f7da, now test.flightpulse.not_null_stg_opensky_states_ingestion_id.6e876ceec3)
+[0m00:04:24.825431 [info ] [Thread-3 (]: 6 of 6 START test unique_stg_opensky_states_ingestion_id ....................... [RUN]
+[0m00:04:24.825431 [debug] [Thread-4 (]: Began compiling node test.flightpulse.not_null_stg_opensky_states_ingestion_id.6e876ceec3
+[0m00:04:24.825431 [debug] [Thread-3 (]: Re-using an available connection from the pool (formerly test.flightpulse.assert_valid_icao24, now test.flightpulse.unique_stg_opensky_states_ingestion_id.a4599fc31e)
+[0m00:04:24.841059 [debug] [Thread-4 (]: Writing injected SQL for node "test.flightpulse.not_null_stg_opensky_states_ingestion_id.6e876ceec3"
+[0m00:04:24.841059 [debug] [Thread-3 (]: Began compiling node test.flightpulse.unique_stg_opensky_states_ingestion_id.a4599fc31e
+[0m00:04:24.856675 [debug] [Thread-3 (]: Writing injected SQL for node "test.flightpulse.unique_stg_opensky_states_ingestion_id.a4599fc31e"
+[0m00:04:24.887936 [debug] [Thread-4 (]: Began executing node test.flightpulse.not_null_stg_opensky_states_ingestion_id.6e876ceec3
+[0m00:04:24.887936 [debug] [Thread-3 (]: Began executing node test.flightpulse.unique_stg_opensky_states_ingestion_id.a4599fc31e
+[0m00:04:24.887936 [debug] [Thread-4 (]: Writing runtime sql for node "test.flightpulse.not_null_stg_opensky_states_ingestion_id.6e876ceec3"
+[0m00:04:24.903565 [debug] [Thread-3 (]: Writing runtime sql for node "test.flightpulse.unique_stg_opensky_states_ingestion_id.a4599fc31e"
+[0m00:04:24.903565 [debug] [Thread-4 (]: Using postgres connection "test.flightpulse.not_null_stg_opensky_states_ingestion_id.6e876ceec3"
+[0m00:04:24.903565 [debug] [Thread-3 (]: Using postgres connection "test.flightpulse.unique_stg_opensky_states_ingestion_id.a4599fc31e"
+[0m00:04:24.903565 [debug] [Thread-4 (]: On test.flightpulse.not_null_stg_opensky_states_ingestion_id.6e876ceec3: BEGIN
+[0m00:04:24.903565 [debug] [Thread-3 (]: On test.flightpulse.unique_stg_opensky_states_ingestion_id.a4599fc31e: BEGIN
+[0m00:04:24.903565 [debug] [Thread-4 (]: Opening a new connection, currently in state closed
+[0m00:04:24.919170 [debug] [Thread-3 (]: Opening a new connection, currently in state closed
+[0m00:04:25.686946 [debug] [Thread-3 (]: SQL status: BEGIN in 0.766 seconds
+[0m00:04:25.686946 [debug] [Thread-3 (]: Using postgres connection "test.flightpulse.unique_stg_opensky_states_ingestion_id.a4599fc31e"
+[0m00:04:25.686946 [debug] [Thread-4 (]: SQL status: BEGIN in 0.772 seconds
+[0m00:04:25.686946 [debug] [Thread-3 (]: On test.flightpulse.unique_stg_opensky_states_ingestion_id.a4599fc31e: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "flightpulse", "target_name": "dev", "node_id": "test.flightpulse.unique_stg_opensky_states_ingestion_id.a4599fc31e"} */
+select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+    
+
+select
+    ingestion_id as unique_field,
+    count(*) as n_records
+
+from "flightpulse"."public_staging"."stg_opensky_states"
+where ingestion_id is not null
+group by ingestion_id
+having count(*) > 1
+
+
+
+      
+    ) dbt_internal_test
+[0m00:04:25.686946 [debug] [Thread-4 (]: Using postgres connection "test.flightpulse.not_null_stg_opensky_states_ingestion_id.6e876ceec3"
+[0m00:04:25.686946 [debug] [Thread-4 (]: On test.flightpulse.not_null_stg_opensky_states_ingestion_id.6e876ceec3: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "flightpulse", "target_name": "dev", "node_id": "test.flightpulse.not_null_stg_opensky_states_ingestion_id.6e876ceec3"} */
+select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+    
+
+
+
+select ingestion_id
+from "flightpulse"."public_staging"."stg_opensky_states"
+where ingestion_id is null
+
+
+
+      
+    ) dbt_internal_test
+[0m00:04:25.733898 [debug] [Thread-4 (]: SQL status: SELECT 1 in 0.039 seconds
+[0m00:04:25.733898 [debug] [Thread-4 (]: On test.flightpulse.not_null_stg_opensky_states_ingestion_id.6e876ceec3: ROLLBACK
+[0m00:04:25.733898 [debug] [Thread-4 (]: On test.flightpulse.not_null_stg_opensky_states_ingestion_id.6e876ceec3: Close
+[0m00:04:25.733898 [info ] [Thread-4 (]: 5 of 6 PASS not_null_stg_opensky_states_ingestion_id ........................... [[32mPASS[0m in 0.91s]
+[0m00:04:25.749437 [debug] [Thread-4 (]: Finished running node test.flightpulse.not_null_stg_opensky_states_ingestion_id.6e876ceec3
+[0m00:04:28.516212 [debug] [Thread-1 (]: SQL status: SELECT 1 in 57.010 seconds
+[0m00:04:28.531823 [debug] [Thread-1 (]: On test.flightpulse.accepted_values_stg_opensky_states_on_ground__False__True__False.396357fc5e: ROLLBACK
+[0m00:04:28.531823 [debug] [Thread-1 (]: On test.flightpulse.accepted_values_stg_opensky_states_on_ground__False__True__False.396357fc5e: Close
+[0m00:04:28.531823 [info ] [Thread-1 (]: 1 of 6 PASS accepted_values_stg_opensky_states_on_ground__False__True__False ... [[32mPASS[0m in 57.47s]
+[0m00:04:28.531823 [debug] [Thread-2 (]: SQL status: SELECT 1 in 56.968 seconds
+[0m00:04:28.531823 [debug] [Thread-1 (]: Finished running node test.flightpulse.accepted_values_stg_opensky_states_on_ground__False__True__False.396357fc5e
+[0m00:04:28.547445 [debug] [Thread-2 (]: On test.flightpulse.assert_valid_coordinates: ROLLBACK
+[0m00:04:28.547445 [debug] [Thread-2 (]: On test.flightpulse.assert_valid_coordinates: Close
+[0m00:04:28.547445 [info ] [Thread-2 (]: 2 of 6 PASS assert_valid_coordinates ........................................... [[32mPASS[0m in 57.48s]
+[0m00:04:28.563068 [debug] [Thread-2 (]: Finished running node test.flightpulse.assert_valid_coordinates
+[0m00:04:31.178996 [debug] [Thread-3 (]: SQL status: SELECT 1 in 5.488 seconds
+[0m00:04:31.178996 [debug] [Thread-3 (]: On test.flightpulse.unique_stg_opensky_states_ingestion_id.a4599fc31e: ROLLBACK
+[0m00:04:31.178996 [debug] [Thread-3 (]: On test.flightpulse.unique_stg_opensky_states_ingestion_id.a4599fc31e: Close
+[0m00:04:31.178996 [info ] [Thread-3 (]: 6 of 6 PASS unique_stg_opensky_states_ingestion_id ............................. [[32mPASS[0m in 6.35s]
+[0m00:04:31.178996 [debug] [Thread-3 (]: Finished running node test.flightpulse.unique_stg_opensky_states_ingestion_id.a4599fc31e
+[0m00:04:31.194620 [debug] [MainThread]: Using postgres connection "master"
+[0m00:04:31.194620 [debug] [MainThread]: On master: BEGIN
+[0m00:04:31.194620 [debug] [MainThread]: Opening a new connection, currently in state closed
+[0m00:04:31.272729 [debug] [MainThread]: SQL status: BEGIN in 0.079 seconds
+[0m00:04:31.272729 [debug] [MainThread]: On master: COMMIT
+[0m00:04:31.272729 [debug] [MainThread]: Using postgres connection "master"
+[0m00:04:31.272729 [debug] [MainThread]: On master: COMMIT
+[0m00:04:31.272729 [debug] [MainThread]: SQL status: COMMIT in 0.000 seconds
+[0m00:04:31.272729 [debug] [MainThread]: On master: Close
+[0m00:04:31.272729 [debug] [MainThread]: Connection 'master' was properly closed.
+[0m00:04:31.272729 [debug] [MainThread]: Connection 'list_flightpulse_public_staging' was properly closed.
+[0m00:04:31.288354 [debug] [MainThread]: Connection 'test.flightpulse.accepted_values_stg_opensky_states_on_ground__False__True__False.396357fc5e' was properly closed.
+[0m00:04:31.288354 [debug] [MainThread]: Connection 'test.flightpulse.assert_valid_coordinates' was properly closed.
+[0m00:04:31.288354 [debug] [MainThread]: Connection 'test.flightpulse.unique_stg_opensky_states_ingestion_id.a4599fc31e' was properly closed.
+[0m00:04:31.288354 [debug] [MainThread]: Connection 'test.flightpulse.not_null_stg_opensky_states_ingestion_id.6e876ceec3' was properly closed.
+[0m00:04:31.288354 [info ] [MainThread]: 
+[0m00:04:31.288354 [info ] [MainThread]: Finished running 6 data tests in 0 hours 1 minutes and 0.73 seconds (60.73s).
+[0m00:04:31.288354 [debug] [MainThread]: Command end result
+[0m00:04:31.382095 [info ] [MainThread]: 
+[0m00:04:31.382095 [info ] [MainThread]: [32mCompleted successfully[0m
+[0m00:04:31.382095 [info ] [MainThread]: 
+[0m00:04:31.382095 [info ] [MainThread]: Done. PASS=6 WARN=0 ERROR=0 SKIP=0 TOTAL=6
+[0m00:04:31.382095 [debug] [MainThread]: Command `dbt test` succeeded at 00:04:31.382095 after 64.86 seconds
+[0m00:04:31.382095 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001D833123910>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001D831A3E6D0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001D831A3F810>]}
+[0m00:04:31.382095 [debug] [MainThread]: Flushing usage events
+[0m00:04:31.397712 [debug] [MainThread]: Error sending anonymous usage statistics. Disabling tracking for this execution. If you wish to permanently disable tracking, see: https://docs.getdbt.com/reference/global-configs#send-anonymous-usage-stats.
+[0m22:50:38.283794 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002A44FAF7B50>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002A44F6B3790>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002A44FAD9D90>]}
+
+
+============================== 22:50:38.611969 | bbf8da61-33a0-4a1b-b761-029d46f0c50b ==============================
+[0m22:50:38.611969 [info ] [MainThread]: Running with dbt=1.8.7
+[0m22:50:38.611969 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'log_cache_events': 'False', 'write_json': 'True', 'partial_parse': 'True', 'cache_selected_only': 'False', 'warn_error': 'None', 'version_check': 'True', 'profiles_dir': '.', 'log_path': 'logs', 'fail_fast': 'False', 'debug': 'False', 'use_colors': 'True', 'use_experimental_parser': 'False', 'empty': 'None', 'quiet': 'False', 'no_print': 'None', 'log_format': 'default', 'introspect': 'True', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'static_parser': 'True', 'target_path': 'None', 'invocation_command': 'dbt debug --project-dir .', 'send_anonymous_usage_stats': 'True'}
+[0m22:50:42.081923 [info ] [MainThread]: dbt version: 1.8.7
+[0m22:50:42.081923 [info ] [MainThread]: python version: 3.11.9
+[0m22:50:42.097460 [info ] [MainThread]: python path: C:\Users\USER\AppData\Local\Programs\Python\Python311\python.exe
+[0m22:50:42.097460 [info ] [MainThread]: os info: Windows-10-10.0.19045-SP0
+[0m22:50:45.114124 [info ] [MainThread]: Using profiles dir at .
+[0m22:50:45.114124 [info ] [MainThread]: Using profiles.yml file at .\profiles.yml
+[0m22:50:45.129731 [info ] [MainThread]: Using dbt_project.yml file at .\dbt_project.yml
+[0m22:50:45.160974 [info ] [MainThread]: adapter type: postgres
+[0m22:50:45.160974 [info ] [MainThread]: adapter version: 1.9.1
+[0m22:50:45.332881 [info ] [MainThread]: Configuration:
+[0m22:50:45.332881 [info ] [MainThread]:   profiles.yml file [[32mOK found and valid[0m]
+[0m22:50:45.348475 [info ] [MainThread]:   dbt_project.yml file [[32mOK found and valid[0m]
+[0m22:50:45.348475 [info ] [MainThread]: Required dependencies:
+[0m22:50:45.348475 [debug] [MainThread]: Executing "git --help"
+[0m22:50:45.629742 [debug] [MainThread]: STDOUT: "b"usage: git [--version] [--help] [-C <path>] [-c <name>=<value>]\n           [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]\n           [-p | --paginate | -P | --no-pager] [--no-replace-objects] [--bare]\n           [--git-dir=<path>] [--work-tree=<path>] [--namespace=<name>]\n           [--super-prefix=<path>] [--config-env=<name>=<envvar>]\n           <command> [<args>]\n\nThese are common Git commands used in various situations:\n\nstart a working area (see also: git help tutorial)\n   clone     Clone a repository into a new directory\n   init      Create an empty Git repository or reinitialize an existing one\n\nwork on the current change (see also: git help everyday)\n   add       Add file contents to the index\n   mv        Move or rename a file, a directory, or a symlink\n   restore   Restore working tree files\n   rm        Remove files from the working tree and from the index\n\nexamine the history and state (see also: git help revisions)\n   bisect    Use binary search to find the commit that introduced a bug\n   diff      Show changes between commits, commit and working tree, etc\n   grep      Print lines matching a pattern\n   log       Show commit logs\n   show      Show various types of objects\n   status    Show the working tree status\n\ngrow, mark and tweak your common history\n   branch    List, create, or delete branches\n   commit    Record changes to the repository\n   merge     Join two or more development histories together\n   rebase    Reapply commits on top of another base tip\n   reset     Reset current HEAD to the specified state\n   switch    Switch branches\n   tag       Create, list, delete or verify a tag object signed with GPG\n\ncollaborate (see also: git help workflows)\n   fetch     Download objects and refs from another repository\n   pull      Fetch from and integrate with another repository or a local branch\n   push      Update remote refs along with associated objects\n\n'git help -a' and 'git help -g' list available subcommands and some\nconcept guides. See 'git help <command>' or 'git help <concept>'\nto read about a specific subcommand or concept.\nSee 'git help git' for an overview of the system.\n""
+[0m22:50:45.629742 [debug] [MainThread]: STDERR: "b''"
+[0m22:50:45.645366 [info ] [MainThread]:  - git [[32mOK found[0m]
+
+[0m22:50:45.645366 [info ] [MainThread]: Connection:
+[0m22:50:45.645366 [info ] [MainThread]:   host: localhost
+[0m22:50:45.645366 [info ] [MainThread]:   port: 5432
+[0m22:50:45.660989 [info ] [MainThread]:   user: flightpulse
+[0m22:50:45.660989 [info ] [MainThread]:   database: flightpulse
+[0m22:50:45.660989 [info ] [MainThread]:   schema: public
+[0m22:50:45.660989 [info ] [MainThread]:   connect_timeout: 10
+[0m22:50:45.660989 [info ] [MainThread]:   role: None
+[0m22:50:45.676608 [info ] [MainThread]:   search_path: None
+[0m22:50:45.676608 [info ] [MainThread]:   keepalives_idle: 0
+[0m22:50:45.676608 [info ] [MainThread]:   sslmode: None
+[0m22:50:45.676608 [info ] [MainThread]:   sslcert: None
+[0m22:50:45.676608 [info ] [MainThread]:   sslkey: None
+[0m22:50:45.676608 [info ] [MainThread]:   sslrootcert: None
+[0m22:50:45.676608 [info ] [MainThread]:   application_name: dbt
+[0m22:50:45.692234 [info ] [MainThread]:   retries: 1
+[0m22:50:45.692234 [info ] [MainThread]: Registered adapter: postgres=1.9.1
+[0m22:50:50.616049 [debug] [MainThread]: Acquiring new postgres connection 'debug'
+[0m22:51:15.385845 [debug] [MainThread]: Using postgres connection "debug"
+[0m22:51:15.385845 [debug] [MainThread]: On debug: select 1 as id
+[0m22:51:15.385845 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m22:51:16.949041 [debug] [MainThread]: SQL status: SELECT 1 in 1.571 seconds
+[0m22:51:16.964627 [debug] [MainThread]: On debug: Close
+[0m22:51:16.964627 [info ] [MainThread]:   Connection test: [[32mOK connection ok[0m]
+
+[0m22:51:16.964627 [info ] [MainThread]: [32mAll checks passed![0m
+[0m22:51:16.980254 [debug] [MainThread]: Command `dbt debug` succeeded at 22:51:16.980254 after 40.02 seconds
+[0m22:51:16.980254 [debug] [MainThread]: Connection 'debug' was properly closed.
+[0m22:51:16.980254 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002A44941F6D0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002A44940D890>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002A44940EA10>]}
+[0m22:51:16.995870 [debug] [MainThread]: Flushing usage events
+[0m22:51:26.311002 [debug] [MainThread]: Error sending anonymous usage statistics. Disabling tracking for this execution. If you wish to permanently disable tracking, see: https://docs.getdbt.com/reference/global-configs#send-anonymous-usage-stats.
+[0m22:53:19.744143 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000021895E3E190>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000021895E88F90>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000021895E89D10>]}
+
+
+============================== 22:53:19.759771 | 594391cf-e898-4bd2-b141-11a13c6930c2 ==============================
+[0m22:53:19.759771 [info ] [MainThread]: Running with dbt=1.8.7
+[0m22:53:19.775399 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'write_json': 'True', 'log_cache_events': 'False', 'partial_parse': 'True', 'cache_selected_only': 'False', 'profiles_dir': '.', 'debug': 'False', 'version_check': 'True', 'log_path': 'logs', 'warn_error': 'None', 'fail_fast': 'False', 'use_colors': 'True', 'use_experimental_parser': 'False', 'empty': 'False', 'quiet': 'False', 'no_print': 'None', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'static_parser': 'True', 'invocation_command': 'dbt run --project-dir . --select stg_opensky_states int_aircraft_activity', 'introspect': 'True', 'target_path': 'None', 'log_format': 'default', 'send_anonymous_usage_stats': 'True'}
+[0m22:53:31.717087 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': '594391cf-e898-4bd2-b141-11a13c6930c2', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000021895EC73D0>]}
+[0m22:53:31.857628 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': '594391cf-e898-4bd2-b141-11a13c6930c2', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000021892E90B50>]}
+[0m22:53:31.857628 [info ] [MainThread]: Registered adapter: postgres=1.9.1
+[0m22:53:33.795471 [debug] [MainThread]: checksum: 4af21dafb485259c48497ac86b711ddb1982f3d0f1c0ca4e09356de488b753c0, vars: {}, profile: , target: , version: 1.8.7
+[0m22:53:44.829810 [debug] [MainThread]: Partial parsing enabled: 0 files deleted, 3 files added, 0 files changed.
+[0m22:53:44.829810 [debug] [MainThread]: Partial parsing: added file: flightpulse://models\intermediate\_intermediate.yml
+[0m22:53:44.829810 [debug] [MainThread]: Partial parsing: added file: flightpulse://tests\assert_non_negative_telemetry_age.sql
+[0m22:53:44.829810 [debug] [MainThread]: Partial parsing: added file: flightpulse://models\intermediate\int_aircraft_activity.sql
+[0m22:53:45.423589 [warn ] [MainThread]: [[33mWARNING[0m]: Deprecated functionality
+The `tests` config has been renamed to `data_tests`. Please see
+https://docs.getdbt.com/docs/build/data-tests#new-data_tests-syntax for more
+information.
+[0m22:53:45.423589 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'deprecation', 'label': '594391cf-e898-4bd2-b141-11a13c6930c2', 'property_': 'warn', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000021897583DD0>]}
+[0m22:53:45.751689 [warn ] [MainThread]: [[33mWARNING[0m]: Configuration paths exist in your dbt_project.yml file which do not apply to any resources.
+There are 1 unused configuration paths:
+- models.flightpulse.marts
+[0m22:53:45.782935 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': '594391cf-e898-4bd2-b141-11a13c6930c2', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002189603B9D0>]}
+[0m22:53:47.502689 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'resource_counts', 'label': '594391cf-e898-4bd2-b141-11a13c6930c2', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000218977E4690>]}
+[0m22:53:47.502689 [info ] [MainThread]: Found 2 models, 21 data tests, 2 sources, 429 macros
+[0m22:53:47.502689 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': '594391cf-e898-4bd2-b141-11a13c6930c2', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000218976D5550>]}
+[0m22:53:47.518251 [info ] [MainThread]: 
+[0m22:53:47.518251 [debug] [MainThread]: Acquiring new postgres connection 'master'
+[0m22:53:47.533881 [debug] [ThreadPool]: Acquiring new postgres connection 'list_flightpulse'
+[0m22:53:47.533881 [debug] [ThreadPool]: Acquiring new postgres connection 'list_flightpulse'
+[0m22:53:47.799493 [debug] [ThreadPool]: Using postgres connection "list_flightpulse"
+[0m22:53:47.799493 [debug] [ThreadPool]: Using postgres connection "list_flightpulse"
+[0m22:53:47.799493 [debug] [ThreadPool]: On list_flightpulse: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "flightpulse", "target_name": "dev", "connection_name": "list_flightpulse"} */
+
+    select distinct nspname from pg_namespace
+  
+[0m22:53:47.799493 [debug] [ThreadPool]: On list_flightpulse: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "flightpulse", "target_name": "dev", "connection_name": "list_flightpulse"} */
+
+    select distinct nspname from pg_namespace
+  
+[0m22:53:47.799493 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m22:53:47.815094 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m22:53:48.628279 [debug] [ThreadPool]: SQL status: SELECT 5 in 0.819 seconds
+[0m22:53:48.628279 [debug] [ThreadPool]: SQL status: SELECT 5 in 0.824 seconds
+[0m22:53:48.643820 [debug] [ThreadPool]: On list_flightpulse: Close
+[0m22:53:48.643820 [debug] [ThreadPool]: On list_flightpulse: Close
+[0m22:53:48.659449 [debug] [ThreadPool]: Re-using an available connection from the pool (formerly list_flightpulse, now create_flightpulse_public_intermediate)
+[0m22:53:48.659449 [debug] [ThreadPool]: Creating schema "database: "flightpulse"
+schema: "public_intermediate"
+"
+[0m22:53:48.690678 [debug] [ThreadPool]: Using postgres connection "create_flightpulse_public_intermediate"
+[0m22:53:48.690678 [debug] [ThreadPool]: On create_flightpulse_public_intermediate: BEGIN
+[0m22:53:48.690678 [debug] [ThreadPool]: Opening a new connection, currently in state closed
+[0m22:53:48.909529 [debug] [ThreadPool]: SQL status: BEGIN in 0.218 seconds
+[0m22:53:48.925090 [debug] [ThreadPool]: Using postgres connection "create_flightpulse_public_intermediate"
+[0m22:53:48.925090 [debug] [ThreadPool]: On create_flightpulse_public_intermediate: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "flightpulse", "target_name": "dev", "connection_name": "create_flightpulse_public_intermediate"} */
+create schema if not exists "public_intermediate"
+[0m22:53:49.472028 [debug] [ThreadPool]: SQL status: CREATE SCHEMA in 0.547 seconds
+[0m22:53:49.472028 [debug] [ThreadPool]: On create_flightpulse_public_intermediate: COMMIT
+[0m22:53:49.472028 [debug] [ThreadPool]: Using postgres connection "create_flightpulse_public_intermediate"
+[0m22:53:49.487578 [debug] [ThreadPool]: On create_flightpulse_public_intermediate: COMMIT
+[0m22:53:49.565683 [debug] [ThreadPool]: SQL status: COMMIT in 0.037 seconds
+[0m22:53:49.565683 [debug] [ThreadPool]: On create_flightpulse_public_intermediate: Close
+[0m22:53:49.565683 [debug] [ThreadPool]: Acquiring new postgres connection 'list_flightpulse_public_intermediate'
+[0m22:53:49.581303 [debug] [ThreadPool]: Acquiring new postgres connection 'list_flightpulse_public_staging'
+[0m22:53:49.596926 [debug] [ThreadPool]: Using postgres connection "list_flightpulse_public_intermediate"
+[0m22:53:49.612602 [debug] [ThreadPool]: Using postgres connection "list_flightpulse_public_staging"
+[0m22:53:49.612602 [debug] [ThreadPool]: On list_flightpulse_public_intermediate: BEGIN
+[0m22:53:49.612602 [debug] [ThreadPool]: On list_flightpulse_public_staging: BEGIN
+[0m22:53:49.628194 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m22:53:49.628194 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m22:53:49.784415 [debug] [ThreadPool]: SQL status: BEGIN in 0.156 seconds
+[0m22:53:49.784415 [debug] [ThreadPool]: Using postgres connection "list_flightpulse_public_intermediate"
+[0m22:53:49.784415 [debug] [ThreadPool]: On list_flightpulse_public_intermediate: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "flightpulse", "target_name": "dev", "connection_name": "list_flightpulse_public_intermediate"} */
+select
+      'flightpulse' as database,
+      tablename as name,
+      schemaname as schema,
+      'table' as type
+    from pg_tables
+    where schemaname ilike 'public_intermediate'
+    union all
+    select
+      'flightpulse' as database,
+      viewname as name,
+      schemaname as schema,
+      'view' as type
+    from pg_views
+    where schemaname ilike 'public_intermediate'
+    union all
+    select
+      'flightpulse' as database,
+      matviewname as name,
+      schemaname as schema,
+      'materialized_view' as type
+    from pg_matviews
+    where schemaname ilike 'public_intermediate'
+  
+[0m22:53:49.800041 [debug] [ThreadPool]: SQL status: BEGIN in 0.178 seconds
+[0m22:53:49.800041 [debug] [ThreadPool]: Using postgres connection "list_flightpulse_public_staging"
+[0m22:53:49.800041 [debug] [ThreadPool]: On list_flightpulse_public_staging: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "flightpulse", "target_name": "dev", "connection_name": "list_flightpulse_public_staging"} */
+select
+      'flightpulse' as database,
+      tablename as name,
+      schemaname as schema,
+      'table' as type
+    from pg_tables
+    where schemaname ilike 'public_staging'
+    union all
+    select
+      'flightpulse' as database,
+      viewname as name,
+      schemaname as schema,
+      'view' as type
+    from pg_views
+    where schemaname ilike 'public_staging'
+    union all
+    select
+      'flightpulse' as database,
+      matviewname as name,
+      schemaname as schema,
+      'materialized_view' as type
+    from pg_matviews
+    where schemaname ilike 'public_staging'
+  
+[0m22:53:50.050154 [debug] [ThreadPool]: SQL status: SELECT 0 in 0.263 seconds
+[0m22:53:50.050154 [debug] [ThreadPool]: SQL status: SELECT 1 in 0.241 seconds
+[0m22:53:50.050154 [debug] [ThreadPool]: On list_flightpulse_public_intermediate: ROLLBACK
+[0m22:53:50.065693 [debug] [ThreadPool]: On list_flightpulse_public_staging: ROLLBACK
+[0m22:53:50.065693 [debug] [ThreadPool]: On list_flightpulse_public_intermediate: Close
+[0m22:53:50.065693 [debug] [ThreadPool]: On list_flightpulse_public_staging: Close
+[0m22:53:50.112556 [debug] [MainThread]: Using postgres connection "master"
+[0m22:53:50.112556 [debug] [MainThread]: On master: BEGIN
+[0m22:53:50.112556 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m22:53:50.190666 [debug] [MainThread]: SQL status: BEGIN in 0.082 seconds
+[0m22:53:50.190666 [debug] [MainThread]: Using postgres connection "master"
+[0m22:53:50.206294 [debug] [MainThread]: On master: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "flightpulse", "target_name": "dev", "connection_name": "master"} */
+select distinct
+        dependent_namespace.nspname as dependent_schema,
+        dependent_class.relname as dependent_name,
+        referenced_namespace.nspname as referenced_schema,
+        referenced_class.relname as referenced_name
+
+    -- Query for views: views are entries in pg_class with an entry in pg_rewrite, but we avoid
+    -- a seq scan on pg_rewrite by leveraging the fact there is an "internal" row in pg_depend for
+    -- the view...
+    from pg_class as dependent_class
+    join pg_namespace as dependent_namespace on dependent_namespace.oid = dependent_class.relnamespace
+    join pg_depend as dependent_depend on dependent_depend.refobjid = dependent_class.oid
+        and dependent_depend.classid = 'pg_rewrite'::regclass
+        and dependent_depend.refclassid = 'pg_class'::regclass
+        and dependent_depend.deptype = 'i'
+
+    -- ... and via pg_depend (that has a row per column, hence the need for "distinct" above, and
+    -- making sure to exclude the internal row to avoid a view appearing to depend on itself)...
+    join pg_depend as joining_depend on joining_depend.objid = dependent_depend.objid
+        and joining_depend.classid = 'pg_rewrite'::regclass
+        and joining_depend.refclassid = 'pg_class'::regclass
+        and joining_depend.refobjid != dependent_depend.refobjid
+
+    -- ... we can find the tables they query from in pg_class, but excluding system tables. Note we
+    -- don't need need to exclude _dependent_ system tables, because they only query from other
+    -- system tables, and so are automatically excluded by excluding _referenced_ system tables
+    join pg_class as referenced_class on referenced_class.oid = joining_depend.refobjid
+    join pg_namespace as referenced_namespace on referenced_namespace.oid = referenced_class.relnamespace
+        and referenced_namespace.nspname != 'information_schema'
+        and referenced_namespace.nspname not like 'pg\_%'
+
+    order by
+        dependent_schema, dependent_name, referenced_schema, referenced_name;
+[0m22:53:50.472494 [debug] [MainThread]: SQL status: SELECT 1 in 0.271 seconds
+[0m22:53:50.472494 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': '594391cf-e898-4bd2-b141-11a13c6930c2', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000218977D5410>]}
+[0m22:53:50.472494 [debug] [MainThread]: On master: ROLLBACK
+[0m22:53:50.472494 [debug] [MainThread]: Using postgres connection "master"
+[0m22:53:50.472494 [debug] [MainThread]: On master: BEGIN
+[0m22:53:50.488072 [debug] [MainThread]: SQL status: BEGIN in 0.001 seconds
+[0m22:53:50.488072 [debug] [MainThread]: On master: COMMIT
+[0m22:53:50.488072 [debug] [MainThread]: Using postgres connection "master"
+[0m22:53:50.488072 [debug] [MainThread]: On master: COMMIT
+[0m22:53:50.488072 [debug] [MainThread]: SQL status: COMMIT in 0.000 seconds
+[0m22:53:50.488072 [debug] [MainThread]: On master: Close
+[0m22:53:50.488072 [info ] [MainThread]: Concurrency: 4 threads (target='dev')
+[0m22:53:50.488072 [info ] [MainThread]: 
+[0m22:53:50.581881 [debug] [Thread-1 (]: Began running node model.flightpulse.stg_opensky_states
+[0m22:53:50.597490 [info ] [Thread-1 (]: 1 of 2 START sql view model public_staging.stg_opensky_states .................. [RUN]
+[0m22:53:50.597490 [debug] [Thread-1 (]: Acquiring new postgres connection 'model.flightpulse.stg_opensky_states'
+[0m22:53:50.597490 [debug] [Thread-1 (]: Began compiling node model.flightpulse.stg_opensky_states
+[0m22:53:50.644331 [debug] [Thread-1 (]: Writing injected SQL for node "model.flightpulse.stg_opensky_states"
+[0m22:53:50.784956 [debug] [Thread-1 (]: Began executing node model.flightpulse.stg_opensky_states
+[0m22:53:50.863100 [debug] [Thread-1 (]: Writing runtime sql for node "model.flightpulse.stg_opensky_states"
+[0m22:53:51.066306 [debug] [Thread-1 (]: Using postgres connection "model.flightpulse.stg_opensky_states"
+[0m22:53:51.066306 [debug] [Thread-1 (]: On model.flightpulse.stg_opensky_states: BEGIN
+[0m22:53:51.081843 [debug] [Thread-1 (]: Opening a new connection, currently in state init
+[0m22:53:51.191197 [debug] [Thread-1 (]: SQL status: BEGIN in 0.123 seconds
+[0m22:53:51.206820 [debug] [Thread-1 (]: Using postgres connection "model.flightpulse.stg_opensky_states"
+[0m22:53:51.206820 [debug] [Thread-1 (]: On model.flightpulse.stg_opensky_states: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "flightpulse", "target_name": "dev", "node_id": "model.flightpulse.stg_opensky_states"} */
+
+  create view "flightpulse"."public_staging"."stg_opensky_states__dbt_tmp"
+    
+    
+  as (
+    
+
+-- FlightPulse: Phase 6 staging model
+-- Ref: FlightPulse_Phase5_Continuation_ETL_Business_Objectives.pdf,
+-- section 3 (Transform) and section 7 ("stg_opensky_states: Type casting,
+-- standardized names/timestamps, null handling and source metadata.")
+--
+-- raw_telemetry keeps flight measurements inside `payload` JSONB by design
+-- (see _sources.yml). This model is where they get typed out into real
+-- columns for the first time. One row in = one row out; no aggregation,
+-- no business logic here (that's int_aircraft_activity's job next).
+
+with source as (
+
+    select
+        ingestion_id,
+        source        as source_name,
+        icao24        as icao24_raw,
+        collector_id,
+        received_at,
+        ingested_at,
+        processed_at,
+        payload
+    from "flightpulse"."public"."raw_telemetry"
+
+),
+
+cleaned as (
+
+    select
+        ingestion_id,
+        source_name                                            as source,
+
+        -- standardize identifier casing/whitespace -- OpenSky icao24 is
+        -- normally already lowercase hex, but don't assume upstream never
+        -- changes.
+        lower(trim(icao24_raw))                                as icao24,
+
+        collector_id,
+        nullif(trim(payload ->> 'callsign'), '')               as callsign,
+        nullif(trim(payload ->> 'origin_country'), '')         as origin_country,
+
+        -- OpenSky epoch-second fields -> real timestamps. Null-safe: an
+        -- empty/invalid epoch casts to null rather than erroring the model.
+        to_timestamp(nullif(payload ->> 'time_position', '')::bigint)  as time_position_at,
+        to_timestamp(nullif(payload ->> 'last_contact', '')::bigint)   as last_contact_at,
+
+        (payload ->> 'longitude')::double precision            as longitude,
+        (payload ->> 'latitude')::double precision             as latitude,
+        (payload ->> 'baro_altitude_m')::double precision      as baro_altitude_m,
+        (payload ->> 'geo_altitude_m')::double precision       as geo_altitude_m,
+        (payload ->> 'velocity_mps')::double precision         as velocity_mps,
+        (payload ->> 'true_track_deg')::double precision       as true_track_deg,
+        (payload ->> 'vertical_rate_mps')::double precision    as vertical_rate_mps,
+        (payload ->> 'on_ground')::boolean                     as on_ground,
+
+        received_at,
+        ingested_at,
+        processed_at
+
+    from source
+
+)
+
+select * from cleaned
+  );
+[0m22:53:51.988158 [debug] [Thread-1 (]: SQL status: CREATE VIEW in 0.780 seconds
+[0m22:53:52.003705 [debug] [Thread-1 (]: Using postgres connection "model.flightpulse.stg_opensky_states"
+[0m22:53:52.003705 [debug] [Thread-1 (]: On model.flightpulse.stg_opensky_states: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "flightpulse", "target_name": "dev", "node_id": "model.flightpulse.stg_opensky_states"} */
+alter table "flightpulse"."public_staging"."stg_opensky_states" rename to "stg_opensky_states__dbt_backup"
+[0m22:53:52.019366 [debug] [Thread-1 (]: SQL status: ALTER TABLE in 0.004 seconds
+[0m22:53:52.034979 [debug] [Thread-1 (]: Using postgres connection "model.flightpulse.stg_opensky_states"
+[0m22:53:52.034979 [debug] [Thread-1 (]: On model.flightpulse.stg_opensky_states: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "flightpulse", "target_name": "dev", "node_id": "model.flightpulse.stg_opensky_states"} */
+alter table "flightpulse"."public_staging"."stg_opensky_states__dbt_tmp" rename to "stg_opensky_states"
+[0m22:53:52.034979 [debug] [Thread-1 (]: SQL status: ALTER TABLE in 0.002 seconds
+[0m22:53:52.097494 [debug] [Thread-1 (]: On model.flightpulse.stg_opensky_states: COMMIT
+[0m22:53:52.113107 [debug] [Thread-1 (]: Using postgres connection "model.flightpulse.stg_opensky_states"
+[0m22:53:52.113107 [debug] [Thread-1 (]: On model.flightpulse.stg_opensky_states: COMMIT
+[0m22:53:52.113107 [debug] [Thread-1 (]: SQL status: COMMIT in 0.003 seconds
+[0m22:53:52.128701 [debug] [Thread-1 (]: Applying DROP to: "flightpulse"."public_staging"."stg_opensky_states__dbt_backup"
+[0m22:53:52.144345 [debug] [Thread-1 (]: Using postgres connection "model.flightpulse.stg_opensky_states"
+[0m22:53:52.144345 [debug] [Thread-1 (]: On model.flightpulse.stg_opensky_states: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "flightpulse", "target_name": "dev", "node_id": "model.flightpulse.stg_opensky_states"} */
+drop view if exists "flightpulse"."public_staging"."stg_opensky_states__dbt_backup" cascade
+[0m22:53:52.519431 [debug] [Thread-1 (]: SQL status: DROP VIEW in 0.376 seconds
+[0m22:53:52.534976 [debug] [Thread-1 (]: On model.flightpulse.stg_opensky_states: Close
+[0m22:53:52.550598 [debug] [Thread-1 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '594391cf-e898-4bd2-b141-11a13c6930c2', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000218976DC2D0>]}
+[0m22:53:52.550598 [info ] [Thread-1 (]: 1 of 2 OK created sql view model public_staging.stg_opensky_states ............. [[32mCREATE VIEW[0m in 1.94s]
+[0m22:53:52.550598 [debug] [Thread-1 (]: Finished running node model.flightpulse.stg_opensky_states
+[0m22:53:52.581931 [debug] [Thread-3 (]: Began running node model.flightpulse.int_aircraft_activity
+[0m22:53:52.581931 [info ] [Thread-3 (]: 2 of 2 START sql view model public_intermediate.int_aircraft_activity .......... [RUN]
+[0m22:53:52.597472 [debug] [Thread-3 (]: Acquiring new postgres connection 'model.flightpulse.int_aircraft_activity'
+[0m22:53:52.597472 [debug] [Thread-3 (]: Began compiling node model.flightpulse.int_aircraft_activity
+[0m22:53:52.628703 [debug] [Thread-3 (]: Writing injected SQL for node "model.flightpulse.int_aircraft_activity"
+[0m22:53:52.628703 [debug] [Thread-3 (]: Began executing node model.flightpulse.int_aircraft_activity
+[0m22:53:52.644344 [debug] [Thread-3 (]: Writing runtime sql for node "model.flightpulse.int_aircraft_activity"
+[0m22:53:52.659942 [debug] [Thread-3 (]: Using postgres connection "model.flightpulse.int_aircraft_activity"
+[0m22:53:52.659942 [debug] [Thread-3 (]: On model.flightpulse.int_aircraft_activity: BEGIN
+[0m22:53:52.659942 [debug] [Thread-3 (]: Opening a new connection, currently in state init
+[0m22:53:52.753689 [debug] [Thread-3 (]: SQL status: BEGIN in 0.086 seconds
+[0m22:53:52.753689 [debug] [Thread-3 (]: Using postgres connection "model.flightpulse.int_aircraft_activity"
+[0m22:53:52.753689 [debug] [Thread-3 (]: On model.flightpulse.int_aircraft_activity: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "flightpulse", "target_name": "dev", "node_id": "model.flightpulse.int_aircraft_activity"} */
+
+  create view "flightpulse"."public_intermediate"."int_aircraft_activity__dbt_tmp"
+    
+    
+  as (
+    
+
+-- FlightPulse: Phase 6 intermediate model
+-- Ref: FlightPulse_Phase5_Continuation_ETL_Business_Objectives.pdf,
+-- section 7: "int_aircraft_activity: Derives altitude_km, velocity_kmh,
+-- vertical_rate_category, observation_date/observation_hour,
+-- aircraft_activity_status, telemetry_age_seconds."
+--
+-- One row in from stg_opensky_states, one row out. No aggregation --
+-- that's the marts' job. Every derived field here maps to a specific
+-- line in the continuation doc so this stays traceable back to spec.
+
+with staged as (
+
+    select * from "flightpulse"."public_staging"."stg_opensky_states"
+
+),
+
+derived as (
+
+    select
+        ingestion_id,
+        source,
+        icao24,
+        callsign,
+        origin_country,
+        collector_id,
+
+        latitude,
+        longitude,
+        baro_altitude_m,
+        geo_altitude_m,
+        velocity_mps,
+        true_track_deg,
+        vertical_rate_mps,
+        on_ground,
+
+        -- Prefer geometric altitude (GNSS-derived) over barometric when
+        -- both are present, since geo_altitude_m isn't affected by local
+        -- pressure calibration. Falls back to baro when geo is null.
+        round((coalesce(geo_altitude_m, baro_altitude_m) / 1000.0)::numeric, 3)
+            as altitude_km,
+
+        round((velocity_mps * 3.6)::numeric, 2)
+            as velocity_kmh,
+
+        -- Thresholds: OpenSky vertical_rate is metres/second. +/-1 m/s
+        -- (~200 ft/min) is the conventional noise floor below which GPS/
+        -- barometric jitter looks like climb/descent when the aircraft is
+        -- actually level.
+        case
+            when vertical_rate_mps is null then 'unknown'
+            when vertical_rate_mps > 1     then 'climbing'
+            when vertical_rate_mps < -1    then 'descending'
+            else 'stable'
+        end as vertical_rate_category,
+
+        -- Combines on_ground with vertical rate into a single status field
+        -- so marts don't each have to re-derive it from two columns.
+        case
+            when on_ground is true                    then 'on_ground'
+            when on_ground is null                     then 'unknown'
+            when vertical_rate_mps is null             then 'airborne_unknown_rate'
+            when vertical_rate_mps > 1                 then 'climbing'
+            when vertical_rate_mps < -1                then 'descending'
+            else 'level_flight'
+        end as aircraft_activity_status,
+
+        date(last_contact_at)      as observation_date,
+        extract(hour from last_contact_at)::int as observation_hour,
+
+        -- End-to-end pipeline latency: source observation time -> the
+        -- moment worker/persistence.py actually wrote the row (processed_at
+        -- = now() at INSERT, per worker/persistence.py). This is the
+        -- freshness KPI mart_telemetry_quality reports on.
+        extract(epoch from (processed_at - last_contact_at))::numeric
+            as telemetry_age_seconds,
+
+        time_position_at,
+        last_contact_at,
+        received_at,
+        ingested_at,
+        processed_at
+
+    from staged
+
+)
+
+select * from derived
+  );
+[0m22:53:53.003805 [debug] [Thread-3 (]: SQL status: CREATE VIEW in 0.248 seconds
+[0m22:53:53.019330 [debug] [Thread-3 (]: Using postgres connection "model.flightpulse.int_aircraft_activity"
+[0m22:53:53.019330 [debug] [Thread-3 (]: On model.flightpulse.int_aircraft_activity: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "flightpulse", "target_name": "dev", "node_id": "model.flightpulse.int_aircraft_activity"} */
+alter table "flightpulse"."public_intermediate"."int_aircraft_activity__dbt_tmp" rename to "int_aircraft_activity"
+[0m22:53:53.050680 [debug] [Thread-3 (]: SQL status: ALTER TABLE in 0.036 seconds
+[0m22:53:53.066202 [debug] [Thread-3 (]: On model.flightpulse.int_aircraft_activity: COMMIT
+[0m22:53:53.066202 [debug] [Thread-3 (]: Using postgres connection "model.flightpulse.int_aircraft_activity"
+[0m22:53:53.081867 [debug] [Thread-3 (]: On model.flightpulse.int_aircraft_activity: COMMIT
+[0m22:53:53.081867 [debug] [Thread-3 (]: SQL status: COMMIT in 0.004 seconds
+[0m22:53:53.097461 [debug] [Thread-3 (]: Applying DROP to: "flightpulse"."public_intermediate"."int_aircraft_activity__dbt_backup"
+[0m22:53:53.113078 [debug] [Thread-3 (]: Using postgres connection "model.flightpulse.int_aircraft_activity"
+[0m22:53:53.113078 [debug] [Thread-3 (]: On model.flightpulse.int_aircraft_activity: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "flightpulse", "target_name": "dev", "node_id": "model.flightpulse.int_aircraft_activity"} */
+drop view if exists "flightpulse"."public_intermediate"."int_aircraft_activity__dbt_backup" cascade
+[0m22:53:53.113078 [debug] [Thread-3 (]: SQL status: DROP VIEW in 0.001 seconds
+[0m22:53:53.113078 [debug] [Thread-3 (]: On model.flightpulse.int_aircraft_activity: Close
+[0m22:53:53.128711 [debug] [Thread-3 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '594391cf-e898-4bd2-b141-11a13c6930c2', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000021897B33D50>]}
+[0m22:53:53.128711 [info ] [Thread-3 (]: 2 of 2 OK created sql view model public_intermediate.int_aircraft_activity ..... [[32mCREATE VIEW[0m in 0.53s]
+[0m22:53:53.144332 [debug] [Thread-3 (]: Finished running node model.flightpulse.int_aircraft_activity
+[0m22:53:53.144332 [debug] [MainThread]: Using postgres connection "master"
+[0m22:53:53.159956 [debug] [MainThread]: On master: BEGIN
+[0m22:53:53.159956 [debug] [MainThread]: Opening a new connection, currently in state closed
+[0m22:53:53.238728 [debug] [MainThread]: SQL status: BEGIN in 0.089 seconds
+[0m22:53:53.254365 [debug] [MainThread]: On master: COMMIT
+[0m22:53:53.254365 [debug] [MainThread]: Using postgres connection "master"
+[0m22:53:53.254365 [debug] [MainThread]: On master: COMMIT
+[0m22:53:53.254365 [debug] [MainThread]: SQL status: COMMIT in 0.000 seconds
+[0m22:53:53.254365 [debug] [MainThread]: On master: Close
+[0m22:53:53.254365 [debug] [MainThread]: Connection 'master' was properly closed.
+[0m22:53:53.254365 [debug] [MainThread]: Connection 'list_flightpulse' was properly closed.
+[0m22:53:53.254365 [debug] [MainThread]: Connection 'create_flightpulse_public_intermediate' was properly closed.
+[0m22:53:53.254365 [debug] [MainThread]: Connection 'list_flightpulse_public_intermediate' was properly closed.
+[0m22:53:53.269983 [debug] [MainThread]: Connection 'list_flightpulse_public_staging' was properly closed.
+[0m22:53:53.269983 [debug] [MainThread]: Connection 'model.flightpulse.stg_opensky_states' was properly closed.
+[0m22:53:53.269983 [debug] [MainThread]: Connection 'model.flightpulse.int_aircraft_activity' was properly closed.
+[0m22:53:53.269983 [info ] [MainThread]: 
+[0m22:53:53.269983 [info ] [MainThread]: Finished running 2 view models in 0 hours 0 minutes and 5.75 seconds (5.75s).
+[0m22:53:53.269983 [debug] [MainThread]: Command end result
+[0m22:53:53.363786 [info ] [MainThread]: 
+[0m22:53:53.363786 [info ] [MainThread]: [32mCompleted successfully[0m
+[0m22:53:53.363786 [info ] [MainThread]: 
+[0m22:53:53.363786 [info ] [MainThread]: Done. PASS=2 WARN=0 ERROR=0 SKIP=0 TOTAL=2
+[0m22:53:53.363786 [debug] [MainThread]: Command `dbt run` succeeded at 22:53:53.363786 after 34.23 seconds
+[0m22:53:53.363786 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002188F79EB10>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002188F79D990>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000021897461310>]}
+[0m22:53:53.363786 [debug] [MainThread]: Flushing usage events
+[0m22:54:47.141877 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000019671F5EA90>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000019671F87CD0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000019671F9C0D0>]}
+
+
+============================== 22:54:47.157449 | 58251b4c-6f4d-4b8e-b212-5be1c55d3c31 ==============================
+[0m22:54:47.157449 [info ] [MainThread]: Running with dbt=1.8.7
+[0m22:54:47.157449 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'log_cache_events': 'False', 'write_json': 'True', 'partial_parse': 'True', 'cache_selected_only': 'False', 'profiles_dir': '.', 'version_check': 'True', 'warn_error': 'None', 'log_path': 'logs', 'fail_fast': 'False', 'debug': 'False', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'empty': 'None', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'static_parser': 'True', 'log_format': 'default', 'introspect': 'True', 'target_path': 'None', 'invocation_command': 'dbt test --project-dir . --select stg_opensky_states int_aircraft_activity', 'send_anonymous_usage_stats': 'True'}
+[0m22:54:47.563931 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': '58251b4c-6f4d-4b8e-b212-5be1c55d3c31', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000196720A6350>]}
+[0m22:54:47.673316 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': '58251b4c-6f4d-4b8e-b212-5be1c55d3c31', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001966EFAC350>]}
+[0m22:54:47.673316 [info ] [MainThread]: Registered adapter: postgres=1.9.1
+[0m22:54:48.251434 [debug] [MainThread]: checksum: 4af21dafb485259c48497ac86b711ddb1982f3d0f1c0ca4e09356de488b753c0, vars: {}, profile: , target: , version: 1.8.7
+[0m22:54:48.673308 [debug] [MainThread]: Partial parsing enabled: 0 files deleted, 0 files added, 0 files changed.
+[0m22:54:48.673308 [debug] [MainThread]: Partial parsing enabled, no changes found, skipping parsing
+[0m22:54:48.688933 [warn ] [MainThread]: [[33mWARNING[0m]: Configuration paths exist in your dbt_project.yml file which do not apply to any resources.
+There are 1 unused configuration paths:
+- models.flightpulse.marts
+[0m22:54:48.782682 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': '58251b4c-6f4d-4b8e-b212-5be1c55d3c31', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001967219E310>]}
+[0m22:54:49.204534 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'resource_counts', 'label': '58251b4c-6f4d-4b8e-b212-5be1c55d3c31', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001967368FF50>]}
+[0m22:54:49.204534 [info ] [MainThread]: Found 2 models, 21 data tests, 2 sources, 429 macros
+[0m22:54:49.204534 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': '58251b4c-6f4d-4b8e-b212-5be1c55d3c31', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000196723245D0>]}
+[0m22:54:49.204534 [info ] [MainThread]: 
+[0m22:54:49.220186 [debug] [MainThread]: Acquiring new postgres connection 'master'
+[0m22:54:49.220186 [debug] [ThreadPool]: Acquiring new postgres connection 'list_flightpulse_public_intermediate'
+[0m22:54:49.220186 [debug] [ThreadPool]: Acquiring new postgres connection 'list_flightpulse_public_staging'
+[0m22:54:49.407682 [debug] [ThreadPool]: Using postgres connection "list_flightpulse_public_intermediate"
+[0m22:54:49.407682 [debug] [ThreadPool]: Using postgres connection "list_flightpulse_public_staging"
+[0m22:54:49.407682 [debug] [ThreadPool]: On list_flightpulse_public_intermediate: BEGIN
+[0m22:54:49.407682 [debug] [ThreadPool]: On list_flightpulse_public_staging: BEGIN
+[0m22:54:49.423548 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m22:54:49.423548 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m22:54:49.595432 [debug] [ThreadPool]: SQL status: BEGIN in 0.182 seconds
+[0m22:54:49.595432 [debug] [ThreadPool]: Using postgres connection "list_flightpulse_public_intermediate"
+[0m22:54:49.595432 [debug] [ThreadPool]: On list_flightpulse_public_intermediate: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "flightpulse", "target_name": "dev", "connection_name": "list_flightpulse_public_intermediate"} */
+select
+      'flightpulse' as database,
+      tablename as name,
+      schemaname as schema,
+      'table' as type
+    from pg_tables
+    where schemaname ilike 'public_intermediate'
+    union all
+    select
+      'flightpulse' as database,
+      viewname as name,
+      schemaname as schema,
+      'view' as type
+    from pg_views
+    where schemaname ilike 'public_intermediate'
+    union all
+    select
+      'flightpulse' as database,
+      matviewname as name,
+      schemaname as schema,
+      'materialized_view' as type
+    from pg_matviews
+    where schemaname ilike 'public_intermediate'
+  
+[0m22:54:49.611065 [debug] [ThreadPool]: SQL status: BEGIN in 0.194 seconds
+[0m22:54:49.611065 [debug] [ThreadPool]: Using postgres connection "list_flightpulse_public_staging"
+[0m22:54:49.611065 [debug] [ThreadPool]: On list_flightpulse_public_staging: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "flightpulse", "target_name": "dev", "connection_name": "list_flightpulse_public_staging"} */
+select
+      'flightpulse' as database,
+      tablename as name,
+      schemaname as schema,
+      'table' as type
+    from pg_tables
+    where schemaname ilike 'public_staging'
+    union all
+    select
+      'flightpulse' as database,
+      viewname as name,
+      schemaname as schema,
+      'view' as type
+    from pg_views
+    where schemaname ilike 'public_staging'
+    union all
+    select
+      'flightpulse' as database,
+      matviewname as name,
+      schemaname as schema,
+      'materialized_view' as type
+    from pg_matviews
+    where schemaname ilike 'public_staging'
+  
+[0m22:54:49.626683 [debug] [ThreadPool]: SQL status: SELECT 1 in 0.023 seconds
+[0m22:54:49.626683 [debug] [ThreadPool]: On list_flightpulse_public_intermediate: ROLLBACK
+[0m22:54:49.626683 [debug] [ThreadPool]: On list_flightpulse_public_intermediate: Close
+[0m22:54:49.642315 [debug] [ThreadPool]: SQL status: SELECT 1 in 0.020 seconds
+[0m22:54:49.642315 [debug] [ThreadPool]: On list_flightpulse_public_staging: ROLLBACK
+[0m22:54:49.642315 [debug] [ThreadPool]: On list_flightpulse_public_staging: Close
+[0m22:54:49.657934 [debug] [MainThread]: Using postgres connection "master"
+[0m22:54:49.657934 [debug] [MainThread]: On master: BEGIN
+[0m22:54:49.657934 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m22:54:49.720431 [debug] [MainThread]: SQL status: BEGIN in 0.072 seconds
+[0m22:54:49.720431 [debug] [MainThread]: Using postgres connection "master"
+[0m22:54:49.736058 [debug] [MainThread]: On master: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "flightpulse", "target_name": "dev", "connection_name": "master"} */
+select distinct
+        dependent_namespace.nspname as dependent_schema,
+        dependent_class.relname as dependent_name,
+        referenced_namespace.nspname as referenced_schema,
+        referenced_class.relname as referenced_name
+
+    -- Query for views: views are entries in pg_class with an entry in pg_rewrite, but we avoid
+    -- a seq scan on pg_rewrite by leveraging the fact there is an "internal" row in pg_depend for
+    -- the view...
+    from pg_class as dependent_class
+    join pg_namespace as dependent_namespace on dependent_namespace.oid = dependent_class.relnamespace
+    join pg_depend as dependent_depend on dependent_depend.refobjid = dependent_class.oid
+        and dependent_depend.classid = 'pg_rewrite'::regclass
+        and dependent_depend.refclassid = 'pg_class'::regclass
+        and dependent_depend.deptype = 'i'
+
+    -- ... and via pg_depend (that has a row per column, hence the need for "distinct" above, and
+    -- making sure to exclude the internal row to avoid a view appearing to depend on itself)...
+    join pg_depend as joining_depend on joining_depend.objid = dependent_depend.objid
+        and joining_depend.classid = 'pg_rewrite'::regclass
+        and joining_depend.refclassid = 'pg_class'::regclass
+        and joining_depend.refobjid != dependent_depend.refobjid
+
+    -- ... we can find the tables they query from in pg_class, but excluding system tables. Note we
+    -- don't need need to exclude _dependent_ system tables, because they only query from other
+    -- system tables, and so are automatically excluded by excluding _referenced_ system tables
+    join pg_class as referenced_class on referenced_class.oid = joining_depend.refobjid
+    join pg_namespace as referenced_namespace on referenced_namespace.oid = referenced_class.relnamespace
+        and referenced_namespace.nspname != 'information_schema'
+        and referenced_namespace.nspname not like 'pg\_%'
+
+    order by
+        dependent_schema, dependent_name, referenced_schema, referenced_name;
+[0m22:54:49.767305 [debug] [MainThread]: SQL status: SELECT 2 in 0.041 seconds
+[0m22:54:49.767305 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': '58251b4c-6f4d-4b8e-b212-5be1c55d3c31', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001967392EF50>]}
+[0m22:54:49.782936 [debug] [MainThread]: On master: ROLLBACK
+[0m22:54:49.782936 [debug] [MainThread]: Using postgres connection "master"
+[0m22:54:49.782936 [debug] [MainThread]: On master: BEGIN
+[0m22:54:49.782936 [debug] [MainThread]: SQL status: BEGIN in 0.000 seconds
+[0m22:54:49.782936 [debug] [MainThread]: On master: COMMIT
+[0m22:54:49.782936 [debug] [MainThread]: Using postgres connection "master"
+[0m22:54:49.782936 [debug] [MainThread]: On master: COMMIT
+[0m22:54:49.782936 [debug] [MainThread]: SQL status: COMMIT in 0.000 seconds
+[0m22:54:49.782936 [debug] [MainThread]: On master: Close
+[0m22:54:49.782936 [info ] [MainThread]: Concurrency: 4 threads (target='dev')
+[0m22:54:49.782936 [info ] [MainThread]: 
+[0m22:54:49.798557 [debug] [Thread-1 (]: Began running node test.flightpulse.accepted_values_int_aircraft_activity_aircraft_activity_status__on_ground__climbing__descending__level_flight__airborne_unknown_rate__unknown.96bfdd014e
+[0m22:54:49.798557 [debug] [Thread-2 (]: Began running node test.flightpulse.accepted_values_int_aircraft_activity_vertical_rate_category__climbing__descending__stable__unknown.83de853cc6
+[0m22:54:49.798557 [debug] [Thread-3 (]: Began running node test.flightpulse.accepted_values_stg_opensky_states_on_ground__False__True__False.396357fc5e
+[0m22:54:49.798557 [debug] [Thread-4 (]: Began running node test.flightpulse.assert_non_negative_telemetry_age
+[0m22:54:49.798557 [info ] [Thread-1 (]: 1 of 12 START test accepted_values_int_aircraft_activity_aircraft_activity_status__on_ground__climbing__descending__level_flight__airborne_unknown_rate__unknown  [RUN]
+[0m22:54:49.814185 [info ] [Thread-2 (]: 2 of 12 START test accepted_values_int_aircraft_activity_vertical_rate_category__climbing__descending__stable__unknown  [RUN]
+[0m22:54:49.814185 [info ] [Thread-3 (]: 3 of 12 START test accepted_values_stg_opensky_states_on_ground__False__True__False  [RUN]
+[0m22:54:49.814185 [info ] [Thread-4 (]: 4 of 12 START test assert_non_negative_telemetry_age ........................... [RUN]
+[0m22:54:49.814185 [debug] [Thread-1 (]: Acquiring new postgres connection 'test.flightpulse.accepted_values_int_aircraft_activity_aircraft_activity_status__on_ground__climbing__descending__level_flight__airborne_unknown_rate__unknown.96bfdd014e'
+[0m22:54:49.814185 [debug] [Thread-2 (]: Acquiring new postgres connection 'test.flightpulse.accepted_values_int_aircraft_activity_vertical_rate_category__climbing__descending__stable__unknown.83de853cc6'
+[0m22:54:49.814185 [debug] [Thread-3 (]: Acquiring new postgres connection 'test.flightpulse.accepted_values_stg_opensky_states_on_ground__False__True__False.396357fc5e'
+[0m22:54:49.814185 [debug] [Thread-4 (]: Acquiring new postgres connection 'test.flightpulse.assert_non_negative_telemetry_age'
+[0m22:54:49.814185 [debug] [Thread-1 (]: Began compiling node test.flightpulse.accepted_values_int_aircraft_activity_aircraft_activity_status__on_ground__climbing__descending__level_flight__airborne_unknown_rate__unknown.96bfdd014e
+[0m22:54:49.814185 [debug] [Thread-2 (]: Began compiling node test.flightpulse.accepted_values_int_aircraft_activity_vertical_rate_category__climbing__descending__stable__unknown.83de853cc6
+[0m22:54:49.829806 [debug] [Thread-3 (]: Began compiling node test.flightpulse.accepted_values_stg_opensky_states_on_ground__False__True__False.396357fc5e
+[0m22:54:49.829806 [debug] [Thread-4 (]: Began compiling node test.flightpulse.assert_non_negative_telemetry_age
+[0m22:54:49.861066 [debug] [Thread-1 (]: Writing injected SQL for node "test.flightpulse.accepted_values_int_aircraft_activity_aircraft_activity_status__on_ground__climbing__descending__level_flight__airborne_unknown_rate__unknown.96bfdd014e"
+[0m22:54:49.876682 [debug] [Thread-2 (]: Writing injected SQL for node "test.flightpulse.accepted_values_int_aircraft_activity_vertical_rate_category__climbing__descending__stable__unknown.83de853cc6"
+[0m22:54:49.892317 [debug] [Thread-3 (]: Writing injected SQL for node "test.flightpulse.accepted_values_stg_opensky_states_on_ground__False__True__False.396357fc5e"
+[0m22:54:49.892317 [debug] [Thread-4 (]: Writing injected SQL for node "test.flightpulse.assert_non_negative_telemetry_age"
+[0m22:54:49.907938 [debug] [Thread-1 (]: Began executing node test.flightpulse.accepted_values_int_aircraft_activity_aircraft_activity_status__on_ground__climbing__descending__level_flight__airborne_unknown_rate__unknown.96bfdd014e
+[0m22:54:49.907938 [debug] [Thread-2 (]: Began executing node test.flightpulse.accepted_values_int_aircraft_activity_vertical_rate_category__climbing__descending__stable__unknown.83de853cc6
+[0m22:54:49.939205 [debug] [Thread-1 (]: Writing runtime sql for node "test.flightpulse.accepted_values_int_aircraft_activity_aircraft_activity_status__on_ground__climbing__descending__level_flight__airborne_unknown_rate__unknown.96bfdd014e"
+[0m22:54:49.954810 [debug] [Thread-4 (]: Began executing node test.flightpulse.assert_non_negative_telemetry_age
+[0m22:54:49.954810 [debug] [Thread-2 (]: Writing runtime sql for node "test.flightpulse.accepted_values_int_aircraft_activity_vertical_rate_category__climbing__descending__stable__unknown.83de853cc6"
+[0m22:54:49.954810 [debug] [Thread-3 (]: Began executing node test.flightpulse.accepted_values_stg_opensky_states_on_ground__False__True__False.396357fc5e
+[0m22:54:49.954810 [debug] [Thread-4 (]: Writing runtime sql for node "test.flightpulse.assert_non_negative_telemetry_age"
+[0m22:54:49.954810 [debug] [Thread-1 (]: Using postgres connection "test.flightpulse.accepted_values_int_aircraft_activity_aircraft_activity_status__on_ground__climbing__descending__level_flight__airborne_unknown_rate__unknown.96bfdd014e"
+[0m22:54:49.970434 [debug] [Thread-3 (]: Writing runtime sql for node "test.flightpulse.accepted_values_stg_opensky_states_on_ground__False__True__False.396357fc5e"
+[0m22:54:49.970434 [debug] [Thread-1 (]: On test.flightpulse.accepted_values_int_aircraft_activity_aircraft_activity_status__on_ground__climbing__descending__level_flight__airborne_unknown_rate__unknown.96bfdd014e: BEGIN
+[0m22:54:49.970434 [debug] [Thread-2 (]: Using postgres connection "test.flightpulse.accepted_values_int_aircraft_activity_vertical_rate_category__climbing__descending__stable__unknown.83de853cc6"
+[0m22:54:49.970434 [debug] [Thread-1 (]: Opening a new connection, currently in state init
+[0m22:54:49.986059 [debug] [Thread-2 (]: On test.flightpulse.accepted_values_int_aircraft_activity_vertical_rate_category__climbing__descending__stable__unknown.83de853cc6: BEGIN
+[0m22:54:49.986059 [debug] [Thread-4 (]: Using postgres connection "test.flightpulse.assert_non_negative_telemetry_age"
+[0m22:54:49.986059 [debug] [Thread-2 (]: Opening a new connection, currently in state init
+[0m22:54:49.986059 [debug] [Thread-4 (]: On test.flightpulse.assert_non_negative_telemetry_age: BEGIN
+[0m22:54:49.986059 [debug] [Thread-4 (]: Opening a new connection, currently in state init
+[0m22:54:50.017306 [debug] [Thread-3 (]: Using postgres connection "test.flightpulse.accepted_values_stg_opensky_states_on_ground__False__True__False.396357fc5e"
+[0m22:54:50.017306 [debug] [Thread-3 (]: On test.flightpulse.accepted_values_stg_opensky_states_on_ground__False__True__False.396357fc5e: BEGIN
+[0m22:54:50.017306 [debug] [Thread-3 (]: Opening a new connection, currently in state init
+[0m22:54:50.111056 [debug] [Thread-1 (]: SQL status: BEGIN in 0.140 seconds
+[0m22:54:50.126683 [debug] [Thread-1 (]: Using postgres connection "test.flightpulse.accepted_values_int_aircraft_activity_aircraft_activity_status__on_ground__climbing__descending__level_flight__airborne_unknown_rate__unknown.96bfdd014e"
+[0m22:54:50.126683 [debug] [Thread-1 (]: On test.flightpulse.accepted_values_int_aircraft_activity_aircraft_activity_status__on_ground__climbing__descending__level_flight__airborne_unknown_rate__unknown.96bfdd014e: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "flightpulse", "target_name": "dev", "node_id": "test.flightpulse.accepted_values_int_aircraft_activity_aircraft_activity_status__on_ground__climbing__descending__level_flight__airborne_unknown_rate__unknown.96bfdd014e"} */
+select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+    
+
+with all_values as (
+
+    select
+        aircraft_activity_status as value_field,
+        count(*) as n_records
+
+    from "flightpulse"."public_intermediate"."int_aircraft_activity"
+    group by aircraft_activity_status
+
+)
+
+select *
+from all_values
+where value_field not in (
+    'on_ground','climbing','descending','level_flight','airborne_unknown_rate','unknown'
+)
+
+
+
+      
+    ) dbt_internal_test
+[0m22:54:50.126683 [debug] [Thread-2 (]: SQL status: BEGIN in 0.148 seconds
+[0m22:54:50.126683 [debug] [Thread-2 (]: Using postgres connection "test.flightpulse.accepted_values_int_aircraft_activity_vertical_rate_category__climbing__descending__stable__unknown.83de853cc6"
+[0m22:54:50.142311 [debug] [Thread-2 (]: On test.flightpulse.accepted_values_int_aircraft_activity_vertical_rate_category__climbing__descending__stable__unknown.83de853cc6: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "flightpulse", "target_name": "dev", "node_id": "test.flightpulse.accepted_values_int_aircraft_activity_vertical_rate_category__climbing__descending__stable__unknown.83de853cc6"} */
+select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+    
+
+with all_values as (
+
+    select
+        vertical_rate_category as value_field,
+        count(*) as n_records
+
+    from "flightpulse"."public_intermediate"."int_aircraft_activity"
+    group by vertical_rate_category
+
+)
+
+select *
+from all_values
+where value_field not in (
+    'climbing','descending','stable','unknown'
+)
+
+
+
+      
+    ) dbt_internal_test
+[0m22:54:50.157931 [debug] [Thread-4 (]: SQL status: BEGIN in 0.162 seconds
+[0m22:54:50.157931 [debug] [Thread-4 (]: Using postgres connection "test.flightpulse.assert_non_negative_telemetry_age"
+[0m22:54:50.157931 [debug] [Thread-4 (]: On test.flightpulse.assert_non_negative_telemetry_age: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "flightpulse", "target_name": "dev", "node_id": "test.flightpulse.assert_non_negative_telemetry_age"} */
+select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      -- FlightPulse data quality: telemetry latency sanity check
+-- Ref: continuation doc section 7/8 -- telemetry_age_seconds feeds the
+-- freshness KPI in mart_telemetry_quality. A negative value would mean
+-- processed_at < last_contact_at, i.e. the row was persisted before the
+-- source claims it was observed.
+--
+-- Configured as warn (not error) in dbt_project.yml-level severity below,
+-- since minor clock skew across the collector/OpenSky/DB is a plausible
+-- real-world cause and shouldn't hard-fail the whole test suite.
+
+
+
+select
+    ingestion_id,
+    icao24,
+    last_contact_at,
+    processed_at,
+    telemetry_age_seconds
+from "flightpulse"."public_intermediate"."int_aircraft_activity"
+where telemetry_age_seconds < 0
+      
+    ) dbt_internal_test
+[0m22:54:50.361107 [debug] [Thread-3 (]: SQL status: BEGIN in 0.342 seconds
+[0m22:54:50.361107 [debug] [Thread-3 (]: Using postgres connection "test.flightpulse.accepted_values_stg_opensky_states_on_ground__False__True__False.396357fc5e"
+[0m22:54:50.361107 [debug] [Thread-3 (]: On test.flightpulse.accepted_values_stg_opensky_states_on_ground__False__True__False.396357fc5e: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "flightpulse", "target_name": "dev", "node_id": "test.flightpulse.accepted_values_stg_opensky_states_on_ground__False__True__False.396357fc5e"} */
+select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+    
+
+with all_values as (
+
+    select
+        on_ground as value_field,
+        count(*) as n_records
+
+    from (select * from "flightpulse"."public_staging"."stg_opensky_states" where on_ground is not null) dbt_subquery
+    group by on_ground
+
+)
+
+select *
+from all_values
+where value_field not in (
+    True,False
+)
+
+
+
+      
+    ) dbt_internal_test
+[0m22:55:44.939496 [debug] [Thread-4 (]: SQL status: SELECT 1 in 54.774 seconds
+[0m22:55:44.955122 [debug] [Thread-4 (]: On test.flightpulse.assert_non_negative_telemetry_age: ROLLBACK
+[0m22:55:44.955122 [debug] [Thread-2 (]: SQL status: SELECT 1 in 54.811 seconds
+[0m22:55:44.955122 [debug] [Thread-1 (]: SQL status: SELECT 1 in 54.828 seconds
+[0m22:55:44.955122 [debug] [Thread-4 (]: On test.flightpulse.assert_non_negative_telemetry_age: Close
+[0m22:55:44.955122 [debug] [Thread-2 (]: On test.flightpulse.accepted_values_int_aircraft_activity_vertical_rate_category__climbing__descending__stable__unknown.83de853cc6: ROLLBACK
+[0m22:55:44.970743 [debug] [Thread-3 (]: SQL status: SELECT 1 in 54.597 seconds
+[0m22:55:44.970743 [debug] [Thread-1 (]: On test.flightpulse.accepted_values_int_aircraft_activity_aircraft_activity_status__on_ground__climbing__descending__level_flight__airborne_unknown_rate__unknown.96bfdd014e: ROLLBACK
+[0m22:55:44.970743 [info ] [Thread-4 (]: 4 of 12 PASS assert_non_negative_telemetry_age ................................. [[32mPASS[0m in 55.16s]
+[0m22:55:44.970743 [debug] [Thread-2 (]: On test.flightpulse.accepted_values_int_aircraft_activity_vertical_rate_category__climbing__descending__stable__unknown.83de853cc6: Close
+[0m22:55:44.970743 [debug] [Thread-3 (]: On test.flightpulse.accepted_values_stg_opensky_states_on_ground__False__True__False.396357fc5e: ROLLBACK
+[0m22:55:44.970743 [debug] [Thread-1 (]: On test.flightpulse.accepted_values_int_aircraft_activity_aircraft_activity_status__on_ground__climbing__descending__level_flight__airborne_unknown_rate__unknown.96bfdd014e: Close
+[0m22:55:44.986369 [debug] [Thread-4 (]: Finished running node test.flightpulse.assert_non_negative_telemetry_age
+[0m22:55:44.986369 [info ] [Thread-2 (]: 2 of 12 PASS accepted_values_int_aircraft_activity_vertical_rate_category__climbing__descending__stable__unknown  [[32mPASS[0m in 55.17s]
+[0m22:55:45.001994 [debug] [Thread-2 (]: Finished running node test.flightpulse.accepted_values_int_aircraft_activity_vertical_rate_category__climbing__descending__stable__unknown.83de853cc6
+[0m22:55:45.001994 [debug] [Thread-2 (]: Began running node test.flightpulse.assert_valid_icao24
+[0m22:55:45.001994 [info ] [Thread-2 (]: 6 of 12 START test assert_valid_icao24 ......................................... [RUN]
+[0m22:55:45.001994 [debug] [Thread-2 (]: Re-using an available connection from the pool (formerly test.flightpulse.accepted_values_int_aircraft_activity_vertical_rate_category__climbing__descending__stable__unknown.83de853cc6, now test.flightpulse.assert_valid_icao24)
+[0m22:55:44.986369 [debug] [Thread-3 (]: On test.flightpulse.accepted_values_stg_opensky_states_on_ground__False__True__False.396357fc5e: Close
+[0m22:55:44.986369 [info ] [Thread-1 (]: 1 of 12 PASS accepted_values_int_aircraft_activity_aircraft_activity_status__on_ground__climbing__descending__level_flight__airborne_unknown_rate__unknown  [[32mPASS[0m in 55.17s]
+[0m22:55:44.986369 [debug] [Thread-4 (]: Began running node test.flightpulse.assert_valid_coordinates
+[0m22:55:45.001994 [debug] [Thread-2 (]: Began compiling node test.flightpulse.assert_valid_icao24
+[0m22:55:45.017623 [debug] [Thread-1 (]: Finished running node test.flightpulse.accepted_values_int_aircraft_activity_aircraft_activity_status__on_ground__climbing__descending__level_flight__airborne_unknown_rate__unknown.96bfdd014e
+[0m22:55:45.001994 [info ] [Thread-3 (]: 3 of 12 PASS accepted_values_stg_opensky_states_on_ground__False__True__False .. [[32mPASS[0m in 55.19s]
+[0m22:55:45.017623 [info ] [Thread-4 (]: 5 of 12 START test assert_valid_coordinates .................................... [RUN]
+[0m22:55:45.033244 [debug] [Thread-2 (]: Writing injected SQL for node "test.flightpulse.assert_valid_icao24"
+[0m22:55:45.033244 [debug] [Thread-1 (]: Began running node test.flightpulse.not_null_int_aircraft_activity_icao24.e287c83a6d
+[0m22:55:45.033244 [debug] [Thread-3 (]: Finished running node test.flightpulse.accepted_values_stg_opensky_states_on_ground__False__True__False.396357fc5e
+[0m22:55:45.033244 [debug] [Thread-4 (]: Re-using an available connection from the pool (formerly test.flightpulse.assert_non_negative_telemetry_age, now test.flightpulse.assert_valid_coordinates)
+[0m22:55:45.033244 [info ] [Thread-1 (]: 7 of 12 START test not_null_int_aircraft_activity_icao24 ....................... [RUN]
+[0m22:55:45.033244 [debug] [Thread-3 (]: Began running node test.flightpulse.not_null_int_aircraft_activity_ingestion_id.cabe36baae
+[0m22:55:45.033244 [debug] [Thread-4 (]: Began compiling node test.flightpulse.assert_valid_coordinates
+[0m22:55:45.033244 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly test.flightpulse.accepted_values_int_aircraft_activity_aircraft_activity_status__on_ground__climbing__descending__level_flight__airborne_unknown_rate__unknown.96bfdd014e, now test.flightpulse.not_null_int_aircraft_activity_icao24.e287c83a6d)
+[0m22:55:45.048870 [info ] [Thread-3 (]: 8 of 12 START test not_null_int_aircraft_activity_ingestion_id ................. [RUN]
+[0m22:55:45.048870 [debug] [Thread-4 (]: Writing injected SQL for node "test.flightpulse.assert_valid_coordinates"
+[0m22:55:45.048870 [debug] [Thread-1 (]: Began compiling node test.flightpulse.not_null_int_aircraft_activity_icao24.e287c83a6d
+[0m22:55:45.048870 [debug] [Thread-3 (]: Re-using an available connection from the pool (formerly test.flightpulse.accepted_values_stg_opensky_states_on_ground__False__True__False.396357fc5e, now test.flightpulse.not_null_int_aircraft_activity_ingestion_id.cabe36baae)
+[0m22:55:45.064491 [debug] [Thread-1 (]: Writing injected SQL for node "test.flightpulse.not_null_int_aircraft_activity_icao24.e287c83a6d"
+[0m22:55:45.080123 [debug] [Thread-3 (]: Began compiling node test.flightpulse.not_null_int_aircraft_activity_ingestion_id.cabe36baae
+[0m22:55:45.080123 [debug] [Thread-2 (]: Began executing node test.flightpulse.assert_valid_icao24
+[0m22:55:45.080123 [debug] [Thread-4 (]: Began executing node test.flightpulse.assert_valid_coordinates
+[0m22:55:45.080123 [debug] [Thread-3 (]: Writing injected SQL for node "test.flightpulse.not_null_int_aircraft_activity_ingestion_id.cabe36baae"
+[0m22:55:45.095750 [debug] [Thread-2 (]: Writing runtime sql for node "test.flightpulse.assert_valid_icao24"
+[0m22:55:45.095750 [debug] [Thread-1 (]: Began executing node test.flightpulse.not_null_int_aircraft_activity_icao24.e287c83a6d
+[0m22:55:45.095750 [debug] [Thread-4 (]: Writing runtime sql for node "test.flightpulse.assert_valid_coordinates"
+[0m22:55:45.111369 [debug] [Thread-1 (]: Writing runtime sql for node "test.flightpulse.not_null_int_aircraft_activity_icao24.e287c83a6d"
+[0m22:55:45.111369 [debug] [Thread-3 (]: Began executing node test.flightpulse.not_null_int_aircraft_activity_ingestion_id.cabe36baae
+[0m22:55:45.111369 [debug] [Thread-2 (]: Using postgres connection "test.flightpulse.assert_valid_icao24"
+[0m22:55:45.111369 [debug] [Thread-4 (]: Using postgres connection "test.flightpulse.assert_valid_coordinates"
+[0m22:55:45.126995 [debug] [Thread-3 (]: Writing runtime sql for node "test.flightpulse.not_null_int_aircraft_activity_ingestion_id.cabe36baae"
+[0m22:55:45.126995 [debug] [Thread-2 (]: On test.flightpulse.assert_valid_icao24: BEGIN
+[0m22:55:45.126995 [debug] [Thread-1 (]: Using postgres connection "test.flightpulse.not_null_int_aircraft_activity_icao24.e287c83a6d"
+[0m22:55:45.126995 [debug] [Thread-4 (]: On test.flightpulse.assert_valid_coordinates: BEGIN
+[0m22:55:45.126995 [debug] [Thread-2 (]: Opening a new connection, currently in state closed
+[0m22:55:45.126995 [debug] [Thread-1 (]: On test.flightpulse.not_null_int_aircraft_activity_icao24.e287c83a6d: BEGIN
+[0m22:55:45.126995 [debug] [Thread-4 (]: Opening a new connection, currently in state closed
+[0m22:55:45.126995 [debug] [Thread-1 (]: Opening a new connection, currently in state closed
+[0m22:55:45.189493 [debug] [Thread-3 (]: Using postgres connection "test.flightpulse.not_null_int_aircraft_activity_ingestion_id.cabe36baae"
+[0m22:55:45.189493 [debug] [Thread-3 (]: On test.flightpulse.not_null_int_aircraft_activity_ingestion_id.cabe36baae: BEGIN
+[0m22:55:45.189493 [debug] [Thread-3 (]: Opening a new connection, currently in state closed
+[0m22:55:45.298871 [debug] [Thread-1 (]: SQL status: BEGIN in 0.160 seconds
+[0m22:55:45.298871 [debug] [Thread-1 (]: Using postgres connection "test.flightpulse.not_null_int_aircraft_activity_icao24.e287c83a6d"
+[0m22:55:45.298871 [debug] [Thread-1 (]: On test.flightpulse.not_null_int_aircraft_activity_icao24.e287c83a6d: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "flightpulse", "target_name": "dev", "node_id": "test.flightpulse.not_null_int_aircraft_activity_icao24.e287c83a6d"} */
+select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+    
+
+
+
+select icao24
+from "flightpulse"."public_intermediate"."int_aircraft_activity"
+where icao24 is null
+
+
+
+      
+    ) dbt_internal_test
+[0m22:55:45.314498 [debug] [Thread-4 (]: SQL status: BEGIN in 0.188 seconds
+[0m22:55:45.314498 [debug] [Thread-4 (]: Using postgres connection "test.flightpulse.assert_valid_coordinates"
+[0m22:55:45.330119 [debug] [Thread-4 (]: On test.flightpulse.assert_valid_coordinates: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "flightpulse", "target_name": "dev", "node_id": "test.flightpulse.assert_valid_coordinates"} */
+select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      -- FlightPulse data quality: coordinate bounds
+-- Ref: continuation doc section 8: "Latitude and longitude remain within
+-- valid geographic bounds."
+-- A dbt test fails when this query returns any rows -- so we select the
+-- violations.
+
+select
+    ingestion_id,
+    icao24,
+    latitude,
+    longitude
+from "flightpulse"."public_staging"."stg_opensky_states"
+where
+    (latitude is not null and (latitude < -90 or latitude > 90))
+    or (longitude is not null and (longitude < -180 or longitude > 180))
+      
+    ) dbt_internal_test
+[0m22:55:45.502107 [debug] [Thread-3 (]: SQL status: BEGIN in 0.311 seconds
+[0m22:55:45.517673 [debug] [Thread-3 (]: Using postgres connection "test.flightpulse.not_null_int_aircraft_activity_ingestion_id.cabe36baae"
+[0m22:55:45.517673 [debug] [Thread-3 (]: On test.flightpulse.not_null_int_aircraft_activity_ingestion_id.cabe36baae: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "flightpulse", "target_name": "dev", "node_id": "test.flightpulse.not_null_int_aircraft_activity_ingestion_id.cabe36baae"} */
+select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+    
+
+
+
+select ingestion_id
+from "flightpulse"."public_intermediate"."int_aircraft_activity"
+where ingestion_id is null
+
+
+
+      
+    ) dbt_internal_test
+[0m22:55:45.658255 [debug] [Thread-3 (]: SQL status: SELECT 1 in 0.134 seconds
+[0m22:55:45.658255 [debug] [Thread-3 (]: On test.flightpulse.not_null_int_aircraft_activity_ingestion_id.cabe36baae: ROLLBACK
+[0m22:55:45.658255 [debug] [Thread-3 (]: On test.flightpulse.not_null_int_aircraft_activity_ingestion_id.cabe36baae: Close
+[0m22:55:45.673881 [info ] [Thread-3 (]: 8 of 12 PASS not_null_int_aircraft_activity_ingestion_id ....................... [[32mPASS[0m in 0.63s]
+[0m22:55:45.673881 [debug] [Thread-3 (]: Finished running node test.flightpulse.not_null_int_aircraft_activity_ingestion_id.cabe36baae
+[0m22:55:45.673881 [debug] [Thread-3 (]: Began running node test.flightpulse.not_null_stg_opensky_states_icao24.5ad2a0f7da
+[0m22:55:45.689505 [info ] [Thread-3 (]: 9 of 12 START test not_null_stg_opensky_states_icao24 .......................... [RUN]
+[0m22:55:45.689505 [debug] [Thread-3 (]: Re-using an available connection from the pool (formerly test.flightpulse.not_null_int_aircraft_activity_ingestion_id.cabe36baae, now test.flightpulse.not_null_stg_opensky_states_icao24.5ad2a0f7da)
+[0m22:55:45.705135 [debug] [Thread-3 (]: Began compiling node test.flightpulse.not_null_stg_opensky_states_icao24.5ad2a0f7da
+[0m22:55:45.720747 [debug] [Thread-3 (]: Writing injected SQL for node "test.flightpulse.not_null_stg_opensky_states_icao24.5ad2a0f7da"
+[0m22:55:45.736377 [debug] [Thread-3 (]: Began executing node test.flightpulse.not_null_stg_opensky_states_icao24.5ad2a0f7da
+[0m22:55:45.751999 [debug] [Thread-3 (]: Writing runtime sql for node "test.flightpulse.not_null_stg_opensky_states_icao24.5ad2a0f7da"
+[0m22:55:45.798874 [debug] [Thread-3 (]: Using postgres connection "test.flightpulse.not_null_stg_opensky_states_icao24.5ad2a0f7da"
+[0m22:55:45.798874 [debug] [Thread-3 (]: On test.flightpulse.not_null_stg_opensky_states_icao24.5ad2a0f7da: BEGIN
+[0m22:55:45.798874 [debug] [Thread-3 (]: Opening a new connection, currently in state closed
+[0m22:55:45.892621 [debug] [Thread-2 (]: SQL status: BEGIN in 0.757 seconds
+[0m22:55:45.892621 [debug] [Thread-2 (]: Using postgres connection "test.flightpulse.assert_valid_icao24"
+[0m22:55:45.892621 [debug] [Thread-2 (]: On test.flightpulse.assert_valid_icao24: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "flightpulse", "target_name": "dev", "node_id": "test.flightpulse.assert_valid_icao24"} */
+select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      -- FlightPulse data quality: ICAO24 format
+-- Ref: continuation doc section 8: "ICAO24 follows the expected identifier
+-- format where present." OpenSky icao24 is a 6-character lowercase hex
+-- string. stg_opensky_states already lower()/trim()s it, so a failure here
+-- means genuinely malformed source data, not a casing issue.
+
+select
+    ingestion_id,
+    icao24
+from "flightpulse"."public_staging"."stg_opensky_states"
+where icao24 is not null
+  and icao24 !~ '^[0-9a-f]{6}$'
+      
+    ) dbt_internal_test
+[0m22:55:46.126996 [debug] [Thread-3 (]: SQL status: BEGIN in 0.331 seconds
+[0m22:55:46.126996 [debug] [Thread-3 (]: Using postgres connection "test.flightpulse.not_null_stg_opensky_states_icao24.5ad2a0f7da"
+[0m22:55:46.126996 [debug] [Thread-3 (]: On test.flightpulse.not_null_stg_opensky_states_icao24.5ad2a0f7da: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "flightpulse", "target_name": "dev", "node_id": "test.flightpulse.not_null_stg_opensky_states_icao24.5ad2a0f7da"} */
+select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+    
+
+
+
+select icao24
+from "flightpulse"."public_staging"."stg_opensky_states"
+where icao24 is null
+
+
+
+      
+    ) dbt_internal_test
+[0m22:55:48.304580 [debug] [Thread-3 (]: SQL status: SELECT 1 in 2.177 seconds
+[0m22:55:48.320207 [debug] [Thread-3 (]: On test.flightpulse.not_null_stg_opensky_states_icao24.5ad2a0f7da: ROLLBACK
+[0m22:55:48.320207 [debug] [Thread-3 (]: On test.flightpulse.not_null_stg_opensky_states_icao24.5ad2a0f7da: Close
+[0m22:55:48.320207 [info ] [Thread-3 (]: 9 of 12 PASS not_null_stg_opensky_states_icao24 ................................ [[32mPASS[0m in 2.63s]
+[0m22:55:48.320207 [debug] [Thread-3 (]: Finished running node test.flightpulse.not_null_stg_opensky_states_icao24.5ad2a0f7da
+[0m22:55:48.335830 [debug] [Thread-3 (]: Began running node test.flightpulse.not_null_stg_opensky_states_ingestion_id.6e876ceec3
+[0m22:55:48.335830 [debug] [Thread-1 (]: SQL status: SELECT 1 in 3.032 seconds
+[0m22:55:48.335830 [debug] [Thread-2 (]: SQL status: SELECT 1 in 2.441 seconds
+[0m22:55:48.335830 [info ] [Thread-3 (]: 10 of 12 START test not_null_stg_opensky_states_ingestion_id ................... [RUN]
+[0m22:55:48.335830 [debug] [Thread-1 (]: On test.flightpulse.not_null_int_aircraft_activity_icao24.e287c83a6d: ROLLBACK
+[0m22:55:48.351460 [debug] [Thread-2 (]: On test.flightpulse.assert_valid_icao24: ROLLBACK
+[0m22:55:48.351460 [debug] [Thread-3 (]: Re-using an available connection from the pool (formerly test.flightpulse.not_null_stg_opensky_states_icao24.5ad2a0f7da, now test.flightpulse.not_null_stg_opensky_states_ingestion_id.6e876ceec3)
+[0m22:55:48.351460 [debug] [Thread-1 (]: On test.flightpulse.not_null_int_aircraft_activity_icao24.e287c83a6d: Close
+[0m22:55:48.351460 [debug] [Thread-2 (]: On test.flightpulse.assert_valid_icao24: Close
+[0m22:55:48.351460 [debug] [Thread-3 (]: Began compiling node test.flightpulse.not_null_stg_opensky_states_ingestion_id.6e876ceec3
+[0m22:55:48.351460 [info ] [Thread-1 (]: 7 of 12 PASS not_null_int_aircraft_activity_icao24 ............................. [[32mPASS[0m in 3.32s]
+[0m22:55:48.367084 [info ] [Thread-2 (]: 6 of 12 PASS assert_valid_icao24 ............................................... [[32mPASS[0m in 3.37s]
+[0m22:55:48.382706 [debug] [Thread-3 (]: Writing injected SQL for node "test.flightpulse.not_null_stg_opensky_states_ingestion_id.6e876ceec3"
+[0m22:55:48.382706 [debug] [Thread-1 (]: Finished running node test.flightpulse.not_null_int_aircraft_activity_icao24.e287c83a6d
+[0m22:55:48.382706 [debug] [Thread-2 (]: Finished running node test.flightpulse.assert_valid_icao24
+[0m22:55:48.382706 [debug] [Thread-1 (]: Began running node test.flightpulse.unique_int_aircraft_activity_ingestion_id.823f8d3e04
+[0m22:55:48.382706 [debug] [Thread-2 (]: Began running node test.flightpulse.unique_stg_opensky_states_ingestion_id.a4599fc31e
+[0m22:55:48.398334 [info ] [Thread-1 (]: 11 of 12 START test unique_int_aircraft_activity_ingestion_id .................. [RUN]
+[0m22:55:48.398334 [info ] [Thread-2 (]: 12 of 12 START test unique_stg_opensky_states_ingestion_id ..................... [RUN]
+[0m22:55:48.398334 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly test.flightpulse.not_null_int_aircraft_activity_icao24.e287c83a6d, now test.flightpulse.unique_int_aircraft_activity_ingestion_id.823f8d3e04)
+[0m22:55:48.398334 [debug] [Thread-2 (]: Re-using an available connection from the pool (formerly test.flightpulse.assert_valid_icao24, now test.flightpulse.unique_stg_opensky_states_ingestion_id.a4599fc31e)
+[0m22:55:48.398334 [debug] [Thread-1 (]: Began compiling node test.flightpulse.unique_int_aircraft_activity_ingestion_id.823f8d3e04
+[0m22:55:48.398334 [debug] [Thread-2 (]: Began compiling node test.flightpulse.unique_stg_opensky_states_ingestion_id.a4599fc31e
+[0m22:55:48.413965 [debug] [Thread-3 (]: Began executing node test.flightpulse.not_null_stg_opensky_states_ingestion_id.6e876ceec3
+[0m22:55:48.429582 [debug] [Thread-1 (]: Writing injected SQL for node "test.flightpulse.unique_int_aircraft_activity_ingestion_id.823f8d3e04"
+[0m22:55:48.445211 [debug] [Thread-2 (]: Writing injected SQL for node "test.flightpulse.unique_stg_opensky_states_ingestion_id.a4599fc31e"
+[0m22:55:48.445211 [debug] [Thread-3 (]: Writing runtime sql for node "test.flightpulse.not_null_stg_opensky_states_ingestion_id.6e876ceec3"
+[0m22:55:48.445211 [debug] [Thread-1 (]: Began executing node test.flightpulse.unique_int_aircraft_activity_ingestion_id.823f8d3e04
+[0m22:55:48.445211 [debug] [Thread-2 (]: Began executing node test.flightpulse.unique_stg_opensky_states_ingestion_id.a4599fc31e
+[0m22:55:48.460832 [debug] [Thread-1 (]: Writing runtime sql for node "test.flightpulse.unique_int_aircraft_activity_ingestion_id.823f8d3e04"
+[0m22:55:48.460832 [debug] [Thread-3 (]: Using postgres connection "test.flightpulse.not_null_stg_opensky_states_ingestion_id.6e876ceec3"
+[0m22:55:48.476457 [debug] [Thread-3 (]: On test.flightpulse.not_null_stg_opensky_states_ingestion_id.6e876ceec3: BEGIN
+[0m22:55:48.476457 [debug] [Thread-2 (]: Writing runtime sql for node "test.flightpulse.unique_stg_opensky_states_ingestion_id.a4599fc31e"
+[0m22:55:48.476457 [debug] [Thread-3 (]: Opening a new connection, currently in state closed
+[0m22:55:48.476457 [debug] [Thread-1 (]: Using postgres connection "test.flightpulse.unique_int_aircraft_activity_ingestion_id.823f8d3e04"
+[0m22:55:48.492086 [debug] [Thread-2 (]: Using postgres connection "test.flightpulse.unique_stg_opensky_states_ingestion_id.a4599fc31e"
+[0m22:55:48.492086 [debug] [Thread-1 (]: On test.flightpulse.unique_int_aircraft_activity_ingestion_id.823f8d3e04: BEGIN
+[0m22:55:48.492086 [debug] [Thread-2 (]: On test.flightpulse.unique_stg_opensky_states_ingestion_id.a4599fc31e: BEGIN
+[0m22:55:48.492086 [debug] [Thread-1 (]: Opening a new connection, currently in state closed
+[0m22:55:48.492086 [debug] [Thread-2 (]: Opening a new connection, currently in state closed
+[0m22:55:48.671287 [debug] [Thread-3 (]: SQL status: BEGIN in 0.185 seconds
+[0m22:55:48.671287 [debug] [Thread-3 (]: Using postgres connection "test.flightpulse.not_null_stg_opensky_states_ingestion_id.6e876ceec3"
+[0m22:55:48.671287 [debug] [Thread-3 (]: On test.flightpulse.not_null_stg_opensky_states_ingestion_id.6e876ceec3: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "flightpulse", "target_name": "dev", "node_id": "test.flightpulse.not_null_stg_opensky_states_ingestion_id.6e876ceec3"} */
+select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+    
+
+
+
+select ingestion_id
+from "flightpulse"."public_staging"."stg_opensky_states"
+where ingestion_id is null
+
+
+
+      
+    ) dbt_internal_test
+[0m22:55:48.695260 [debug] [Thread-3 (]: SQL status: SELECT 1 in 0.017 seconds
+[0m22:55:48.695260 [debug] [Thread-2 (]: SQL status: BEGIN in 0.196 seconds
+[0m22:55:48.711266 [debug] [Thread-2 (]: Using postgres connection "test.flightpulse.unique_stg_opensky_states_ingestion_id.a4599fc31e"
+[0m22:55:48.716884 [debug] [Thread-3 (]: On test.flightpulse.not_null_stg_opensky_states_ingestion_id.6e876ceec3: ROLLBACK
+[0m22:55:48.716884 [debug] [Thread-2 (]: On test.flightpulse.unique_stg_opensky_states_ingestion_id.a4599fc31e: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "flightpulse", "target_name": "dev", "node_id": "test.flightpulse.unique_stg_opensky_states_ingestion_id.a4599fc31e"} */
+select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+    
+
+select
+    ingestion_id as unique_field,
+    count(*) as n_records
+
+from "flightpulse"."public_staging"."stg_opensky_states"
+where ingestion_id is not null
+group by ingestion_id
+having count(*) > 1
+
+
+
+      
+    ) dbt_internal_test
+[0m22:55:48.716884 [debug] [Thread-3 (]: On test.flightpulse.not_null_stg_opensky_states_ingestion_id.6e876ceec3: Close
+[0m22:55:48.729472 [info ] [Thread-3 (]: 10 of 12 PASS not_null_stg_opensky_states_ingestion_id ......................... [[32mPASS[0m in 0.38s]
+[0m22:55:48.735701 [debug] [Thread-3 (]: Finished running node test.flightpulse.not_null_stg_opensky_states_ingestion_id.6e876ceec3
+[0m22:55:48.981289 [debug] [Thread-1 (]: SQL status: BEGIN in 0.486 seconds
+[0m22:55:48.981289 [debug] [Thread-1 (]: Using postgres connection "test.flightpulse.unique_int_aircraft_activity_ingestion_id.823f8d3e04"
+[0m22:55:48.981289 [debug] [Thread-1 (]: On test.flightpulse.unique_int_aircraft_activity_ingestion_id.823f8d3e04: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "flightpulse", "target_name": "dev", "node_id": "test.flightpulse.unique_int_aircraft_activity_ingestion_id.823f8d3e04"} */
+select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+    
+
+select
+    ingestion_id as unique_field,
+    count(*) as n_records
+
+from "flightpulse"."public_intermediate"."int_aircraft_activity"
+where ingestion_id is not null
+group by ingestion_id
+having count(*) > 1
+
+
+
+      
+    ) dbt_internal_test
+[0m22:55:50.211024 [debug] [Thread-4 (]: SQL status: SELECT 1 in 4.878 seconds
+[0m22:55:50.211024 [debug] [Thread-4 (]: On test.flightpulse.assert_valid_coordinates: ROLLBACK
+[0m22:55:50.219019 [debug] [Thread-4 (]: On test.flightpulse.assert_valid_coordinates: Close
+[0m22:55:50.219019 [info ] [Thread-4 (]: 5 of 12 PASS assert_valid_coordinates .......................................... [[32mPASS[0m in 5.19s]
+[0m22:55:50.228051 [debug] [Thread-4 (]: Finished running node test.flightpulse.assert_valid_coordinates
+[0m22:55:52.331839 [debug] [Thread-2 (]: SQL status: SELECT 1 in 3.607 seconds
+[0m22:55:52.331839 [debug] [Thread-2 (]: On test.flightpulse.unique_stg_opensky_states_ingestion_id.a4599fc31e: ROLLBACK
+[0m22:55:52.331839 [debug] [Thread-2 (]: On test.flightpulse.unique_stg_opensky_states_ingestion_id.a4599fc31e: Close
+[0m22:55:52.346040 [debug] [Thread-1 (]: SQL status: SELECT 1 in 3.352 seconds
+[0m22:55:52.331839 [info ] [Thread-2 (]: 12 of 12 PASS unique_stg_opensky_states_ingestion_id ........................... [[32mPASS[0m in 3.93s]
+[0m22:55:52.346040 [debug] [Thread-1 (]: On test.flightpulse.unique_int_aircraft_activity_ingestion_id.823f8d3e04: ROLLBACK
+[0m22:55:52.346040 [debug] [Thread-2 (]: Finished running node test.flightpulse.unique_stg_opensky_states_ingestion_id.a4599fc31e
+[0m22:55:52.354032 [debug] [Thread-1 (]: On test.flightpulse.unique_int_aircraft_activity_ingestion_id.823f8d3e04: Close
+[0m22:55:52.354032 [info ] [Thread-1 (]: 11 of 12 PASS unique_int_aircraft_activity_ingestion_id ........................ [[32mPASS[0m in 3.96s]
+[0m22:55:52.354032 [debug] [Thread-1 (]: Finished running node test.flightpulse.unique_int_aircraft_activity_ingestion_id.823f8d3e04
+[0m22:55:52.370030 [debug] [MainThread]: Using postgres connection "master"
+[0m22:55:52.370030 [debug] [MainThread]: On master: BEGIN
+[0m22:55:52.370030 [debug] [MainThread]: Opening a new connection, currently in state closed
+[0m22:55:52.474405 [debug] [MainThread]: SQL status: BEGIN in 0.111 seconds
+[0m22:55:52.474405 [debug] [MainThread]: On master: COMMIT
+[0m22:55:52.474405 [debug] [MainThread]: Using postgres connection "master"
+[0m22:55:52.490031 [debug] [MainThread]: On master: COMMIT
+[0m22:55:52.490031 [debug] [MainThread]: SQL status: COMMIT in 0.000 seconds
+[0m22:55:52.490031 [debug] [MainThread]: On master: Close
+[0m22:55:52.490031 [debug] [MainThread]: Connection 'master' was properly closed.
+[0m22:55:52.490031 [debug] [MainThread]: Connection 'list_flightpulse_public_intermediate' was properly closed.
+[0m22:55:52.490031 [debug] [MainThread]: Connection 'list_flightpulse_public_staging' was properly closed.
+[0m22:55:52.490031 [debug] [MainThread]: Connection 'test.flightpulse.unique_int_aircraft_activity_ingestion_id.823f8d3e04' was properly closed.
+[0m22:55:52.490031 [debug] [MainThread]: Connection 'test.flightpulse.unique_stg_opensky_states_ingestion_id.a4599fc31e' was properly closed.
+[0m22:55:52.505657 [debug] [MainThread]: Connection 'test.flightpulse.not_null_stg_opensky_states_ingestion_id.6e876ceec3' was properly closed.
+[0m22:55:52.505657 [debug] [MainThread]: Connection 'test.flightpulse.assert_valid_coordinates' was properly closed.
+[0m22:55:52.505657 [info ] [MainThread]: 
+[0m22:55:52.505657 [info ] [MainThread]: Finished running 12 data tests in 0 hours 1 minutes and 3.29 seconds (63.29s).
+[0m22:55:52.505657 [debug] [MainThread]: Command end result
+[0m22:55:52.835176 [info ] [MainThread]: 
+[0m22:55:53.444490 [info ] [MainThread]: [32mCompleted successfully[0m
+[0m22:55:53.444490 [info ] [MainThread]: 
+[0m22:55:53.460090 [info ] [MainThread]: Done. PASS=12 WARN=0 ERROR=0 SKIP=0 TOTAL=12
+[0m22:55:53.460090 [debug] [MainThread]: Command `dbt test` succeeded at 22:55:53.460090 after 66.57 seconds
+[0m22:55:53.460090 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001966B90EB10>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001966B90D990>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001966B90EB90>]}
+[0m22:55:53.460090 [debug] [MainThread]: Flushing usage events

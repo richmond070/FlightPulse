@@ -1,0 +1,31 @@
+version: 2
+
+models:
+  - name: stg_opensky_states
+    description: >
+      One row per raw_telemetry observation, with flight-measurement
+      fields typed out of payload JSONB. No aggregation or dedup logic
+      here -- ingestion_id uniqueness is already enforced at the DB layer
+      (uq_raw_telemetry_ingestion_id).
+    columns:
+      - name: ingestion_id
+        data_tests:
+          - unique
+          - not_null
+      - name: icao24
+        description: >
+          Per continuation doc section 8: "ICAO24 follows the expected
+          identifier format where present" -- format is checked by the
+          singular test assert_valid_icao24 rather than a generic column
+          test, since it's a regex shape check, not a simple accepted-values
+          list.
+        data_tests:
+          - not_null
+      - name: on_ground
+        data_tests:
+          - accepted_values:
+              values: [true, false]
+              quote: false
+              config:
+                severity: warn
+                where: "on_ground is not null"

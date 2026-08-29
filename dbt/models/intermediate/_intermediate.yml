@@ -1,0 +1,41 @@
+version: 2
+
+models:
+  - name: int_aircraft_activity
+    description: >
+      One row per stg_opensky_states observation, enriched with the
+      derived business fields the continuation doc calls for at this
+      layer: altitude_km, velocity_kmh, vertical_rate_category,
+      observation_date/hour, aircraft_activity_status,
+      telemetry_age_seconds. No aggregation -- grain is unchanged from
+      staging (one row per raw_telemetry observation).
+    columns:
+      - name: ingestion_id
+        tests:
+          - unique
+          - not_null
+      - name: icao24
+        tests:
+          - not_null
+      - name: vertical_rate_category
+        tests:
+          - accepted_values:
+              values: ['climbing', 'descending', 'stable', 'unknown']
+      - name: aircraft_activity_status
+        tests:
+          - accepted_values:
+              values:
+                - 'on_ground'
+                - 'climbing'
+                - 'descending'
+                - 'level_flight'
+                - 'airborne_unknown_rate'
+                - 'unknown'
+      - name: telemetry_age_seconds
+        description: >
+          Should generally be small and non-negative for healthy pipeline
+          operation. Negative values would mean processed_at < last_contact_at,
+          which shouldn't be possible given monotonic clock assumptions.
+          Checked by the singular test assert_non_negative_telemetry_age.sql
+          (warn severity) rather than a generic column test, to avoid
+          pulling in the dbt_utils package for one expression check.
