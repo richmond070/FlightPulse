@@ -9,7 +9,7 @@ models:
       (uq_raw_telemetry_ingestion_id).
     columns:
       - name: ingestion_id
-        tests:
+        data_tests:
           - unique
           - not_null
       - name: icao24
@@ -19,10 +19,10 @@ models:
           singular test assert_valid_icao24 rather than a generic column
           test, since it's a regex shape check, not a simple accepted-values
           list.
-        tests:
+        data_tests:
           - not_null
       - name: on_ground
-        tests:
+        data_tests:
           - accepted_values:
               values: [true, false]
               quote: false

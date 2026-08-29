@@ -11,18 +11,18 @@ models:
       staging (one row per raw_telemetry observation).
     columns:
       - name: ingestion_id
-        tests:
+        data_tests:
           - unique
           - not_null
       - name: icao24
-        tests:
+        data_tests:
           - not_null
       - name: vertical_rate_category
-        tests:
+        data_tests:
           - accepted_values:
               values: ['climbing', 'descending', 'stable', 'unknown']
       - name: aircraft_activity_status
-        tests:
+        data_tests:
           - accepted_values:
               values:
                 - 'on_ground'

@@ -1,0 +1,45 @@
+version: 2
+
+models:
+  - name: mart_aircraft_activity
+    description: >
+      Aircraft observations aggregated by (icao24, observation_date,
+      observation_hour). Answers: aircraft counts by period, activity by
+      hour/day, most frequent callsigns, altitude/velocity patterns,
+      climb/descend/stable split. See continuation doc section 2 & 7.
+    columns:
+      - name: icao24
+        data_tests:
+          - not_null
+      - name: observation_count
+        data_tests:
+          - not_null
+
+  - name: mart_airspace_activity
+    description: >
+      Aircraft density/activity aggregated by a 1-degree lat/lon grid
+      cell and (observation_date, observation_hour). Answers: which
+      regions have the highest density, how activity varies
+      geographically and temporally. See continuation doc section 2 & 7.
+    columns:
+      - name: lat_grid
+        data_tests:
+          - not_null
+      - name: lon_grid
+        data_tests:
+          - not_null
+      - name: distinct_aircraft_count
+        data_tests:
+          - not_null
+
+  - name: mart_telemetry_quality
+    description: >
+      Missingness, invalid values, retry-duplicate counts, and
+      source-to-storage freshness (avg/p50/p95/max telemetry_age_seconds),
+      combined with extraction_log poll-cycle outcomes. Grain is
+      (observation_date, observation_hour). See continuation doc
+      section 2, 7 & 11 (KPIs).
+    columns:
+      - name: observation_date
+        data_tests:
+          - not_null

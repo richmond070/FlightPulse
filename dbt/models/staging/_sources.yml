@@ -20,16 +20,16 @@ sources:
         columns:
           - name: ingestion_id
             description: Deterministic uuid5(source, icao24, last_contact). Unique per real-world observation.
-            tests:
+            data_tests:
               - unique
               - not_null
           - name: icao24
-            tests:
+            data_tests:
               - not_null
           - name: source
           - name: collector_id
           - name: payload
-            tests:
+            data_tests:
               - not_null
           - name: received_at
             description: Row insert time (DB-assigned).
@@ -44,23 +44,23 @@ sources:
           success and failure cycles. Feeds mart_telemetry_quality.
         columns:
           - name: request_id
-            tests:
+            data_tests:
               - unique
               - not_null
           - name: source
-            tests:
+            data_tests:
               - not_null
           - name: collector_id
           - name: collector_version
           - name: request_scope
           - name: extraction_started_at
-            tests:
+            data_tests:
               - not_null
           - name: extraction_completed_at
           - name: source_observation_time
           - name: record_count
           - name: success
-            tests:
+            data_tests:
               - not_null
           - name: error_message
           - name: logged_at

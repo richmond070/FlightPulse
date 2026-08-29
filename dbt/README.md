@@ -213,8 +213,24 @@ flightpulse/
         recently observed callsign/origin_country), since no external
         aircraft registry feeds this pipeline. `fact_aircraft_state`
         keeps the observation grain and FKs to `dim_aircraft` on `icao24`
-  - [ ] `mart_aircraft_activity` / `mart_airspace_activity` /
-        `mart_telemetry_quality`
+  - [x] `mart_aircraft_activity` / `mart_airspace_activity` /
+        `mart_telemetry_quality` (`models/marts/`) — Phase 6 complete.
+        - `mart_aircraft_activity`: grain (icao24, observation_date,
+          observation_hour). Answers aircraft-count-by-period,
+          activity-by-hour/day, most-frequent-callsign, altitude/velocity
+          patterns, and climb/descend/stable split.
+        - `mart_airspace_activity`: grain (1-degree lat/lon grid cell,
+          observation_date, observation_hour). A 1-degree grid is used as
+          a geographic-area proxy since no airspace-sector/administrative
+          boundary reference data exists in this pipeline; rows with a
+          null lat/lon are excluded.
+        - `mart_telemetry_quality`: grain (observation_date,
+          observation_hour). Combines fact-table missingness/invalid-value
+          counts and freshness percentiles (`telemetry_age_seconds`) with
+          `extraction_log` poll-cycle outcomes. Note: dbt's own
+          PASS/WARN/ERROR test-run output is the source for the
+          "dbt test pass rate" KPI (continuation doc section 11) --
+          it isn't duplicated into this mart.
 - [ ] Phase 7 — Load testing
 - [ ] Phase 8 — Analytics layer
 
@@ -323,35 +339,29 @@ export DBT_PROFILES_DIR=dbt       # so you don't need --profiles-dir every time
 
 cd dbt
 dbt debug --project-dir .         # confirms the Postgres connection works
-dbt run --project-dir . --select stg_opensky_states int_aircraft_activity dim_aircraft fact_aircraft_state
-dbt test --project-dir . --select stg_opensky_states int_aircraft_activity dim_aircraft fact_aircraft_state
+dbt run --project-dir .
+dbt test --project-dir .
 ```
 
-> Note: schema `.yml` files use dbt 1.8's `data_tests:` key (the `tests:`
-> key still works but is deprecated and will warn).
+> Note: no `--select` needed anymore — Phase 6 is complete, so the full
+> DAG is `stg_opensky_states` → `int_aircraft_activity` →
+> `dim_aircraft` + `fact_aircraft_state` → `mart_aircraft_activity` /
+> `mart_airspace_activity` / `mart_telemetry_quality`.
 
-`dbt debug` should show `Connection test: OK`. `dbt run` builds:
-`<schema>_staging.stg_opensky_states`,
-`<schema>_intermediate.int_aircraft_activity`, and two tables --
-`<schema>_marts.dim_aircraft`, `<schema>_marts.fact_aircraft_state`.
-Spot-check all four:
+`dbt run` builds two views (staging, intermediate) and five tables
+(`dim_aircraft`, `fact_aircraft_state`, and the three marts). Spot-check
+the marts:
 
 ```bash
 psql -U flightpulse -h localhost -d flightpulse \
-  -c "SELECT icao24, callsign, latitude, longitude, last_contact_at FROM public_staging.stg_opensky_states LIMIT 5;"
+  -c "SELECT icao24, observation_date, observation_hour, observation_count, most_frequent_callsign, avg_altitude_km, climbing_count, descending_count FROM public_marts.mart_aircraft_activity ORDER BY observation_count DESC LIMIT 5;"
 
 psql -U flightpulse -h localhost -d flightpulse \
-  -c "SELECT icao24, altitude_km, velocity_kmh, vertical_rate_category, aircraft_activity_status, telemetry_age_seconds FROM public_intermediate.int_aircraft_activity LIMIT 5;"
+  -c "SELECT lat_grid_center, lon_grid_center, observation_date, observation_hour, distinct_aircraft_count FROM public_marts.mart_airspace_activity ORDER BY distinct_aircraft_count DESC LIMIT 5;"
 
 psql -U flightpulse -h localhost -d flightpulse \
-  -c "SELECT icao24, latest_callsign, latest_origin_country, first_seen_at, last_seen_at, observation_count FROM public_marts.dim_aircraft ORDER BY observation_count DESC LIMIT 5;"
-
-psql -U flightpulse -h localhost -d flightpulse \
-  -c "SELECT icao24, altitude_km, aircraft_activity_status FROM public_marts.fact_aircraft_state LIMIT 5;"
+  -c "SELECT observation_date, observation_hour, total_observations, avg_telemetry_age_seconds, p95_telemetry_age_seconds, retry_duplicate_count, failed_extraction_cycles FROM public_marts.mart_telemetry_quality ORDER BY observation_date DESC, observation_hour DESC LIMIT 5;"
 ```
-
-Four models exist so far — `dbt run`/`dbt test` with no `--select` will
-currently build/test all of them.
 
 ## Deliberate deviations from the docs
 
