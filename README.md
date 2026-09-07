@@ -189,6 +189,27 @@ flightpulse/
         meantime — nothing is lost, just not yet indexed/typed at the
         raw layer.
 - [ ] Phase 6 — dbt
+  - [x] `dbt/dbt_project.yml`, `dbt/profiles.yml` — reuses the same
+        `POSTGRES_*` env vars as `.env.example` rather than introducing
+        separate dbt credentials
+  - [x] `dbt/models/staging/_sources.yml` — declares `raw_telemetry` and
+        `extraction_log` as dbt sources (schema tracks `sql/*.sql` exactly)
+  - [x] `dbt/models/staging/stg_opensky_states.sql` — types flight
+        measurements out of `raw_telemetry.payload` JSONB for the first
+        time (continuation doc section 7); one row in, one row out, no
+        business logic yet
+  - [x] `dbt/models/staging/_staging.yml` + two singular tests
+        (`assert_valid_coordinates.sql`, `assert_valid_icao24.sql`) —
+        continuation doc section 8 data-quality rules (coordinate bounds,
+        ICAO24 format)
+  - [x] `int_aircraft_activity` (intermediate business logic) —
+        `altitude_km`, `velocity_kmh`, `vertical_rate_category`,
+        `observation_date`/`observation_hour`, `aircraft_activity_status`,
+        `telemetry_age_seconds` (source-observation-to-persistence latency,
+        per continuation doc section 7)
+  - [ ] `dim_aircraft` / `fact_aircraft_state`
+  - [ ] `mart_aircraft_activity` / `mart_airspace_activity` /
+        `mart_telemetry_quality`
 - [ ] Phase 7 — Load testing
 - [ ] Phase 8 — Analytics layer
 
@@ -288,6 +309,36 @@ Confirm data landed:
 ```bash
 psql -U flightpulse -h localhost -d flightpulse -c "SELECT count(*) FROM raw_telemetry;"
 ```
+
+### Running dbt (Phase 6, in progress)
+
+```bash
+pip install -r requirements.txt   # now includes dbt-postgres
+export DBT_PROFILES_DIR=dbt       # so you don't need --profiles-dir every time
+
+cd dbt
+dbt debug --project-dir .         # confirms the Postgres connection works
+dbt run --project-dir . --select stg_opensky_states int_aircraft_activity
+dbt test --project-dir . --select stg_opensky_states int_aircraft_activity
+```
+
+`dbt debug` should show `Connection test: OK`. `dbt run` should build two
+views: `<schema>_staging.stg_opensky_states` and
+`<schema>_intermediate.int_aircraft_activity` (dbt prefixes each model's
+`+schema:` config from `dbt_project.yml` onto your profile's base
+`schema: public`, e.g. `public_staging`, `public_intermediate`).
+Spot-check both:
+
+```bash
+psql -U flightpulse -h localhost -d flightpulse \
+  -c "SELECT icao24, callsign, latitude, longitude, last_contact_at FROM public_staging.stg_opensky_states LIMIT 5;"
+
+psql -U flightpulse -h localhost -d flightpulse \
+  -c "SELECT icao24, altitude_km, velocity_kmh, vertical_rate_category, aircraft_activity_status, telemetry_age_seconds FROM public_intermediate.int_aircraft_activity LIMIT 5;"
+```
+
+Two models exist so far — `dbt run`/`dbt test` with no `--select` will
+currently build/test both of them.
 
 ## Deliberate deviations from the docs
 

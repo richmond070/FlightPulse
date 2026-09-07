@@ -25,7 +25,9 @@ restart. The durable version lands in Phase 5, backed by the
 import threading
 
 from arq import create_pool
-from fastapi import APIRouter, Header
+from fastapi import APIRouter, Header, HTTPException, Request
+from pydantic import ValidationError
+from starlette.concurrency import run_in_threadpool
 from typing import Optional
 
 from ingestion.schemas import ExtractionLogEntry, TelemetryBatch, IngestResponse
@@ -66,7 +68,7 @@ async def version():
 
 @router.post("/telemetry", response_model=IngestResponse)
 async def post_telemetry(
-    batch: TelemetryBatch,
+    request: Request,
     idempotency_key: Optional[str] = Header(default=None, alias="Idempotency-Key"),
 ):
     if idempotency_key:
@@ -74,6 +76,36 @@ async def post_telemetry(
             cached = _idempotency_cache.get(idempotency_key)
         if cached is not None:
             return cached
+
+    # Phase 7 fix: previously this endpoint took `batch: TelemetryBatch`
+    # as a typed parameter, letting FastAPI validate the request body
+    # into a TelemetryBatch automatically before this function ran. That
+    # validation is plain synchronous CPU work -- for an 8000-event batch
+    # it measured ~2.2-2.4s (see repo notes on batch validation cost) --
+    # and it ran directly on this process's single asyncio event loop,
+    # blocking *everything* else on this instance for that whole window,
+    # including GET /health. Under sustained load (Phase 7 replay
+    # testing at 10x speed) that was enough to make the load balancer's
+    # health checker time out and mark a perfectly-alive backend
+    # UNHEALTHY, which cascaded into 503s and read-timeouts on other
+    # requests.
+    #
+    # Fix: parse the JSON body ourselves (fast, C-implemented, not the
+    # bottleneck) directly on the event loop, then hand the expensive
+    # Pydantic model construction/validation to run_in_threadpool, which
+    # runs it in a worker thread instead of the event loop. Because of
+    # the GIL, this thread doesn't get *true* parallel CPU time against
+    # the event loop -- but CPython periodically yields the GIL between
+    # bytecode instructions (every ~5ms by default), so the event loop
+    # gets regular chances to slip in and answer a health check instead
+    # of being frozen solid for the full 2.4s. This is a partial fix
+    # (not true parallelism) but costs no extra memory or processes,
+    # unlike running multiple uvicorn workers.
+    raw_body = await request.json()
+    try:
+        batch = await run_in_threadpool(TelemetryBatch.model_validate, raw_body)
+    except ValidationError as exc:
+        raise HTTPException(status_code=422, detail=exc.errors())
 
     # Phase 4: enqueue the whole batch as a single compact job rather than
     # one job per event (section 8: "keep the queue payload compact; pass

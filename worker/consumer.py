@@ -70,5 +70,18 @@ class WorkerSettings:
     max_tries = MAX_JOB_ATTEMPTS
     job_timeout = JOB_TIMEOUT_SECONDS
 
+    # Bounds how many jobs this worker process runs concurrently. Left
+    # at arq's implicit default (10) previously -- explicit now, and
+    # deliberately sized to match worker/settings.py's DB_POOL_MAX_SIZE
+    # (also 10). Phase 7 load testing found that letting worker
+    # concurrency exceed pool size meant jobs would compete for
+    # connections and fail with "couldn't get a connection after 5.00
+    # sec" even under fairly modest concurrent load. Keeping these two
+    # numbers matched means the worker naturally throttles itself to
+    # what the database can actually serve, rather than accepting more
+    # concurrent work than it can complete and discovering that as
+    # connection-pool timeouts downstream.
+    max_jobs = 10
+
     on_job_start = on_job_start
     on_job_end = on_job_end

@@ -22,6 +22,7 @@ import logging
 import time
 
 import psycopg
+from psycopg import sql
 from psycopg_pool import AsyncConnectionPool, PoolTimeout
 
 from ingestion.schemas import TelemetryEvent
@@ -55,18 +56,43 @@ async def _get_pool() -> AsyncConnectionPool:
     return _pool
 
 
-_INSERT_SQL = """
-    INSERT INTO raw_telemetry
-        (ingestion_id, source, icao24, collector_id, payload, ingested_at, processed_at)
-    VALUES
-        (%(ingestion_id)s, %(source)s, %(icao24)s, %(collector_id)s, %(payload)s, %(ingested_at)s, now())
-    ON CONFLICT (ingestion_id) DO NOTHING
-    RETURNING ingestion_id
-"""
+_INSERT_COLUMNS = ("ingestion_id", "source", "icao24", "collector_id", "payload", "ingested_at")
+
+# Rows per multi-row INSERT statement. Chosen so a full 8000-event batch
+# needs only ~4 round trips instead of 8000 (one per row, the original
+# Phase 5 approach) -- see the Phase 7 load-test finding this replaces:
+# under 10x replay load, row-by-row inserts sometimes took 40-48s for an
+# 8000-row batch, exceeding ARQ_JOB_TIMEOUT_SECONDS and causing arq to
+# kill the job mid-write, losing the batch entirely.
+# 2000 rows * 6 params/row = 12000 placeholders per statement, safely
+# under PostgreSQL's ~65535-parameter-per-statement limit.
+_INSERT_CHUNK_SIZE = 2000
 
 
-def _event_to_row(event: TelemetryEvent) -> dict:
-    """Map a TelemetryEvent onto raw_telemetry's columns.
+def _build_multi_row_insert(num_rows: int) -> sql.Composed:
+    """Build a single INSERT ... VALUES (..), (..), ... statement for
+    num_rows rows, keeping ON CONFLICT DO NOTHING + RETURNING semantics
+    identical to the original per-row statement -- just batched so
+    Postgres round trips scale with chunk count, not event count."""
+    value_group = sql.SQL("({}, now())").format(
+        sql.SQL(", ").join(sql.Placeholder() * len(_INSERT_COLUMNS))
+    )
+    all_value_groups = sql.SQL(", ").join([value_group] * num_rows)
+    return sql.SQL(
+        "INSERT INTO raw_telemetry ({columns}, processed_at) "
+        "VALUES {values} "
+        "ON CONFLICT (ingestion_id) DO NOTHING "
+        "RETURNING ingestion_id"
+    ).format(
+        columns=sql.SQL(", ").join(sql.Identifier(c) for c in _INSERT_COLUMNS),
+        values=all_value_groups,
+    )
+
+
+def _event_to_row(event: TelemetryEvent) -> tuple:
+    """Map a TelemetryEvent onto raw_telemetry's columns, as a positional
+    tuple matching _INSERT_COLUMNS's order -- needed for the flattened
+    multi-row VALUES statement built by _build_multi_row_insert.
 
     payload retains the full normalized event as JSONB (section 5:
     raw_telemetry's purpose is "payload, source, received_at" -- the full
@@ -80,14 +106,14 @@ def _event_to_row(event: TelemetryEvent) -> dict:
     the continuation doc's own "keep source-oriented storage separate from
     analytics models" instruction (section 3, Load).
     """
-    return {
-        "ingestion_id": event.ingestion_id,
-        "source": event.source,
-        "icao24": event.icao24,
-        "collector_id": event.collector_id,
-        "payload": json.dumps(event.model_dump()),
-        "ingested_at": event.ingested_at,
-    }
+    return (
+        event.ingestion_id,
+        event.source,
+        event.icao24,
+        event.collector_id,
+        json.dumps(event.model_dump()),
+        event.ingested_at,
+    )
 
 
 async def persist_batch(events: list[TelemetryEvent]) -> int:
@@ -123,6 +149,18 @@ async def persist_batch(events: list[TelemetryEvent]) -> int:
         return 0
 
     rows = [_event_to_row(e) for e in events]
+
+    # Sort rows by ingestion_id (first column of _INSERT_COLUMNS) before
+    # inserting. Phase 7 finding: concurrent batches inserting into
+    # raw_telemetry occasionally hit "deadlock detected" from Postgres --
+    # arq's own retry/backoff already recovers from this cleanly (see
+    # worker/processor.py), so it wasn't causing data loss, but it's
+    # avoidable. Deadlocks like this happen when concurrent transactions
+    # acquire the same unique-index locks in different orders; sorting
+    # every transaction's rows into the same order before inserting means
+    # concurrent batches always approach shared index entries in the same
+    # sequence, which is the standard fix for this class of deadlock.
+    rows.sort(key=lambda row: row[0])
     start = time.monotonic()
 
     try:
@@ -130,18 +168,24 @@ async def persist_batch(events: list[TelemetryEvent]) -> int:
         newly_inserted = 0
         async with pool.connection() as conn:
             async with conn.cursor() as cur:
-                # One statement per row rather than executemany: batches
-                # are kept compact per section 8 ("pass a batch reference
-                # or compact normalized records"), so the per-row round
-                # trip cost is small, and RETURNING per row is the
-                # simplest correct way to count exactly how many rows
-                # survived ON CONFLICT DO NOTHING (executemany's batched
-                # RETURNING semantics vary enough across drivers that
-                # they're not worth the complexity at this batch size).
-                for row in rows:
-                    await cur.execute(_INSERT_SQL, row)
-                    if await cur.fetchone() is not None:
-                        newly_inserted += 1
+                # Multi-row INSERT in chunks of _INSERT_CHUNK_SIZE rather
+                # than one statement per row. The original per-row
+                # approach caused a real Phase 7 load-test failure: at
+                # 10x replay speed, 8000 individual round trips per batch
+                # sometimes took 40-48s, exceeding ARQ_JOB_TIMEOUT_SECONDS
+                # and causing arq to kill the job mid-write -- losing the
+                # batch entirely (confirmed: a fresh-mode 24000-event
+                # replay run left only 8000 rows persisted). Chunking
+                # keeps ON CONFLICT DO NOTHING + RETURNING semantics
+                # identical, just batched, cutting round trips from
+                # thousands to single digits per batch.
+                for i in range(0, len(rows), _INSERT_CHUNK_SIZE):
+                    chunk_rows = rows[i : i + _INSERT_CHUNK_SIZE]
+                    stmt = _build_multi_row_insert(len(chunk_rows))
+                    flat_params = [value for row in chunk_rows for value in row]
+                    await cur.execute(stmt, flat_params)
+                    returned = await cur.fetchall()
+                    newly_inserted += len(returned)
             await conn.commit()
 
         elapsed = time.monotonic() - start
