@@ -115,7 +115,7 @@ async def process_telemetry_batch(ctx: dict, batch_payload: dict) -> dict:
         # this call exists so the job lifecycle (queued -> active ->
         # completed) is real and testable end-to-end, per section 9's
         # "run multiple workers and verify concurrent processing".
-        await persistence.persist_batch(deduped)
+        newly_inserted = await persistence.persist_batch(deduped)
     except persistence.PersistenceUnavailable as exc:
         # Treated as transient: the DB being briefly unreachable should
         # not dead-letter a perfectly good batch. Raising arq's Retry
@@ -131,7 +131,16 @@ async def process_telemetry_batch(ctx: dict, batch_payload: dict) -> dict:
         )
         raise Retry(defer=delay) from exc
 
-    return {"status": "completed", "accepted": len(deduped)}
+    # newly_inserted (vs len(deduped)) is surfaced here -- not just logged
+    # -- so external tooling (replay/fault_injection.py's row-count checks
+    # in particular) can tell "correctly deduped against an existing row"
+    # apart from "lost". Some source aircraft genuinely repeat the same
+    # (source, icao24, last_contact) observation within one fixture/poll,
+    # and ON CONFLICT DO NOTHING silently absorbs those -- silently at the
+    # DB layer is correct, but silently at the job-result layer made
+    # Phase 7 Step 4.2's fault-injection harness misread expected legitimate
+    # dedup as data loss.
+    return {"status": "completed", "accepted": len(deduped), "newly_inserted": newly_inserted}
 
 
 async def process_extraction_log(ctx: dict, entry_payload: dict) -> dict:
