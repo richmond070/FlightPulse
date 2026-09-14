@@ -1,0 +1,79 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="FlightPulse Architecture" id="flightpulse-arch">
+    <mxGraphModel dx="828" dy="480" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="900" pageHeight="1400" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="opensky" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F1EFE8;strokeColor=#888780;fontSize=12;" value="OpenSky Network&#xa;Live aircraft state vectors" vertex="1">
+          <mxGeometry height="60" width="220" x="340" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="collector" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EEEDFE;strokeColor=#534AB7;fontSize=12;" value="Telemetry Collector&#xa;(collector/) fetch + normalize + batch" vertex="1">
+          <mxGeometry height="60" width="220" x="340" y="150" as="geometry" />
+        </mxCell>
+        <mxCell id="lb" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EEEDFE;strokeColor=#534AB7;fontSize=12;" value="Custom Load Balancer&#xa;(load_balancer/) round-robin + health checks" vertex="1">
+          <mxGeometry height="60" width="220" x="340" y="260" as="geometry" />
+        </mxCell>
+        <mxCell id="fa1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E1F5EE;strokeColor=#0F6E56;fontSize=12;" value="FastAPI :8001&#xa;(ingestion/)" vertex="1">
+          <mxGeometry height="60" width="180" x="140" y="380" as="geometry" />
+        </mxCell>
+        <mxCell id="fa2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E1F5EE;strokeColor=#0F6E56;fontSize=12;" value="FastAPI :8002&#xa;(ingestion/)" vertex="1">
+          <mxGeometry height="60" width="180" x="360" y="380" as="geometry" />
+        </mxCell>
+        <mxCell id="fa3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E1F5EE;strokeColor=#0F6E56;fontSize=12;" value="FastAPI :8003&#xa;(ingestion/)" vertex="1">
+          <mxGeometry height="60" width="180" x="580" y="380" as="geometry" />
+        </mxCell>
+        <mxCell id="queue" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FAECE7;strokeColor=#993C1D;fontSize=12;" value="Redis-backed Job Queue&#xa;arq — one job per accepted batch" vertex="1">
+          <mxGeometry height="60" width="220" x="340" y="500" as="geometry" />
+        </mxCell>
+        <mxCell id="worker" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FAEEDA;strokeColor=#854F0B;fontSize=12;" value="Python Workers&#xa;(worker/) validate, dedupe, retry, persist" vertex="1">
+          <mxGeometry height="60" width="220" x="340" y="610" as="geometry" />
+        </mxCell>
+        <mxCell id="pg" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E6F1FB;strokeColor=#185FA5;fontSize=12;" value="PostgreSQL&#xa;raw_telemetry + extraction_log" vertex="1">
+          <mxGeometry height="60" width="220" x="340" y="720" as="geometry" />
+        </mxCell>
+        <mxCell id="dbt" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EAF3DE;strokeColor=#3B6D11;fontSize=12;" value="dbt&#xa;staging -&gt; intermediate -&gt; marts" vertex="1">
+          <mxGeometry height="60" width="220" x="340" y="830" as="geometry" />
+        </mxCell>
+        <mxCell id="marts" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EAF3DE;strokeColor=#3B6D11;fontSize=12;" value="Analytics-ready Marts&#xa;aircraft activity, airspace density, telemetry quality" vertex="1">
+          <mxGeometry height="60" width="260" x="320" y="940" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" edge="1" parent="1" source="opensky" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" target="collector">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" edge="1" parent="1" source="collector" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" target="lb">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" edge="1" parent="1" source="lb" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" target="fa1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e4" edge="1" parent="1" source="lb" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" target="fa2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e5" edge="1" parent="1" source="lb" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" target="fa3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e6" edge="1" parent="1" source="fa1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" target="queue">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e7" edge="1" parent="1" source="fa2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" target="queue">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e8" edge="1" parent="1" source="fa3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" target="queue">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e9" edge="1" parent="1" source="queue" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" target="worker">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e10" edge="1" parent="1" source="worker" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" target="pg">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e11" edge="1" parent="1" source="pg" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" target="dbt">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e12" edge="1" parent="1" source="dbt" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" target="marts">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
