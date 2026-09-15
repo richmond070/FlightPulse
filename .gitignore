@@ -8,3 +8,4 @@ dbt/logs/
 dbt/dbt_packages/
 dbt/dbt_modules/
 .venv-wsl/
+frontend

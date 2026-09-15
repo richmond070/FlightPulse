@@ -86,7 +86,7 @@ questions can actually be trusted. Phase 7 exists to prove the pipeline
 keeps answering them correctly even when something breaks.
 
 ## Data Architecture
-![FlightPulse-architecture](.docs\flightpulse_architecture.drawio.svg)
+ ![FlightPulse architecture](./docs/flightpulse_architecture.svg)
 
 
 
